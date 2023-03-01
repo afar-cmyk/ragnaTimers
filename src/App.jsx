@@ -1,9 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(
   <div>
     <h2>Hola mundo desde React en App.jsx</h2>
-  </div>,
-  document.getElementById("root")
+  </div>
 );
