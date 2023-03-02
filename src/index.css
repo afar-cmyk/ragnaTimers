@@ -1,7 +1,50 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+}
+
+.serverTime-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 7px;
+  border-radius: 6px;
+  border: 1px #53abcd solid;
+  width: fit-content;
+  font-size: 14px;
+}
+
+h4 {
+  font-size: 12px;
+  padding: 0 0 3px 0;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.selectMvp-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectMvp-container select {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px #53abcd solid;
+  width: fit-content;
+  height: 2.5em;
+  font-size: 14px;
 }
