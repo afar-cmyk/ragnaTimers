@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Garm",
+    "duration": 60,
+    "image": "./images/garm.gif"
+  },
+  {
+    "name": "Maya",
+    "duration": 120,
+    "image": "./images/maya.gif"
+  },
+  {
+    "name": "Lady Tanee",
+    "duration": 180,
+    "image": "./images/lady_tanee.gif"
+  }
+]
