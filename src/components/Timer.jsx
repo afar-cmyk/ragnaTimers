@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import garm from "../images/garm.gif";
 
 const Timer = ({ time }) => {
-  const [isActive, setIsActive] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
   const [count, setCount] = useState(time);
+  const intervalRef = useRef();
+
+  const startTimer = () => {
+    setIsRunning(true);
+  };
+
+  const stopTimer = () => {
+    setIsRunning(false);
+  };
+
+  const resetTimer = () => {
+    setCount(time);
+    stopTimer();
+  };
 
   useEffect(() => {
-    let intervalId;
-
-    if (isActive) {
-      const interval = setInterval(() => {
+    if (isRunning) {
+      intervalRef.current = setInterval(() => {
         setCount((prevCount) => prevCount - 1);
       }, 1000);
     }
-
-    return () => clearInterval(intervalId);
-  }, [isActive]);
+    return () => clearInterval(intervalRef.current);
+  }, [isRunning]);
 
   const formatTime = (seconds) => {
     const hours = Math.floor(seconds / 3600);
@@ -29,10 +40,6 @@ const Timer = ({ time }) => {
     return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
   };
 
-  const startTimer = () => {
-    setIsActive(true);
-  };
-
   return (
     <>
       <h2>Hola Mundo desede Timer.jsx</h2>
@@ -42,7 +49,9 @@ const Timer = ({ time }) => {
           <img src={garm} alt="Imagen GIF" />
         </div>
       </div>
-      <button onClick={startTimer}>Iniciar timer</button>
+      <button onClick={() => (isRunning ? resetTimer() : startTimer())}>
+        {isRunning ? "Reset" : "Start"}
+      </button>
     </>
   );
 };
