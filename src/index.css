@@ -62,8 +62,8 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 18em;
-  height: 18em;
+  width: 16em;
+  height: 16em;
   border: 1px #53abcd solid;
   border-radius: 50%;
   align-content: center;
@@ -72,6 +72,24 @@ header {
 }
 
 .timer-span {
-  font-size: 3.5em;
+  font-size: 3em;
   font-weight: 600;
+  margin-top: 18px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 3em;
+}
+
+.olaaa {
+  background: none;
+  border: 1px #53abcd solid;
+  padding: 6px;
+  border-radius: 6px;
+  width: 5em;
+  height: 2.5em;
+  font-size: 14px;
 }

@@ -42,16 +42,23 @@ const Timer = ({ time }) => {
 
   return (
     <>
-      <h2>Hola Mundo desede Timer.jsx</h2>
+      <h2>Garm</h2>
+
       <div className="timer-container">
         <div className="image-container">
           <span className="timer-span">{formatTime(count)}</span>
           <img src={garm} alt="Imagen GIF" />
         </div>
       </div>
-      <button onClick={() => (isRunning ? resetTimer() : startTimer())}>
-        {isRunning ? "Reset" : "Start"}
-      </button>
+
+      <div className="buttons-container">
+        <button
+          className="olaaa"
+          onClick={() => (isRunning ? resetTimer() : startTimer())}
+        >
+          {isRunning ? "Reset" : "Start"}
+        </button>
+      </div>
     </>
   );
 };
