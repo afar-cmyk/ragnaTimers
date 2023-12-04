@@ -1,9 +1,15 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+  margin: 0 23px 0 23px;
+  background-color: #9d6565;
+  display: flex;
+}
+
+#root {
+  background-color: beige;
+  width: 100dvw;
+  height: 100dvh;
 }
 
 .serverTime-container {
