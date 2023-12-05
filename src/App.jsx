@@ -3,9 +3,11 @@ import { createRoot } from "react-dom/client";
 import ServerInfo from "./components/ServerInfo.jsx";
 import SelectMvp from "./components/SelectMvp.jsx";
 import Timer from "./components/Timer.jsx";
+import NewMVP from "./components/NewMVP.jsx";
 
-//TODO planificar en Figma
-//TODO simplificar y mejorar el componente timer
+//TODO planificar aun mas en Figma
+//TODO Agregar estilos basicos
+//TODO agregar un componente para visualizar el mvp ingresado
 //TODO agregar una estructura de datos tipo json como en el timer del bot discord
 //TODO planificar un tema oscuro (no tan oscuro)
 //TODO planificar un layout con usuario y dashboard
@@ -20,6 +22,7 @@ root.render(
     </header>
 
     <main>
+      <NewMVP />
       {/* <Timer time={300} /> */}
     </main>
     {/* <footer>Este es el footer</footer> */}
