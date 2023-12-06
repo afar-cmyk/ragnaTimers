@@ -2,15 +2,91 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   margin: 0 23px 0 23px;
-  background-color: #9d6565;
+  background: linear-gradient(180deg, #000 17.19%, #121212 86.98%);
   display: flex;
 }
 
 #root {
-  background-color: beige;
+  /* background-color: beige; */
   width: 100dvw;
   height: 100dvh;
 }
+
+.newMvp_container {
+  display: inline-flex;
+  background: #eeeeee0a;
+  gap: 24px;
+  align-items: center;
+  border-radius: 6px;
+  padding: 120px 0px;
+}
+
+.newMvp_span_mvps select{
+  min-width: 193px;
+  min-height: 29px;
+}
+
+.newMvp_span_hora {
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.newMvp_span_hora button {
+  background-color: #266A79;
+  margin-right: 16px;
+  min-height: 30px;
+  min-width: 30px;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.newMvp_span_hora button:hover {
+  background-color: #1E5561;
+}
+
+.newMvp_span_hora button:active {
+  background-color: #2D7E90;
+}
+
+.newMvp_span_hora input{
+  min-width: 96px;
+  min-height: 26px;
+  border: 1px solid rgba(238, 238, 238, 0.22);
+  background: rgba(18, 18, 18, 0.40);
+  border-radius: 3px;
+}
+
+.select_periodo{
+  appearance: none;
+  min-width: 125.993px;
+  min-height: 30px;
+  background: #EEEEEE14;
+  border-radius: 3px;
+  border: 0;
+  color: #ABABAB;
+  padding-left: 16px;
+  padding-right: 12px;
+  margin-left: 16px;
+
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="%23ABABAB"><path d="M459-381 314-526q-3-3-4.5-6.5T308-540q0-8 5.5-14t14.5-6h304q9 0 14.5 6t5.5 14q0 2-6 14L501-381q-5 5-10 7t-11 2q-6 0-11-2t-10-7Z"/></svg>') no-repeat right center;
+  background-color: #EEEEEE14;
+  padding-right: 20px;
+}
+
+.select_periodo:focus {
+  outline: none;
+  color: #EEEEEE;
+}
+
+.select_periodo option {
+  color: #ABABAB;
+  background-color: #161616;
+}
+
+
+
 
 .serverTime-container {
   display: flex;
