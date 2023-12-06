@@ -24,11 +24,11 @@ const NewMVP = ({ time }) => {
         </span>
 
         <span className="newMvp_span_hora">
-          <button>a</button>
+          <button />
 
-          <input type="number" name="Hora" id="hora_input" placeholder="Ingresar Hora" style={{ marginRight: 8 }} />
+          <input type="number" name="Hora" id="hora_input" placeholder="Hora" />
           <span style={{color: '#ABABAB', fontSize: 28, lineHeight: 0, marginBottom: 7}}>:</span>
-          <input type="number" name="Minutos" id="hora_input" placeholder="Ingresar Minutos" style={{ marginLeft: 8 }} />
+          <input type="number" name="Minutos" id="hora_input" placeholder="Minutos" style={{ marginLeft: 8 }} />
 
           <select name="periodo" id="periodo_tiempo" class="custom-select" className="select_periodo">
             <option value="none" selected disabled hidden>Periodo</option> 

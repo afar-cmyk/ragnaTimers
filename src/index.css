@@ -31,15 +31,21 @@ body {
   align-items: center;
 }
 
-
 .newMvp_span_hora button {
+  background: url('./images/location.svg') no-repeat center center;
   background-color: #266A79;
+  background-size: 65%;
   margin-right: 16px;
   min-height: 30px;
   min-width: 30px;
+  max-height: 30px;
+  max-width: 30px;
   border: 0;
   border-radius: 3px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .newMvp_span_hora button:hover {
@@ -50,12 +56,47 @@ body {
   background-color: #2D7E90;
 }
 
+.newMvp_span_hora button:focus-visible {
+  outline: none;
+  border: 1px solid #ABABAB;
+  color: #EEEEEE;
+  background: url('./images/location.svg') no-repeat center center;
+  background-color: #266A79;
+  background-size: 70%;
+}
+
 .newMvp_span_hora input{
+  appearance: none;
+  padding-left: 16px;
   min-width: 96px;
+  max-width: 96px;
   min-height: 26px;
   border: 1px solid rgba(238, 238, 238, 0.22);
   background: rgba(18, 18, 18, 0.40);
   border-radius: 3px;
+  color: #ABABAB;
+  margin-right: 8px;
+}
+
+.newMvp_span_hora input::placeholder {
+  color: #666666;
+}
+
+.newMvp_span_hora input:hover {
+  border: 1px solid #ABABAB;
+  color: #EEEEEE;
+}
+
+.newMvp_span_hora input:focus-visible {
+  outline: none;
+  border: 1px solid #ABABAB;
+  color: #EEEEEE;
+}
+
+.newMvp_span_hora input::-webkit-outer-spin-button,
+.newMvp_span_hora input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .select_periodo{
@@ -77,6 +118,7 @@ body {
 
 .select_periodo:focus {
   outline: none;
+  border: 1px solid #ABABAB;
   color: #EEEEEE;
 }
 
