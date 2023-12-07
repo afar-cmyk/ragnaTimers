@@ -1,5 +1,7 @@
+@import url(./fonts/fonts.css);
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+  font-family: 'Roboto Flex',-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   margin: 0 23px 0 23px;
   background: linear-gradient(180deg, #000 17.19%, #121212 86.98%);
@@ -7,7 +9,6 @@ body {
 }
 
 #root {
-  /* background-color: beige; */
   width: 100dvw;
   height: 100dvh;
 }
@@ -21,9 +22,19 @@ body {
   padding: 120px 0px;
 }
 
+.newMvp_span_mvps {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+}
+
 .newMvp_span_mvps select{
   min-width: 193px;
   min-height: 29px;
+}
+
+.css-me27eb-JoySelect-button {
+  font-weight: 500;
 }
 
 .newMvp_span_hora {
@@ -103,15 +114,13 @@ body {
   appearance: none;
   min-width: 125.993px;
   min-height: 30px;
-  background: #EEEEEE14;
   border-radius: 3px;
   border: 0;
-  color: #ABABAB;
+  color: #666666;
   padding-left: 16px;
   padding-right: 12px;
   margin-left: 16px;
-
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="%23ABABAB"><path d="M459-381 314-526q-3-3-4.5-6.5T308-540q0-8 5.5-14t14.5-6h304q9 0 14.5 6t5.5 14q0 2-6 14L501-381q-5 5-10 7t-11 2q-6 0-11-2t-10-7Z"/></svg>') no-repeat right center;
+  background: url('./images/arrow_down.svg') no-repeat right center;
   background-color: #EEEEEE14;
   padding-right: 20px;
 }
@@ -119,7 +128,7 @@ body {
 .select_periodo:focus {
   outline: none;
   border: 1px solid #ABABAB;
-  color: #EEEEEE;
+  color: #ABABAB;
 }
 
 .select_periodo option {
