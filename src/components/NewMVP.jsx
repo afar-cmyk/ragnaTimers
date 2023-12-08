@@ -5,14 +5,11 @@ import Option from '@mui/joy/Option';
 const NewMVP = ({ time }) => {
     console.log("Hola mundo desde Timear")
 
-    const [open, setOpen] = React.useState(false);
-    const skipRef = React.useRef(false);
-
     const selectStyles = {
       width: '100%',
       borderRadius: 3, 
-      maxHeight: 30, 
-      minHeight: 30,
+      maxHeight: 32, 
+      minHeight: 32,
       color: '#666666',
       backgroundColor: '#EEEEEE14',
       fontFamily: 'Roboto Flex',
@@ -23,9 +20,15 @@ const NewMVP = ({ time }) => {
       boxSizing: 'border-box',
       transition: 'border 0.3s',
       border: '1px solid #1d1d1d',
+      outline: 'none',
       ':hover' : {
         backgroundColor: '#EEEEEE14',
         border: '1px solid #ededed26',
+        color: '#ABABAB'
+      },
+      ':focus-visible': {
+        outline: 'none',
+        border: '1px solid #ABABAB !important',
         color: '#ABABAB'
       }
     }
@@ -41,19 +44,17 @@ const NewMVP = ({ time }) => {
       border: '1px solid #ededed26',
       color: '#ABABAB !important',
       fontWeight: 500
-    }}
+      }
+  }
 
   return (
     
     <div className="newMvp_container">
       <div style={{display: 'flex', flexDirection: 'column', rowGap: 24}} >
+
         <span className="newMvp_span_mvps">
 
-          <Select variant="plain" placeholder="Seleccionar MVP" sx={selectStyles} listboxOpen={open} onListboxOpenChange={(isOpen) => {
-            if (!skipRef.current) {
-              setOpen(isOpen);
-            }
-          }} >
+          <Select variant="plain" placeholder="Seleccionar MVP" sx={selectStyles}>
             <Option value="Atroce" sx={optionsStyles}>Atroce</Option>
             <Option value="Garm" sx={optionsStyles}>Garm</Option>
           </Select>
@@ -66,35 +67,21 @@ const NewMVP = ({ time }) => {
         </span>
 
         <span className="newMvp_span_hora">
-          <button onClick={() => {
-          skipRef.current = false;
-          setOpen((bool) => !bool);
-        }} onMouseDown={() => {
-          skipRef.current = true;
-        }} />
+
+          <button className="current_date_btn" />
 
           <input type="number" name="Hora" id="hora_input" placeholder="Hora" />
-          <span style={{color: '#ABABAB', fontSize: 28, lineHeight: 0, marginBottom: 7}}>:</span>
-          <input type="number" name="Minutos" id="hora_input" placeholder="Minutos" style={{ marginLeft: 8 }} />
+          <span style={{color: '#ABABAB', fontSize: 28, lineHeight: 0, margin: '0px 8px 2px 8px'}}>:</span>
+          <input type="number" name="Minutos" id="hora_input" placeholder="Minutos" />
 
-
-
-          <select name="periodo" id="periodo_tiempo" class="custom-select" className="select_periodo">
-            <option value="none" selected disabled hidden>Periodo</option> 
-            <option value="AM">AM</option>
-            <option value="PM">PM</option>
-          </select>
+          <Select name="periodo" variant="plain" placeholder="AM / PM" sx={[selectStyles,{ width: 126, marginLeft: '16px'}]}>
+            <Option value="AM" sx={optionsStyles}>AM</Option>
+            <Option value="PM" sx={optionsStyles}>PM</Option>
+          </Select>
 
         </span>
+
       </div>
-
-
-
-
-      
-
-      
-      
       
     </div>
   );

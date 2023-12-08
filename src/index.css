@@ -33,12 +33,20 @@ body {
   min-height: 29px;
 }
 
+/* Joy UI Select placeholder font-weight */
 .css-me27eb-JoySelect-button {
   font-weight: 500;
 }
 
+/* Joy UI Select options */
 .css-121moso-JoySelect-listbox {
   background-color: #1E1E1E !important;
+}
+
+/* Joy UI Select focus */
+.css-1scqk5x-JoySelect-root.Mui-focusVisible {
+  --Select-focusedHighlight: #1E1E1E !important;
+  border: 1px solid;
 }
 
 .newMvp_span_hora {
@@ -46,7 +54,7 @@ body {
   align-items: center;
 }
 
-.newMvp_span_hora button {
+.current_date_btn {
   background: url('./images/location.svg') no-repeat center center;
   background-color: #266A79;
   background-size: 65%;
@@ -63,17 +71,17 @@ body {
   justify-content: center;
 }
 
-.newMvp_span_hora button:hover {
+.current_date_btn:hover {
   background-color: #1E5561;
 }
 
-.newMvp_span_hora button:active {
+.current_date_btn:active {
   background-color: #2D7E90;
 }
 
-.newMvp_span_hora button:focus-visible {
+.current_date_btn:focus-visible {
   outline: none;
-  border: 1px solid #ABABAB;
+  border: 1px solid #abababcc;
   color: #EEEEEE;
   background: url('./images/location.svg') no-repeat center center;
   background-color: #266A79;
@@ -90,11 +98,14 @@ body {
   background: rgba(18, 18, 18, 0.40);
   border-radius: 3px;
   color: #ABABAB;
-  margin-right: 8px;
+  font-family: 'Roboto Flex';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500 !important;
 }
 
 .newMvp_span_hora input::placeholder {
-  color: #666666;
+  color: #666666ab;
 }
 
 .newMvp_span_hora input:hover {
@@ -104,7 +115,7 @@ body {
 
 .newMvp_span_hora input:focus-visible {
   outline: none;
-  border: 1px solid #ABABAB;
+  border: 1px solid #abababcc;
   color: #EEEEEE;
 }
 
@@ -114,31 +125,6 @@ body {
   margin: 0;
 }
 
-.select_periodo{
-  appearance: none;
-  min-width: 125.993px;
-  min-height: 30px;
-  border-radius: 3px;
-  border: 0;
-  color: #666666;
-  padding-left: 16px;
-  padding-right: 12px;
-  margin-left: 16px;
-  background: url('./images/arrow_down.svg') no-repeat right center;
-  background-color: #EEEEEE14;
-  padding-right: 20px;
-}
-
-.select_periodo:focus {
-  outline: none;
-  border: 1px solid #ABABAB;
-  color: #ABABAB;
-}
-
-.select_periodo option {
-  color: #ABABAB;
-  background-color: #161616;
-}
 
 
 
