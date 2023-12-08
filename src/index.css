@@ -37,6 +37,10 @@ body {
   font-weight: 500;
 }
 
+.css-121moso-JoySelect-listbox {
+  background-color: #1E1E1E !important;
+}
+
 .newMvp_span_hora {
   display: inline-flex;
   align-items: center;
