@@ -4,7 +4,33 @@ import Option from '@mui/joy/Option';
 import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
 
 const NewMvpForm = ({ time }) => {
-    console.log("Hola mundo desde Timear")
+
+  const [hours, setHours] = useState('');
+  const [minutes, setMinutes] = useState('');
+
+  const validateHours = (event) => {
+    let value = parseInt(event.target.value, 10);
+    value = Math.min(12, Math.max(1, value));
+    setHours(value.toString());
+  }
+
+  const formatHours = () => {
+    const adjustedValue = Math.min(12, Math.max(0, parseInt(hours, 10)));
+    const formattedHours = adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString();
+    setHours(formattedHours);
+  };
+
+  const validateMinutes = (event) => {
+    let value = parseInt(event.target.value, 10);
+    value = Math.min(59, Math.max(0, value));
+    setMinutes(value.toString());
+  }
+
+  const formatMinutes = () => {
+    const adjustedValue = Math.min(59, Math.max(0, parseInt(minutes, 10)));
+    const formattedMinutes = adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString();
+    setMinutes(formattedMinutes);
+  };
 
     const selectStyles = {
       width: '100%',
@@ -46,10 +72,12 @@ const NewMvpForm = ({ time }) => {
       color: '#ABABAB !important',
       fontWeight: 500
       }
-  }
+    }
+
+    //TODO Organizar el error en consola al comprobar los campos vacios
 
   return (
-    
+    <>
     <div className="newMvp_container">
       <div style={{display: 'flex', flexDirection: 'column', rowGap: '24px'}} >
 
@@ -71,9 +99,31 @@ const NewMvpForm = ({ time }) => {
 
           <button className="current_date_btn" />
 
-          <input type="number" name="Hora" id="hora_input" placeholder="Hora" />
+          <input type="number" 
+            name="Hora" 
+            id="hora_input" 
+            placeholder="Hora" 
+            min="1" 
+            max="12" 
+            onChange={validateHours} 
+            onBlur={formatHours}
+            value={hours} 
+            required 
+          />
+
           <span style={{color: '#ABABAB', fontSize: 28, lineHeight: 0, margin: '0px 8px 2px 8px'}}>:</span>
-          <input type="number" name="Minutos" id="hora_input" placeholder="Minutos" />
+
+          <input type="number" 
+            name="Minutos" 
+            id="minutos_input" 
+            placeholder="Minutos" 
+            min="0" 
+            max="59" 
+            onChange={validateMinutes}
+            onBlur={formatMinutes}
+            value={minutes}
+            required
+          />
 
           <Select name="periodo" variant="plain" placeholder="AM / PM" sx={[selectStyles,{ width: 126, marginLeft: '16px'}]}>
             <Option value="AM" sx={optionsStyles}>AM</Option>
@@ -84,8 +134,10 @@ const NewMvpForm = ({ time }) => {
 
       </div>
       <ThumbnailsContainer />
-      
     </div>
+
+    <button>nuevo MVP</button>
+    </>
   );
 };
 
