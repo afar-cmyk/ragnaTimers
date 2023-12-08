@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
+import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
 
-const NewMVP = ({ time }) => {
+const NewMvpForm = ({ time }) => {
     console.log("Hola mundo desde Timear")
 
     const selectStyles = {
@@ -50,7 +51,7 @@ const NewMVP = ({ time }) => {
   return (
     
     <div className="newMvp_container">
-      <div style={{display: 'flex', flexDirection: 'column', rowGap: 24}} >
+      <div style={{display: 'flex', flexDirection: 'column', rowGap: '24px'}} >
 
         <span className="newMvp_span_mvps">
 
@@ -82,9 +83,10 @@ const NewMVP = ({ time }) => {
         </span>
 
       </div>
+      <ThumbnailsContainer />
       
     </div>
   );
 };
 
-export default NewMVP;
+export default NewMvpForm;

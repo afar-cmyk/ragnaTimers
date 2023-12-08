@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import garm from "../images/garm.gif";
+import garm from "../images/garm.png";
 
 const Timer = ({ time }) => {
   const [isRunning, setIsRunning] = useState(false);
