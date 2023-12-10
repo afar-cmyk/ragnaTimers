@@ -2,35 +2,60 @@ import React, { useState, useEffect, useRef } from "react";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
+import { type } from "os";
 
 const NewMvpForm = ({ time }) => {
 
-  const [hours, setHours] = useState('');
-  const [minutes, setMinutes] = useState('');
+  const [hours, setHours] = useState("")
+  const [minutes, setMinutes] = useState("")
 
   const validateHours = (event) => {
-    let value = parseInt(event.target.value, 10);
-    value = Math.min(12, Math.max(1, value));
-    setHours(value.toString());
+    let value = parseInt(event.target.value, 10)
+    if (event.target.value == '') {
+      value = ''
+      setHours(value)
+    } else {
+      value = Math.min(12, Math.max(1, value))
+      setHours(value.toString())
+    }
   }
 
   const formatHours = () => {
-    const adjustedValue = Math.min(12, Math.max(0, parseInt(hours, 10)));
-    const formattedHours = adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString();
-    setHours(formattedHours);
-  };
+    let adjustedValue
+    let formattedHours
+    if (hours == '') {
+      formattedHours = hours
+      setHours(formattedHours)
+    } else {
+      adjustedValue = Math.min(12, Math.max(0, parseInt(hours, 10)))
+      formattedHours = adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString()
+      setHours(formattedHours)
+    }
+  }
 
   const validateMinutes = (event) => {
-    let value = parseInt(event.target.value, 10);
-    value = Math.min(59, Math.max(0, value));
-    setMinutes(value.toString());
+    let value = parseInt(event.target.value, 10)
+    if (event.target.value == '') {
+      value = ''
+      setMinutes(value)
+    } else {
+      value = Math.min(59, Math.max(0, value))
+      setMinutes(value.toString())
+    }
   }
 
   const formatMinutes = () => {
-    const adjustedValue = Math.min(59, Math.max(0, parseInt(minutes, 10)));
-    const formattedMinutes = adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString();
-    setMinutes(formattedMinutes);
-  };
+    let adjustedValue
+    let formattedMinutes
+    if (minutes == '') {
+      formattedMinutes = minutes
+      setMinutes(formattedMinutes)
+    } else {
+      adjustedValue = Math.min(59, Math.max(0, parseInt(minutes, 10)))
+      formattedMinutes = adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString()
+      setMinutes(formattedMinutes)
+    }
+  }
 
     const selectStyles = {
       width: '100%',
@@ -73,8 +98,6 @@ const NewMvpForm = ({ time }) => {
       fontWeight: 500
       }
     }
-
-    //TODO Organizar el error en consola al comprobar los campos vacios
 
   return (
     <>
@@ -138,7 +161,7 @@ const NewMvpForm = ({ time }) => {
 
     <button>nuevo MVP</button>
     </>
-  );
-};
+  )
+}
 
 export default NewMvpForm;
