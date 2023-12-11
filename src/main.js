@@ -13,6 +13,8 @@ const createWindow = () => {
     height: 600,
     minWidth: (998 + 16),
     maxWidth: (998 + 16),
+    backgroundColor: '#121212',
+    darkTheme: true,
     autoHideMenuBar: true,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,

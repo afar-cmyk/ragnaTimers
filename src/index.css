@@ -31,11 +31,6 @@ body {
   gap: 13px;
 }
 
-.newMvp_span_mvps select{
-  min-width: 193px;
-  min-height: 29px;
-}
-
 /* Joy UI Select placeholder font-weight */
 .css-me27eb-JoySelect-button {
   font-weight: 500;
@@ -131,7 +126,7 @@ body {
 }
 
 /* New MVP Form Thumbnails */
-.Portrait {
+.newMvp_thumbnail_container {
   display: flex;
   width: 80.908px;
   height: 83px;
@@ -142,6 +137,15 @@ body {
   border-radius: 2.115px;
   border: 0.705px solid rgba(238, 238, 238, 0.16);
   background: rgba(238, 238, 238, 0.08);
+}
+
+.newMvp_thumbnail {
+  width: 100%;
+  height: 100%;
+}
+
+.newMvp_span_hora input:focus:blank:invalid {
+  border: 1px solid #ff0000cc;
 }
 
 

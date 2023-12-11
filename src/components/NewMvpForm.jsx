@@ -108,6 +108,7 @@ const NewMvpForm = ({ onSubmit }) => {
               sx={[selectStyles, Boolean(mvp) ? selectedStyles : {}]} 
               onChange={(event, value) => {setMvp(value)}}
               value={mvp}
+              required
             >
               <Option value="randgris" sx={optionsStyles}>Randgris</Option>
               <Option value="garm" sx={optionsStyles}>Garm</Option>
@@ -119,6 +120,7 @@ const NewMvpForm = ({ onSubmit }) => {
               sx={[selectStyles, Boolean(map) ? selectedStyles : {}]}
               onChange={(event, value) => {setMap(value)}}
               value={map}
+              required
             >
               <Option value="odin_tem03" sx={optionsStyles}>odin_tem03</Option>
               <Option value="ra_fild02" sx={optionsStyles}>ra_fild02</Option>
@@ -139,7 +141,7 @@ const NewMvpForm = ({ onSubmit }) => {
               max="12" 
               onChange={validateHours} 
               onBlur={formatHours}
-              value={hours} 
+              value={hours}
               required 
             />
 
@@ -164,6 +166,7 @@ const NewMvpForm = ({ onSubmit }) => {
               sx={[...periodStyles, Boolean(timePeriod) ? selectedPeriodStyles : {}]}
               onChange={(event, value) => {setTimePeriod(value)}}
               value={timePeriod}
+              required
             >
               <Option value="AM" sx={optionsStyles} >AM</Option>
               <Option value="PM" sx={optionsStyles} >PM</Option>

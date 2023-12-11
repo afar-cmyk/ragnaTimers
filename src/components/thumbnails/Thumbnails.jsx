@@ -12,8 +12,8 @@ export default function Thumbnails({type='mvp', mvpName='default', mapName='defa
       size: '255%'
     },
     garm: {
-      position: '4px -15px',
-      size: '130%'
+      position: '0px -18px',
+      size: '195%'
     },
   }
 
@@ -34,15 +34,11 @@ export default function Thumbnails({type='mvp', mvpName='default', mapName='defa
   const backgroundSize = type == 'map' ? '110%' : imgSettings[mvpName].size
 
   let style = {
-    width: '100%',
-    height: '100%',
-    background: `${gradient}, url(${backgroundImage})`,
-    backgroundPosition: `center, ${backgroundPosition}`,
-    backgroundSize: `cover, ${backgroundSize}`,
-    backgroundrepeat: 'no-repeat'
+    background: `${gradient} no-repeat center / 100%, `
+                + `url(${backgroundImage}) no-repeat ${backgroundPosition} / ${backgroundSize}`,
   }
 
   return (
-    <div style={style} />
+    <div className='newMvp_thumbnail' style={style} />
   )
 }

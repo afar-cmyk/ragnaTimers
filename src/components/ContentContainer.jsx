@@ -5,7 +5,6 @@ export default function contentContainer() {
   const [submittedData, setSubmittedData] = useState('');
 
   const handleFormSubmit = (data) => {
-    // Actualiza el estado con los datos del hijo al hacer submit
     setSubmittedData(data);
   };
 
@@ -13,7 +12,6 @@ export default function contentContainer() {
   
   return (
     <>
-    {/* TODO mostrar los datos que se enviaron en el formulario aqui en este componente */}
       <NewMvpForm onSubmit={handleFormSubmit} />
       <button form='my-form' type='submit'>nuevo MVP</button>
       

@@ -3,14 +3,14 @@ import Thumbnails from './Thumbnails.jsx'
 
 export default function ThumbnailsContainer(props) {
   const { mvpName, mapName } = props;
-  // TODO hacer las miniaturas reactivas conforme a la seleccion del usuario
+
   return (
     <div style={{display: 'flex', flexDirection: 'row', columnGap: '16px'}} >
-      <div className="Mvp Portrait">
-        <Thumbnails type="mvp"  mvpName={''} />
+      <div className="newMvp_thumbnail_container">
+        <Thumbnails type="mvp"  mvpName={mvpName} />
       </div>
-      <div className="Map Portrait">
-        <Thumbnails type="map" mapName={''} />
+      <div className="newMvp_thumbnail_container">
+        <Thumbnails type="map" mapName={mapName} />
       </div>
     </div>
   );
