@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
-import { type } from "os";
 
-const NewMvpForm = ({ time }) => {
-
+const NewMvpForm = ({ onSubmit }) => {
+  const [mvp, setMvp] = useState("")
+  const [map, setMap] = useState("")
   const [hours, setHours] = useState("")
   const [minutes, setMinutes] = useState("")
+  const [timePeriod, setTimePeriod] = useState("")
 
   const validateHours = (event) => {
     let value = parseInt(event.target.value, 10)
@@ -57,111 +58,185 @@ const NewMvpForm = ({ time }) => {
     }
   }
 
-    const selectStyles = {
-      width: '100%',
-      borderRadius: 3, 
-      maxHeight: 32, 
-      minHeight: 32,
-      color: '#666666',
-      backgroundColor: '#EEEEEE14',
-      fontFamily: 'Roboto Flex',
-      fontSize: 14,
-      fontStyle: 'normal',
-      fontWeight: '700 !important',
-      lineHeight: 'normal',
-      boxSizing: 'border-box',
-      transition: 'border 0.3s',
-      border: '1px solid #1d1d1d',
-      outline: 'none',
-      ':hover' : {
-        backgroundColor: '#EEEEEE14',
-        border: '1px solid #ededed26',
-        color: '#ABABAB'
-      },
-      ':focus-visible': {
-        outline: 'none',
-        border: '1px solid #ABABAB !important',
-        color: '#ABABAB'
-      }
-    }
+  const setCurrentTime = () => {
+    const currentTime = new Date()
 
-    const optionsStyles = {
-      border: '1px solid #1E1E1E',
-      backgroundColor: '#1E1E1E !important',
-      fontFamily: 'Roboto Flex',
-      fontWeight: 400,
-      color: '#666666',
-      fontSize: 14,
-      ':hover' : {
-      border: '1px solid #ededed26',
-      color: '#ABABAB !important',
-      fontWeight: 500
-      }
+    const hours = currentTime.getHours()
+    const formattedHours = (hours % 12 || 12).toString().padStart(2, '0');
+
+    const minutes = currentTime.getMinutes()
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+
+    const period = hours >= 12 ? 'PM' : 'AM'
+
+    setHours(formattedHours)
+    setMinutes(formattedMinutes)
+    setTimePeriod(period)
+  }
+
+  const formatData = () => {
+    const formValues = {
+      mvpName: mvp, 
+      mapName: map,
+      hours: hours,
+      minutes: minutes,
+      timePeriod: timePeriod
     }
+    return formValues
+  }
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
+    onSubmit(formatData)
+  }
+
 
   return (
     <>
-    <div className="newMvp_container">
-      <div style={{display: 'flex', flexDirection: 'column', rowGap: '24px'}} >
+      <div className="newMvp_container">
+        <form 
+          id='my-form' 
+          style={{display: 'flex', flexDirection: 'column', rowGap: '24px'}} 
+          onSubmit={handleOnSubmit}
+        >
 
-        <span className="newMvp_span_mvps">
+          <span className="newMvp_span_mvps">
 
-          <Select variant="plain" placeholder="Seleccionar MVP" sx={selectStyles}>
-            <Option value="Atroce" sx={optionsStyles}>Atroce</Option>
-            <Option value="Garm" sx={optionsStyles}>Garm</Option>
-          </Select>
+            <Select 
+              variant="plain" 
+              placeholder="Seleccionar MVP" 
+              sx={[selectStyles, Boolean(mvp) ? selectedStyles : {}]} 
+              onChange={(event, value) => {setMvp(value)}}
+              value={mvp}
+            >
+              <Option value="randgris" sx={optionsStyles}>Randgris</Option>
+              <Option value="garm" sx={optionsStyles}>Garm</Option>
+            </Select>
 
-          <Select variant="plain" placeholder="Seleccionar Mapa" sx={selectStyles}>
-            <Option value="Ra_fild01" sx={optionsStyles}>Ra_fild01</Option>
-            <Option value="Ve_fild03" sx={optionsStyles}>Ve_fild03</Option>
-          </Select>
+            <Select 
+              variant="plain" 
+              placeholder="Seleccionar Mapa" 
+              sx={[selectStyles, Boolean(map) ? selectedStyles : {}]}
+              onChange={(event, value) => {setMap(value)}}
+              value={map}
+            >
+              <Option value="odin_tem03" sx={optionsStyles}>odin_tem03</Option>
+              <Option value="ra_fild02" sx={optionsStyles}>ra_fild02</Option>
+              <Option value="xmas_fild01" sx={optionsStyles}>xmas_fild01</Option>
+            </Select>
 
-        </span>
+          </span>
 
-        <span className="newMvp_span_hora">
+          <span className="newMvp_span_hora">
 
-          <button className="current_date_btn" />
+            <button type="button" className="current_date_btn" onClick={setCurrentTime} />
 
-          <input type="number" 
-            name="Hora" 
-            id="hora_input" 
-            placeholder="Hora" 
-            min="1" 
-            max="12" 
-            onChange={validateHours} 
-            onBlur={formatHours}
-            value={hours} 
-            required 
-          />
+            <input type="number" 
+              name="Hora" 
+              id="hora_input" 
+              placeholder="Hora" 
+              min="1" 
+              max="12" 
+              onChange={validateHours} 
+              onBlur={formatHours}
+              value={hours} 
+              required 
+            />
 
-          <span style={{color: '#ABABAB', fontSize: 28, lineHeight: 0, margin: '0px 8px 2px 8px'}}>:</span>
+            <span style={{color: '#ABABAB', fontSize: 28, lineHeight: 0, margin: '0px 8px 2px 8px'}}>:</span>
 
-          <input type="number" 
-            name="Minutos" 
-            id="minutos_input" 
-            placeholder="Minutos" 
-            min="0" 
-            max="59" 
-            onChange={validateMinutes}
-            onBlur={formatMinutes}
-            value={minutes}
-            required
-          />
+            <input type="number" 
+              name="Minutos" 
+              id="minutos_input" 
+              placeholder="Minutos" 
+              min="0" 
+              max="59" 
+              onChange={validateMinutes}
+              onBlur={formatMinutes}
+              value={minutes}
+              required
+            />
 
-          <Select name="periodo" variant="plain" placeholder="AM / PM" sx={[selectStyles,{ width: 126, marginLeft: '16px'}]}>
-            <Option value="AM" sx={optionsStyles}>AM</Option>
-            <Option value="PM" sx={optionsStyles}>PM</Option>
-          </Select>
+            <Select 
+              name="timePeriod" 
+              variant="plain" 
+              placeholder="AM / PM" 
+              sx={[...periodStyles, Boolean(timePeriod) ? selectedPeriodStyles : {}]}
+              onChange={(event, value) => {setTimePeriod(value)}}
+              value={timePeriod}
+            >
+              <Option value="AM" sx={optionsStyles} >AM</Option>
+              <Option value="PM" sx={optionsStyles} >PM</Option>
+            </Select>
 
-        </span>
+          </span>
 
+        </form>
+        <ThumbnailsContainer mvpName={mvp} mapName={map}/>
       </div>
-      <ThumbnailsContainer />
-    </div>
-
-    <button>nuevo MVP</button>
     </>
   )
 }
 
 export default NewMvpForm;
+
+
+const selectStyles = {
+  width: '100%',
+  borderRadius: 3, 
+  maxHeight: 30, 
+  minHeight: 30,
+  color: '#666666',
+  backgroundColor: '#EEEEEE14',
+  fontFamily: 'Roboto Flex',
+  fontSize: 14,
+  fontStyle: 'normal',
+  fontWeight: '700 !important',
+  lineHeight: 'normal',
+  boxSizing: 'border-box',
+  transition: 'border 0.3s',
+  border: '1px solid #1d1d1d',
+  outline: 'none',
+  ':hover' : {
+    backgroundColor: '#EEEEEE14',
+    border: '1px solid #ededed26',
+    color: '#ABABAB'
+  },
+  ':focus-visible': {
+    outline: 'none',
+    border: '1px solid #ABABAB !important',
+    color: '#ABABAB'
+  }
+}
+
+const selectedStyles = { 
+  backgroundColor: '#EEEEEE14',
+  border: '1px solid #ededed26',
+  color: '#ABABAB' 
+  }
+
+
+const optionsStyles = {
+  border: '1px solid #1E1E1E',
+  backgroundColor: '#1E1E1E !important',
+  fontFamily: 'Roboto Flex',
+  fontWeight: 400,
+  color: '#ABABAB',
+  fontSize: 14,
+  ':hover' : {
+  border: '1px solid #ededed26',
+  color: '#ABABAB !important',
+  fontWeight: 500
+  }
+}
+
+const periodStyles = [
+  selectStyles, 
+  { width: 126, marginLeft: '16px'}
+]
+
+const selectedPeriodStyles = {
+  backgroundColor: '#EEEEEE14',
+  border: '1px solid #ededed26',
+  color: '#ABABAB'
+}

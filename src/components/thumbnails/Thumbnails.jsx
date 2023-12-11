@@ -10,7 +10,19 @@ export default function Thumbnails({type='mvp', mvpName='default', mapName='defa
     randgris: {
       position: '-64px -34px',
       size: '255%'
-    } 
+    },
+    garm: {
+      position: '4px -15px',
+      size: '130%'
+    },
+  }
+
+  if ((mvpName == null) || (mapName == null)) {
+    mvpName = 'default'
+    mapName = 'default'
+  } else if ((mvpName == '') || (mapName == '')) {
+    mvpName = 'default'
+    mapName = 'default'
   }
 
   let mvpImage = require(`../../images/${mvpName}.png`)

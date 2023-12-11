@@ -47,7 +47,9 @@ body {
 }
 
 /* Joy UI Select focus */
-.css-1scqk5x-JoySelect-root.Mui-focusVisible {
+.css-1scqk5x-JoySelect-root.Mui-focusVisible, 
+.css-1qlowdp-JoySelect-root.Mui-focusVisible, 
+.css-1gt5fcl-JoySelect-root.Mui-focusVisible {
   --Select-focusedHighlight: #1E1E1E !important;
   border: 1px solid;
 }
