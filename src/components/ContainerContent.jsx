@@ -3,14 +3,12 @@ import NewMvpForm from './NewMvpForm.jsx'
 import DataBaseManager from "./database/DataBaseManager.jsx";
 
 
-export default function ContentContainer() {
+export default function ContainerContent() {
   const [submittedData, setSubmittedData] = useState('');
 
   const handleFormSubmit = (data) => {
     setSubmittedData(data);
   };
-
-  console.log(submittedData)
   
   return (
     <>
