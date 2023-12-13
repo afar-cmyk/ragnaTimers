@@ -1,9 +1,12 @@
 import React, { useState, useEffect} from "react";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
+import lodash from 'lodash';
 import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
+import dataSource from "./database/MvpDataSource.js";
 
 const NewMvpForm = ({ onSubmit }) => {
+  const [filteredDataSource] = useState(lodash.omit(dataSource, 'default'))
   const [mvp, setMvp] = useState("")
   const [map, setMap] = useState("")
   const [hours, setHours] = useState("")
@@ -90,7 +93,7 @@ const NewMvpForm = ({ onSubmit }) => {
     onSubmit(formatData)
   }
 
-//TODO mvp y mapa que se alimenten de una fuente de datos
+
   return (
     <>
       <div className="newMvp_container">
@@ -107,14 +110,17 @@ const NewMvpForm = ({ onSubmit }) => {
               placeholder="Seleccionar MVP" 
               sx={[selectStyles, Boolean(mvp) ? selectedStyles : {}]} 
               onChange={(event, value) => {setMvp(value)}}
-              value={mvp}
               required
             >
-              <Option value="randgris" sx={optionsStyles}>Randgris</Option>
-              <Option value="garm" sx={optionsStyles}>Garm</Option>
+              {Object.keys(filteredDataSource).map((key) => {
+                return (
+                  <Option key={key} value={key} sx={optionsStyles}>{filteredDataSource[key]['fullName']}</Option>
+                )
+              })}
             </Select>
 
-            <Select 
+            <Select
+              disabled={(mvp == '')}
               variant="plain" 
               placeholder="Seleccionar Mapa" 
               sx={[selectStyles, Boolean(map) ? selectedStyles : {}]}
@@ -122,9 +128,18 @@ const NewMvpForm = ({ onSubmit }) => {
               value={map}
               required
             >
-              <Option value="odin_tem03" sx={optionsStyles}>odin_tem03</Option>
-              <Option value="ra_fild02" sx={optionsStyles}>ra_fild02</Option>
-              <Option value="xmas_fild01" sx={optionsStyles}>xmas_fild01</Option>
+              {
+                mvp == '' ? (
+                  <Option value="default" sx={optionsStyles}>default</Option>
+                ):
+                (
+                  Object.keys(filteredDataSource[mvp]['maps']).map((key) => {
+                    return (
+                      <Option key={key} value={key} sx={optionsStyles}>{key}</Option>
+                    )
+                  })
+                ) 
+              }
             </Select>
 
           </span>
@@ -217,7 +232,6 @@ const selectedStyles = {
   border: '1px solid #ededed26',
   color: '#ABABAB' 
   }
-
 
 const optionsStyles = {
   border: '1px solid #1E1E1E',

@@ -39,6 +39,8 @@
     "@mui/joy": "^5.0.0-beta.17",
     "electron-squirrel-startup": "^1.0.0",
     "fs": "^0.0.1-security",
+    "jotai": "^2.6.0",
+    "lodash": "^4.17.21",
     "os": "^0.1.2",
     "path": "^0.12.7",
     "react": "^18.2.0",

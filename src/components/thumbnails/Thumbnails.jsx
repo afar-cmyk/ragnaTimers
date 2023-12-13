@@ -1,4 +1,5 @@
 import React from 'react'
+import dataSource from "../database/MvpDataSource.js";
 
 export default function Thumbnails({type='mvp', mvpName='default', mapName='default'}) {
 
@@ -25,13 +26,13 @@ export default function Thumbnails({type='mvp', mvpName='default', mapName='defa
     mapName = 'default'
   }
 
-  let mvpImage = require(`../../images/${mvpName}.png`)
+  let mvpImage = require(`../../images/mvps/${mvpName}.png`)
   let mapImage = require(`../../images/maps/${mapName}.gif`)
 
   const gradient = 'linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%)'
   const backgroundImage = type == 'map' ? mapImage : mvpImage
-  const backgroundPosition = type == 'map' ? '-4px -1px' : imgSettings[mvpName].position
-  const backgroundSize = type == 'map' ? '110%' : imgSettings[mvpName].size
+  const backgroundPosition = type == 'map' ? '-4px -1px' : dataSource[mvpName].settings.position
+  const backgroundSize = type == 'map' ? '110%' : dataSource[mvpName].settings.size
 
   let style = {
     background: `${gradient} no-repeat center / 100%, `

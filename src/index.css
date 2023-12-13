@@ -49,6 +49,15 @@ body {
   border: 1px solid;
 }
 
+/* Joy UI Select DISABLED */
+.Mui-disabled, .Mui-disabled>.css-b0m4zx-JoySelect-indicator {
+  color: #343434 !important;
+  background-color: #161616 !important;
+  border: none !important;
+  opacity: 0.7;
+  --Icon-color: #202020 !important;
+}
+
 .newMvp_span_hora {
   display: inline-flex;
   align-items: center;
