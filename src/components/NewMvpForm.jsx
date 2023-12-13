@@ -3,10 +3,10 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import lodash from 'lodash';
 import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
-import dataSource from "./database/MvpDataSource.js";
+import DataSource from "../database/DataSource.js";
 
 const NewMvpForm = ({ onSubmit }) => {
-  const [filteredDataSource] = useState(lodash.omit(dataSource, 'default'))
+  const [filteredDataSource] = useState(lodash.omit(DataSource, 'default'))
   const [mvp, setMvp] = useState("")
   const [map, setMap] = useState("")
   const [hours, setHours] = useState("")
@@ -114,7 +114,14 @@ const NewMvpForm = ({ onSubmit }) => {
             >
               {Object.keys(filteredDataSource).map((key) => {
                 return (
-                  <Option key={key} value={key} sx={optionsStyles}>{filteredDataSource[key]['fullName']}</Option>
+                  <Option 
+                    key={key} 
+                    value={key} 
+                    sx={optionsStyles}
+                    onMouseOver={() => {setMvp(key)}}
+                  >
+                    {filteredDataSource[key]['fullName']}
+                  </Option>
                 )
               })}
             </Select>
@@ -135,7 +142,14 @@ const NewMvpForm = ({ onSubmit }) => {
                 (
                   Object.keys(filteredDataSource[mvp]['maps']).map((key) => {
                     return (
-                      <Option key={key} value={key} sx={optionsStyles}>{key}</Option>
+                      <Option 
+                        key={key} 
+                        value={key} 
+                        sx={optionsStyles}
+                        onMouseOver={() => {setMap(key)}}
+                      >
+                        {key}
+                      </Option>
                     )
                   })
                 ) 

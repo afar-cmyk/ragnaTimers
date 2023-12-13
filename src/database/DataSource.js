@@ -1,4 +1,4 @@
-  let dataSource = {
+  let DataSource = {
     atroce: {
       fullName: 'Atroce',
       settings: {
@@ -26,8 +26,8 @@
     gtb: {
       fullName: 'Golden Thief Bug',
       settings: {
-        position: '-5px 4px',
-        size: '140%'
+        position: '-3px 12px',
+        size: '110%'
       },
       maps: {
         prt_sewb4: { respawn: [60, 70] }
@@ -60,8 +60,8 @@
     default: {
       fullName: 'default',
       settings: {
-        position: '4px -15px',
-        size: '130%'
+        position: '0px 0px',
+        size: '100%'
       },
       maps: {
         default: { respawn: [69, 420] }
@@ -69,4 +69,4 @@
     }
   }
 
-  export default dataSource
+  export default DataSource
