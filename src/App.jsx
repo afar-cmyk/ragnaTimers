@@ -2,6 +2,9 @@ import React from 'react';
 import { createRoot } from "react-dom/client";
 import ContainerContent from './components/ContainerContent.jsx';
 import './index.css';
+import { CardsContainer } from './components/cards/CardsContainer.jsx';
+
+
 
 //TODO agregar un componente para visualizar el mvp ingresado
 //TODO Agregar los esqueletos de las barras
@@ -23,6 +26,7 @@ root.render(
   <>
     <main>
       <ContainerContent />
+      <CardsContainer />
     </main>
   </>
 );

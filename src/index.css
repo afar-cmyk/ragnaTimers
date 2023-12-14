@@ -156,3 +156,26 @@ body {
 .newMvp_span_hora input:focus:blank:invalid {
   border: 1px solid #ff0000cc;
 }
+
+.progress-bar {
+  height: 11px;
+  width: 100%;
+  background-color: #EEEEEE66;
+  border-radius: 0px 0px 2px 2px;
+  align-self: flex-end;
+  display: flex;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 100%;
+  background-color: #2BB65280;
+  border-radius: 0px 0px 0px 3px;
+  animation: fillAnimation 120s ease forwards;
+}
+
+@keyframes fillAnimation {
+  to {
+    width: 0%;
+  }
+}
