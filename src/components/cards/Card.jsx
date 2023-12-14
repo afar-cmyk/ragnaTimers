@@ -14,14 +14,16 @@ export const Card = () => {
           <span style={headerSubtitile}>ra_fld02</span>
         </div>
 
+        {/* TODO logica para crear un counter usando los datos del mvp seleccionado */}
         <span style={remainingTime}>00:21:20</span>
 
-
+        {/* TODO poner los estilos de footerContent */}
         <div style={cardFooter}>
           <span style={footerTitle}>Respawn variable:</span>
           <span style={footerContent}>de 10:59 AM a 12:39 PM</span>
         </div>
 
+        {/* TODO convertir en un componente que reciba el tiempo restante en segundos */}
         <span className='progress-bar'>
           <span className='progress-bar-fill' />
         </span>

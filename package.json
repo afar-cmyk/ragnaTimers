@@ -16,7 +16,7 @@
     "name": "Andrés F. Alvarez",
     "email": "andresfelipe.alvarez03@gmail.com"
   },
-  "license": "MIT",
+  "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-react": "^7.18.6",
