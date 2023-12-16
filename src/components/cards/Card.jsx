@@ -1,8 +1,33 @@
 import React from 'react'
 import atroce from '../../images/mvps/atroce.png'
+import { ProgressBar } from './ProgressBar.jsx'
+import RemainingTime from './RemainingTime.jsx'
+import { differenceInSeconds, addMinutes, format } from 'date-fns'
 
 
 export const Card = () => {
+
+  let fechaIngresda = construirFecha(3, 0, 'AM')
+  let horaActual = construirFecha(3, 0, 'AM')
+
+  let fechaConRespawn = addMinutes(fechaIngresda, 1)
+  let fechaConRespawnVariable = addMinutes(fechaIngresda, 2)
+
+  // let tiempoFinal = differenceInSeconds(fechaConRespawn, Date.now())
+  // let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, Date.now())
+
+  let tiempoFinal = differenceInSeconds(fechaConRespawn, horaActual)
+  let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, horaActual)
+
+  console.log(tiempoFinal)
+  console.log(tiempoFinal2)
+
+
+  console.log(format(fechaConRespawn, 'hh:mm a'))
+  console.log(format(fechaConRespawnVariable, 'hh:mm a'))
+
+  let segundosPrueba = tiempoFinal
+  // let segundosPrueba = Math.abs(tiempoFinal)
   return (
     <div style={mainContainer}>
       <div style={backgroundImage} />
@@ -14,20 +39,18 @@ export const Card = () => {
           <span style={headerSubtitile}>ra_fld02</span>
         </div>
 
+
         {/* TODO logica para crear un counter usando los datos del mvp seleccionado */}
-        {/* desactivar el highlight sobre los numeros de este counter */}
-        <span style={remainingTime}>00:21:20</span>
+        <RemainingTime sRespawn={tiempoFinal} sVariable={tiempoFinal2} />
+
 
         <div style={cardFooter}>
           <span style={footerTitle}>Respawn variable:</span>
           <span style={footerContent}>de <p style={{...footerTimes, marginLeft: '6px', marginRight: '6px'}}>10:59 AM</p> a <p style={{...footerTimes, marginLeft: '6px'}}>12:39 PM</p></span>
         </div>
 
-        {/* TODO convertir en un componente que reciba el tiempo restante en segundos */}
-        <span className='progress-bar'>
-          <span className='progress-bar-fill' />
-        </span>
 
+        <ProgressBar computedSeconds={segundosPrueba} />
 
       </div>
     </div>
@@ -73,7 +96,7 @@ const cardHeader = {
 }
 
 const headerTitile = {
-  color: '#ABABAB',
+  color: '#DDDDDD',
   fontFamily: 'Roboto Flex',
   fontSize: '16px',
   fontStyle: 'normal',
@@ -88,18 +111,6 @@ const headerSubtitile = {
   fontStyle: 'normal',
   fontWeight: 500,
   lineHeight: 'normal',
-}
-
-const remainingTime = {
-  color: '#ABABAB',
-  textAlign: 'center',
-  fontFamily: 'Roboto Flex',
-  fontSize: '44px',
-  fontStyle: 'normal',
-  fontWeight: 700,
-  lineHeight: '36px',
-  letterSpacing: '2.2px',
-  margin: '25px 0px 29px 0px',
 }
 
 const cardFooter = {
@@ -143,4 +154,20 @@ const footerTimes = {
   fontWeight: 900,
   margin: '0px',
   padding: '0px'
+}
+
+function construirFecha(horas, minutos, periodo) {
+  horas = periodo === 'PM' && horas < 12 ? horas + 12 : horas;
+
+  var fechaConstruida = new Date();
+  
+  fechaConstruida.setHours(horas);
+  fechaConstruida.setMinutes(minutos);
+  fechaConstruida.setSeconds(0);
+
+  return fechaConstruida;
+}
+
+function formatearHora(date) {
+  return format(date, 'hh:mm a');
 }
