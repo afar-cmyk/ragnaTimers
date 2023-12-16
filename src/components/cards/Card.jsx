@@ -15,12 +15,12 @@ export const Card = () => {
         </div>
 
         {/* TODO logica para crear un counter usando los datos del mvp seleccionado */}
+        {/* desactivar el highlight sobre los numeros de este counter */}
         <span style={remainingTime}>00:21:20</span>
 
-        {/* TODO poner los estilos de footerContent */}
         <div style={cardFooter}>
           <span style={footerTitle}>Respawn variable:</span>
-          <span style={footerContent}>de 10:59 AM a 12:39 PM</span>
+          <span style={footerContent}>de <p style={{...footerTimes, marginLeft: '6px', marginRight: '6px'}}>10:59 AM</p> a <p style={{...footerTimes, marginLeft: '6px'}}>12:39 PM</p></span>
         </div>
 
         {/* TODO convertir en un componente que reciba el tiempo restante en segundos */}
@@ -122,13 +122,25 @@ const footerTitle = {
 }
 
 const footerContent = {
+  color: '#666666',
+  fontFamily: 'Roboto Flex',
+  fontSize: '14px',
+  fontStyle: 'normal',
+  fontWeight: 500,
+  lineHeight: '14px',
+  WebkitFontSmoothing: 'antialiased',
+  MozOsxFontSmoothing: 'grayscale',
+  textRendering: 'optimizeLegibility',
+  display: 'flex',
+  flexDirection: 'row'
+}
+
+const footerTimes = {
   color: '#ABABAB',
   fontFamily: 'Roboto Flex',
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: 900,
-  lineHeight: '14px',
-  WebkitFontSmoothing: 'antialiased',
-  MozOsxFontSmoothing: 'grayscale',
-  textRendering: 'optimizeLegibility',
+  margin: '0px',
+  padding: '0px'
 }
