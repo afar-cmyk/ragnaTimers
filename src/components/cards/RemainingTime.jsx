@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const Timer = ({ sRespawn, sVariable }) => {
+const RemainingTime = ({ sRespawn, sVariable }) => {
   const [respawn, setRespawn] = useState(sRespawn)
   const [variable, setVariable] = useState(sVariable)
   
@@ -42,7 +42,7 @@ const Timer = ({ sRespawn, sVariable }) => {
   )
 }
 
-export default Timer
+export default RemainingTime
 
 const styles = {
   textAlign: 'center',
