@@ -2,16 +2,34 @@ import React from 'react'
 import atroce from '../../images/mvps/atroce.png'
 import { ProgressBar } from './ProgressBar.jsx'
 import RemainingTime from './RemainingTime.jsx'
-import { differenceInSeconds, addMinutes, format } from 'date-fns'
+import { differenceInSeconds, addMinutes } from 'date-fns'
+import { CardFooter } from './CardFooter.jsx'
+
+export function ConstruirFecha(horas, minutos, periodo) {
+  horas = periodo === 'PM' && horas < 12 ? horas + 12 : horas;
+
+  var fechaConstruida = new Date();
+  
+  fechaConstruida.setHours(horas);
+  fechaConstruida.setMinutes(minutos);
+  fechaConstruida.setSeconds(0);
+
+  return fechaConstruida;
+}
 
 
 export const Card = () => {
 
-  let fechaIngresda = construirFecha(3, 0, 'AM')
-  let horaActual = construirFecha(3, 0, 'AM')
+  
+  let calcularRespawnVariable = (respawn, variable) => {
+    return variable - respawn
+  }
+
+  let fechaIngresda = ConstruirFecha(3, 0, 'AM')
+  let horaActual = ConstruirFecha(3, 0, 'AM')
 
   let fechaConRespawn = addMinutes(fechaIngresda, 1)
-  let fechaConRespawnVariable = addMinutes(fechaIngresda, 2)
+  let fechaConRespawnVariable = addMinutes(fechaIngresda, calcularRespawnVariable(1, 2))
 
   // let tiempoFinal = differenceInSeconds(fechaConRespawn, Date.now())
   // let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, Date.now())
@@ -19,12 +37,11 @@ export const Card = () => {
   let tiempoFinal = differenceInSeconds(fechaConRespawn, horaActual)
   let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, horaActual)
 
-  console.log(tiempoFinal)
-  console.log(tiempoFinal2)
+  // console.log(tiempoFinal)
+  // console.log(tiempoFinal2)
 
-
-  console.log(format(fechaConRespawn, 'hh:mm a'))
-  console.log(format(fechaConRespawnVariable, 'hh:mm a'))
+  // console.log(format(fechaConRespawn, 'hh:mm a'))
+  // console.log(format(fechaConRespawnVariable, 'hh:mm a'))
 
   let segundosPrueba = tiempoFinal
   // let segundosPrueba = Math.abs(tiempoFinal)
@@ -43,14 +60,10 @@ export const Card = () => {
         {/* TODO logica para crear un counter usando los datos del mvp seleccionado */}
         <RemainingTime sRespawn={tiempoFinal} sVariable={tiempoFinal2} />
 
-
-        <div style={cardFooter}>
-          <span style={footerTitle}>Respawn variable:</span>
-          <span style={footerContent}>de <p style={{...footerTimes, marginLeft: '6px', marginRight: '6px'}}>10:59 AM</p> a <p style={{...footerTimes, marginLeft: '6px'}}>12:39 PM</p></span>
-        </div>
-
+        <CardFooter selectedDate={fechaIngresda} respawn={1} variable={2} />
 
         <ProgressBar computedSeconds={segundosPrueba} />
+
 
       </div>
     </div>
@@ -111,63 +124,4 @@ const headerSubtitile = {
   fontStyle: 'normal',
   fontWeight: 500,
   lineHeight: 'normal',
-}
-
-const cardFooter = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '3px',
-  margin: '0px 8px 8px 8px',
-}
-
-const footerTitle = {
-  color: '#666',
-  fontFamily: 'Roboto Flex',
-  fontSize: '12px',
-  fontStyle: 'normal',
-  fontWeight: 500,
-  lineHeight: '12px',
-  WebkitFontSmoothing: 'antialiased',
-  MozOsxFontSmoothing: 'grayscale',
-  textRendering: 'optimizeLegibility',
-}
-
-const footerContent = {
-  color: '#666666',
-  fontFamily: 'Roboto Flex',
-  fontSize: '14px',
-  fontStyle: 'normal',
-  fontWeight: 500,
-  lineHeight: '14px',
-  WebkitFontSmoothing: 'antialiased',
-  MozOsxFontSmoothing: 'grayscale',
-  textRendering: 'optimizeLegibility',
-  display: 'flex',
-  flexDirection: 'row'
-}
-
-const footerTimes = {
-  color: '#ABABAB',
-  fontFamily: 'Roboto Flex',
-  fontSize: '14px',
-  fontStyle: 'normal',
-  fontWeight: 900,
-  margin: '0px',
-  padding: '0px'
-}
-
-function construirFecha(horas, minutos, periodo) {
-  horas = periodo === 'PM' && horas < 12 ? horas + 12 : horas;
-
-  var fechaConstruida = new Date();
-  
-  fechaConstruida.setHours(horas);
-  fechaConstruida.setMinutes(minutos);
-  fechaConstruida.setSeconds(0);
-
-  return fechaConstruida;
-}
-
-function formatearHora(date) {
-  return format(date, 'hh:mm a');
 }

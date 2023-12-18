@@ -54,4 +54,3 @@ const styles = {
   margin: '25px 0 29px 0',
   userSelect: 'none'
 }
-
