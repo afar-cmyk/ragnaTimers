@@ -4,6 +4,9 @@ import { ProgressBar } from './ProgressBar.jsx'
 import RemainingTime from './RemainingTime.jsx'
 import { differenceInSeconds, addMinutes } from 'date-fns'
 import { CardFooter } from './CardFooter.jsx'
+import DataSource from '../../database/DataSource.js'
+import CardBackground from './CardBackground.jsx'
+import { toInteger } from 'lodash'
 
 export function ConstruirFecha(horas, minutos, periodo) {
   horas = periodo === 'PM' && horas < 12 ? horas + 12 : horas;
@@ -20,22 +23,47 @@ export function ConstruirFecha(horas, minutos, periodo) {
 
 export const Card = () => {
 
+  let datosUsuario = [
+    {"mvpName":"gtb","mapName":"prt_sewb4","hours":"09","minutes":"48","timePeriod":"PM"}
+  ]
+
+  let datosMvp = DataSource[datosUsuario[0].mvpName]
+  let imagenMvp = datosUsuario[0].mvpName
+  let horaMuerte = toInteger(datosUsuario[0].hours)
+  let minutosMuerte = toInteger(datosUsuario[0].minutes)
+
+  let respawnBase = datosMvp.maps[datosUsuario[0].mapName].respawn[0]
+  let respawnVariable = datosMvp.maps[datosUsuario[0].mapName].respawn[1]
   
   let calcularRespawnVariable = (respawn, variable) => {
     return variable - respawn
   }
 
-  let fechaIngresda = ConstruirFecha(3, 0, 'AM')
-  let horaActual = ConstruirFecha(3, 0, 'AM')
+  let horaActual = ConstruirFecha(10, 47, 'PM')
+  let fechaIngresda = ConstruirFecha(horaMuerte, minutosMuerte, datosUsuario[0].timePeriod)
 
-  let fechaConRespawn = addMinutes(fechaIngresda, 1)
-  let fechaConRespawnVariable = addMinutes(fechaIngresda, calcularRespawnVariable(1, 2))
+  //console.log(respawnVariable)
+  // let fechaIngresda = ConstruirFecha(3, 0, 'AM')
+  // let horaActual = ConstruirFecha(3, 0, 'AM')
+
+  let fechaConRespawn = addMinutes(fechaIngresda, respawnBase)
+  let fechaConRespawnVariable = addMinutes(fechaIngresda, calcularRespawnVariable(respawnBase, respawnVariable))
+
+  //console.log(fechaConRespawnVariable)
 
   // let tiempoFinal = differenceInSeconds(fechaConRespawn, Date.now())
   // let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, Date.now())
 
+
   let tiempoFinal = differenceInSeconds(fechaConRespawn, horaActual)
   let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, horaActual)
+
+  console.log(addMinutes(fechaIngresda, calcularRespawnVariable(respawnBase, respawnVariable)))
+
+
+  // let tiempoFinal = differenceInSeconds(fechaConRespawn, horaActual)
+  // let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, horaActual)
+
 
   // console.log(tiempoFinal)
   // console.log(tiempoFinal2)
@@ -47,22 +75,26 @@ export const Card = () => {
   // let segundosPrueba = Math.abs(tiempoFinal)
   return (
     <div style={mainContainer}>
-      <div style={backgroundImage} />
+      {/* Convertir en componente */}
+
+      <CardBackground mvpName={imagenMvp} />
+
+      {/* <div style={backgroundImage} /> */}
       <div style={content}>
 
 
         <div style={cardHeader}>
-          <span style={headerTitile}>Atroce</span>
-          <span style={headerSubtitile}>ra_fld02</span>
+          <span style={headerTitile}>{datosMvp['fullName']}</span>
+          <span style={headerSubtitile}>{datosUsuario[0].mapName}</span>
         </div>
 
 
         {/* TODO logica para crear un counter usando los datos del mvp seleccionado */}
         <RemainingTime sRespawn={tiempoFinal} sVariable={tiempoFinal2} />
 
-        <CardFooter selectedDate={fechaIngresda} respawn={1} variable={2} />
+        <CardFooter selectedDate={fechaIngresda} respawn={respawnBase} variable={respawnVariable} />
 
-        <ProgressBar computedSeconds={segundosPrueba} />
+        <ProgressBar computedSeconds={tiempoFinal} />
 
 
       </div>
