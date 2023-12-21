@@ -1,7 +1,9 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import lodash from 'lodash';
+import Snackbar from '@mui/joy/Snackbar';
+import lodash, { toInteger } from 'lodash';
+import { subDays, isBefore } from 'date-fns';
 import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
 import DataSource from "../database/DataSource.js";
 
@@ -9,9 +11,11 @@ const NewMvpForm = ({ onSubmit }) => {
   const [filteredDataSource] = useState(lodash.omit(DataSource, 'default'))
   const [mvp, setMvp] = useState("")
   const [map, setMap] = useState("")
+  const [temporal, setTemporal] = useState(true)
   const [hours, setHours] = useState("")
   const [minutes, setMinutes] = useState("")
   const [timePeriod, setTimePeriod] = useState("")
+  const [open, setOpen] = useState(false);
 
   const validateHours = (event) => {
     let value = parseInt(event.target.value, 10)
@@ -75,6 +79,7 @@ const NewMvpForm = ({ onSubmit }) => {
     setHours(formattedHours)
     setMinutes(formattedMinutes)
     setTimePeriod(period)
+    setTemporal(true)
   }
 
   const formatData = () => {
@@ -88,12 +93,32 @@ const NewMvpForm = ({ onSubmit }) => {
     return formValues
   }
 
+  function formatDate(hours, minutes, period, temporal) {
+    hours = toInteger(hours) + (period === 'PM' && hours < 12 ? 12 : 0);
+    const today = new Date();
+    const yesterday = subDays(today, 1);
+    const date = temporal ? today : yesterday;
+    date.setHours(toInteger(hours));
+    date.setMinutes(toInteger(minutes));
+    date.setSeconds(0);
+    return date;
+  }
+
   const handleOnSubmit = (e) => {
-    e.preventDefault()
-    onSubmit(formatData)
+    let selectedDate = formatDate(hours, minutes, timePeriod, temporal)
+    const interrupted = isBefore(selectedDate, Date.now())
+
+    if (!interrupted) {
+      e.preventDefault()
+      setOpen(true)
+    } else {
+      e.preventDefault()
+      onSubmit(formatData)
+    }
   }
 
 
+  // TODO construir la fecha seleccionada y enviarla con el boton del formulario
   return (
     <>
       <div className="newMvp_container">
@@ -162,10 +187,23 @@ const NewMvpForm = ({ onSubmit }) => {
 
             <button type="button" className="current_date_btn" onClick={setCurrentTime} />
 
+            <Select 
+              name="temporal" 
+              variant="plain" 
+              placeholder="Fecha" 
+              sx={[...temporalStyles, Boolean(temporal) ? selectedPeriodStyles : {}]}
+              onChange={(event, value) => {setTemporal(value)}}
+              value={temporal}
+              required
+            >
+              <Option value={true} sx={optionsStyles} >Hoy</Option>
+              <Option value={false} sx={optionsStyles} >Ayer</Option>
+            </Select>
+
             <input type="number" 
-              name="Hora" 
+              name="hora" 
               id="hora_input" 
-              placeholder="Hora" 
+              placeholder="HH" 
               min="1" 
               max="12" 
               onChange={validateHours} 
@@ -174,12 +212,12 @@ const NewMvpForm = ({ onSubmit }) => {
               required 
             />
 
-            <span style={{color: '#ABABAB', fontSize: 28, lineHeight: 0, margin: '0px 8px 2px 8px'}}>:</span>
+            <span style={{color: '#ABABAB', fontSize: 28, lineHeight: 0, margin: '0px 6px 2px 6px'}}>:</span>
 
             <input type="number" 
-              name="Minutos" 
+              name="minutos" 
               id="minutos_input" 
-              placeholder="Minutos" 
+              placeholder="MM" 
               min="0" 
               max="59" 
               onChange={validateMinutes}
@@ -206,6 +244,20 @@ const NewMvpForm = ({ onSubmit }) => {
         </form>
         <ThumbnailsContainer mvpName={mvp} mapName={map}/>
       </div>
+      <Snackbar
+        autoHideDuration={8000}
+        open={open}
+        color="danger" 
+        variant="solid"
+        onClose={(event, reason) => {
+          if (reason === 'clickaway') {
+            return;
+          }
+          setOpen(false);
+        }}
+      >
+        La hora elegida no puede ser posterior a la fecha y hora actuales.
+      </Snackbar>
     </>
   )
 }
@@ -263,7 +315,7 @@ const optionsStyles = {
 
 const periodStyles = [
   selectStyles, 
-  { width: 126, marginLeft: '16px'}
+  { width: 105, marginLeft: '16px'}
 ]
 
 const selectedPeriodStyles = {
@@ -271,3 +323,8 @@ const selectedPeriodStyles = {
   border: '1px solid #ededed26',
   color: '#ABABAB'
 }
+
+const temporalStyles = [
+  selectStyles, 
+  { width: 90, marginRight: '16px'}
+]

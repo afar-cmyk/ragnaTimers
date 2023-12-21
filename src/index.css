@@ -99,9 +99,8 @@ body {
 
 .newMvp_span_hora input{
   appearance: none;
-  padding-left: 16px;
-  min-width: 96px;
-  max-width: 96px;
+  min-width: 48px;
+  max-width: 54px;
   min-height: 26px;
   border: 1px solid rgba(238, 238, 238, 0.22);
   background: rgba(18, 18, 18, 0.40);
@@ -111,10 +110,12 @@ body {
   font-size: 14px;
   font-style: normal;
   font-weight: 500 !important;
+  text-align: center;
 }
 
 .newMvp_span_hora input::placeholder {
   color: #666666ab;
+  text-align: center;
 }
 
 .newMvp_span_hora input:hover {

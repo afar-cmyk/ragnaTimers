@@ -1,8 +1,7 @@
 import React from 'react'
-import atroce from '../../images/mvps/atroce.png'
 import { ProgressBar } from './ProgressBar.jsx'
 import RemainingTime from './RemainingTime.jsx'
-import { differenceInSeconds, addMinutes } from 'date-fns'
+import { isBefore, isAfter, differenceInSeconds, addMinutes, parse } from 'date-fns'
 import { CardFooter } from './CardFooter.jsx'
 import DataSource from '../../database/DataSource.js'
 import CardBackground from './CardBackground.jsx'
@@ -20,11 +19,12 @@ export function ConstruirFecha(horas, minutos, periodo) {
   return fechaConstruida;
 }
 
+// TODO modificar el codigo para recibir el nuevo tipo de fecha y hacer los calculos en torno a ella
 
 export const Card = () => {
 
   let datosUsuario = [
-    {"mvpName":"gtb","mapName":"prt_sewb4","hours":"09","minutes":"48","timePeriod":"PM"}
+    {"mvpName":"gtb","mapName":"prt_sewb4","hours":"00","minutes":"49","timePeriod":"AM"}
   ]
 
   let datosMvp = DataSource[datosUsuario[0].mvpName]
@@ -34,52 +34,37 @@ export const Card = () => {
 
   let respawnBase = datosMvp.maps[datosUsuario[0].mapName].respawn[0]
   let respawnVariable = datosMvp.maps[datosUsuario[0].mapName].respawn[1]
+
+  let fechaAntigua = new Date("Tue Dec 19 2023 21:30:00 GMT-0500 (Colombia Standard Time)")
+  let fechaActual = new Date("Tue Dec 19 2023 22:00:00 GMT-0500 (Colombia Standard Time)")
+  let fechaFutura = new Date("Tue Dec 19 2023 23:31:00 GMT-0500 (Colombia Standard Time)")
+  
+  // si no esta muerto para que lo voy a timear?
   
   let calcularRespawnVariable = (respawn, variable) => {
     return variable - respawn
   }
 
   let horaActual = ConstruirFecha(10, 47, 'PM')
+  // let horaActual = Date.now()
   let fechaIngresda = ConstruirFecha(horaMuerte, minutosMuerte, datosUsuario[0].timePeriod)
 
-  //console.log(respawnVariable)
-  // let fechaIngresda = ConstruirFecha(3, 0, 'AM')
-  // let horaActual = ConstruirFecha(3, 0, 'AM')
-
   let fechaConRespawn = addMinutes(fechaIngresda, respawnBase)
-  let fechaConRespawnVariable = addMinutes(fechaIngresda, calcularRespawnVariable(respawnBase, respawnVariable))
-
-  //console.log(fechaConRespawnVariable)
-
-  // let tiempoFinal = differenceInSeconds(fechaConRespawn, Date.now())
-  // let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, Date.now())
+  let fechaConRespawnVariable = addMinutes(fechaIngresda, respawnVariable)
 
 
   let tiempoFinal = differenceInSeconds(fechaConRespawn, horaActual)
-  let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, horaActual)
+  let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, fechaConRespawn)
 
-  console.log(addMinutes(fechaIngresda, calcularRespawnVariable(respawnBase, respawnVariable)))
+  // console.log(isBefore(horaActual, fechaIngresda))
+  // console.log(isAfter(horaActual, fechaConRespawnVariable))
+  console.log(isAfter(fechaActual, fechaFutura))
 
-
-  // let tiempoFinal = differenceInSeconds(fechaConRespawn, horaActual)
-  // let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, horaActual)
-
-
-  // console.log(tiempoFinal)
-  // console.log(tiempoFinal2)
-
-  // console.log(format(fechaConRespawn, 'hh:mm a'))
-  // console.log(format(fechaConRespawnVariable, 'hh:mm a'))
-
-  let segundosPrueba = tiempoFinal
-  // let segundosPrueba = Math.abs(tiempoFinal)
   return (
+    //TODO Nombrar todos los props de forma congruente
+
     <div style={mainContainer}>
-      {/* Convertir en componente */}
-
       <CardBackground mvpName={imagenMvp} />
-
-      {/* <div style={backgroundImage} /> */}
       <div style={content}>
 
 
@@ -89,7 +74,7 @@ export const Card = () => {
         </div>
 
 
-        {/* TODO logica para crear un counter usando los datos del mvp seleccionado */}
+        
         <RemainingTime sRespawn={tiempoFinal} sVariable={tiempoFinal2} />
 
         <CardFooter selectedDate={fechaIngresda} respawn={respawnBase} variable={respawnVariable} />
@@ -109,17 +94,6 @@ const mainContainer = {
   borderRadius: '3px',
   display: 'flex',
   overflow: 'hidden',
-}
-
-const backgroundImage = {
-  backgroundImage: `url(${atroce})`,
-  backgroundPosition: '-38px -30px',
-  backgroundSize: '175%',
-  width: '100%',
-  height: '100%',
-  filter: 'saturate(0)',
-  backgroundRepeat: 'no-repeat',
-  imageRendering: 'pixelated'
 }
 
 const content = {
