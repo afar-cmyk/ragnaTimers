@@ -3,7 +3,7 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Snackbar from '@mui/joy/Snackbar';
 import lodash, { toInteger } from 'lodash';
-import { subDays, isBefore } from 'date-fns';
+import { subDays, isBefore, parse } from 'date-fns';
 import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
 import DataSource from "../database/DataSource.js";
 
@@ -16,6 +16,9 @@ const NewMvpForm = ({ onSubmit }) => {
   const [minutes, setMinutes] = useState("")
   const [timePeriod, setTimePeriod] = useState("")
   const [open, setOpen] = useState(false);
+  const [snackStatus, setSnackStatus] = useState('');
+
+  let selectedDate = formatDate(hours, minutes, timePeriod, temporal)
 
   const validateHours = (event) => {
     let value = parseInt(event.target.value, 10)
@@ -86,9 +89,7 @@ const NewMvpForm = ({ onSubmit }) => {
     const formValues = {
       mvpName: mvp, 
       mapName: map,
-      hours: hours,
-      minutes: minutes,
-      timePeriod: timePeriod
+      selectedDate: selectedDate
     }
     return formValues
   }
@@ -105,14 +106,16 @@ const NewMvpForm = ({ onSubmit }) => {
   }
 
   const handleOnSubmit = (e) => {
-    let selectedDate = formatDate(hours, minutes, timePeriod, temporal)
-    const interrupted = isBefore(selectedDate, Date.now())
+    let interrupted = isBefore(selectedDate, Date.now())
 
     if (!interrupted) {
       e.preventDefault()
+      setSnackStatus('error')
       setOpen(true)
     } else {
       e.preventDefault()
+      setSnackStatus('success')
+      setOpen(true)
       onSubmit(formatData)
     }
   }
@@ -245,10 +248,11 @@ const NewMvpForm = ({ onSubmit }) => {
         <ThumbnailsContainer mvpName={mvp} mapName={map}/>
       </div>
       <Snackbar
-        autoHideDuration={8000}
+        autoHideDuration={snackbarOptions.duration[snackStatus]}
         open={open}
-        color="danger" 
+        color={snackbarOptions.color[snackStatus]} 
         variant="solid"
+        size={snackbarOptions.size[snackStatus]}
         onClose={(event, reason) => {
           if (reason === 'clickaway') {
             return;
@@ -256,7 +260,7 @@ const NewMvpForm = ({ onSubmit }) => {
           setOpen(false);
         }}
       >
-        La hora elegida no puede ser posterior a la fecha y hora actuales.
+        {snackbarOptions.text[snackStatus]}
       </Snackbar>
     </>
   )
@@ -264,6 +268,24 @@ const NewMvpForm = ({ onSubmit }) => {
 
 export default NewMvpForm;
 
+const snackbarOptions = {
+  duration: {
+    error: 14000,
+    success: 4000
+  },
+  text: {
+    error: 'La hora elegida no puede ser posterior a la fecha y hora actuales.',
+    success: 'MVP creado con exito.'
+  },
+  color: {
+    error: 'danger',
+    success: 'success'
+  },
+  size: {
+    error: 'md',
+    success: 'sm'
+  }
+}
 
 const selectStyles = {
   width: '100%',

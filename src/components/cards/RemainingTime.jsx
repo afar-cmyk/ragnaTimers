@@ -7,6 +7,10 @@ const RemainingTime = ({ sRespawn, sVariable }) => {
   const [currentTiming, setCurrentTiming] = useState(null)
   const [currentColor, setCurrentColor] = useState('#DDDDDD')
 
+  // TODO organizar bug, que al recibir el respawn base y sea negativo, entones comience a usar el variable
+  // bug actual, la barra se queda en gris si recibe el respawn base en negativo o agotado
+  // TODO organizar bug, que cuando se reinicia la app el contador variable tambien se reinicia (tiene que continuar donde iba)
+  // TODO organizar bug, que cuando se reinicia la app la barra de carga verde se reinicia
 
   useEffect(() => {    
     if (respawn > 0 || variable > 0) {
@@ -27,7 +31,10 @@ const RemainingTime = ({ sRespawn, sVariable }) => {
     if (variable == 0) {
       setCurrentColor('#666666')
     }
+    
   }, [respawn, variable])
+
+  console.log(respawn, variable)
 
 
   const formatTime = time => {

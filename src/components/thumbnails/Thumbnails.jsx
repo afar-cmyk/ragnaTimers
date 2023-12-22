@@ -14,8 +14,8 @@ export default function Thumbnails({type='mvp', mvpName='default', mapName='defa
   const gradient = 'linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%)'
   const gradient2 = 'linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.18) 100%)'
   const backgroundImage = type == 'map' ? mapImage : mvpImage
-  const backgroundPosition = type == 'map' ? '-4px -1px' : DataSource[mvpName].settings.position
-  const backgroundSize = type == 'map' ? '110%' : DataSource[mvpName].settings.size
+  const backgroundPosition = type == 'map' ? '-4px -1px' : DataSource[mvpName].settings.thumbnail.position
+  const backgroundSize = type == 'map' ? '110%' : DataSource[mvpName].settings.thumbnail.size
 
   let style = {
     background: `${gradient} no-repeat center / 100%, `

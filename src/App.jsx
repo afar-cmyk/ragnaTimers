@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import ContainerContent from './components/ContainerContent.jsx';
 import './index.css';
 import { CardsContainer } from './components/cards/CardsContainer.jsx';
+import { atom } from 'jotai';
+import useDb from './database/useDb.jsx';
 
 
 //TODO Agregar los esqueletos de las barras
@@ -19,6 +21,15 @@ import { CardsContainer } from './components/cards/CardsContainer.jsx';
 
 const container = document.getElementById("root");
 const root = createRoot(container);
+export const testData = atom([
+  {"mvpName":"atroce","mapName":"ra_fild02","selectedDate":"2023-12-21T07:30:00.424Z"},
+  {"mvpName":"garm","mapName":"xmas_fild01","selectedDate":"2023-12-21T07:44:00.448Z"},
+  {"mvpName":"gtb","mapName":"prt_sewb4","selectedDate":"2023-12-21T06:45:00.724Z"},
+  {"mvpName":"randgris","mapName":"odin_tem03","selectedDate":"2023-12-21T06:19:00.500Z"},
+  {"mvpName":"ungoliant","mapName":"ein_fild02","selectedDate":"2023-12-21T06:00:00.429Z"},
+])
+
+// const db = useDb()
 
 root.render(
   <>

@@ -14,6 +14,7 @@ export default function ContainerContent() {
       <button form='my-form' type='submit'>nuevo MVP</button>
       
       <p style={{color: 'white'}}>Datos enviados: {JSON.stringify(submittedData)}</p>
+      <b style={{color: 'white'}}>HORA ACTUAL: 02:47 AM</b>
     </>
   )
 }
