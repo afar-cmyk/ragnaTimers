@@ -6,7 +6,7 @@ import { CardsContainer } from './components/cards/CardsContainer.jsx';
 import { atom } from 'jotai';
 import useDb from './database/useDb.jsx';
 
-
+//TODO VOLVER A EMPEZAR CON UNA NUEVA VERSION DE ELECTRON
 //TODO Agregar los esqueletos de las barras
 //TODO Agrear un historial y un contador para definir los mvp 'favoritos'
 //TODO Buscar una base de datos liviana para usar localmente (quizas solo un json)
