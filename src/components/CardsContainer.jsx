@@ -1,24 +1,31 @@
-import React from 'react'
-import { Card } from './Card.jsx'
+import React, { useState, useEffect } from 'react'
+import { Card } from './cards/Card.jsx'
+import { db } from '../database/db.js';
+import { useLiveQuery } from 'dexie-react-hooks';
 
 const CardsContainer = () => {
-  let data = [
-    {"mvpName":"gtb","mapName":"prt_sewb4","selectedDate":"2023-12-24T06:50:00.566Z"},
-    {"mvpName":"pharaoh","mapName":"in_sphinx5","selectedDate":"2023-12-24T07:00:00.386Z"}
-  ]
+  const [data, setData] = useState([]);
+
+  const liveQuery = useLiveQuery(() => db.userSelection.toArray());
+ 
+  useEffect(() => {
+    if (liveQuery) {
+      setData(liveQuery);
+    }
+  }, [liveQuery]);
 
   return (
     <div style={{minWidth: '702px', maxWidth: '702px', marginBottom: '32px'}}>
     <h1 style={title}>MVP Timeados</h1>
     <div style={content}>
-      { data?.map((d, index) => 
+      {data ? data.map((d, index) => 
         <Card 
           key={index} 
           mvpName={d.mvpName} 
           mapName={d.mapName} 
           selectedDate={d.selectedDate} 
         />
-      )}
+      ) : null}
     </div>
   </div>
   )

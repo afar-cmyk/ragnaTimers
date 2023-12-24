@@ -6,8 +6,9 @@ import lodash, { toInteger } from 'lodash';
 import { subDays, isBefore, parse } from 'date-fns';
 import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
 import DataSource from "../database/DataSource.js";
+import { addData } from '../database/dbService.js';
 
-const NewMvpForm = ({ onSubmit }) => {
+const NewMvpForm = () => {
   const [filteredDataSource] = useState(lodash.omit(DataSource, 'default'))
   const [mvp, setMvp] = useState("")
   const [map, setMap] = useState("")
@@ -116,12 +117,11 @@ const NewMvpForm = ({ onSubmit }) => {
       e.preventDefault()
       setSnackStatus('success')
       setOpen(true)
-      onSubmit(formatData)
+      addData(mvp, map, selectedDate)
     }
   }
 
 
-  // TODO construir la fecha seleccionada y enviarla con el boton del formulario
   return (
     <>
       <div className="newMvp_container">

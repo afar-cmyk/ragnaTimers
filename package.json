@@ -1,7 +1,7 @@
 {
-  "name": "prueba",
-  "productName": "prueba",
-  "version": "1.0.0",
+  "name": "ragnatimers",
+  "productName": "ragnatimers",
+  "version": "0.0.1",
   "description": "My Electron application description",
   "main": ".webpack/main",
   "scripts": {
@@ -17,7 +17,7 @@
     "name": "Andrés F. Alvarez",
     "email": "andresfelipe.alvarez03@gmail.com"
   },
-  "license": "MIT",
+  "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
     "@electron-forge/cli": "^7.2.0",
     "@electron-forge/maker-deb": "^7.2.0",
@@ -33,15 +33,17 @@
     "style-loader": "^3.0.0"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-is": "^18.2.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/joy": "5.0.0-beta.19",
     "date-fns": "^3.0.6",
+    "dexie": "^3.2.4",
+    "dexie-react-hooks": "^1.1.7",
     "electron-squirrel-startup": "^1.0.0",
     "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
     "short-uuid": "^4.2.2"
   }
 }

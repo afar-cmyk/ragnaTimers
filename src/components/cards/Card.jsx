@@ -10,8 +10,8 @@ import CardBackground from './CardBackground.jsx'
 export const Card = (props) => {
   let { mvpName, mapName, selectedDate } = props
   
-  let horaActual = ConstruirFecha(2, 47, 'AM')
-  // let horaActual = Date.now()
+  // let horaActual = ConstruirFecha(2, 47, 'AM')
+  let horaActual = Date.now()
 
   let mvpData = DataSource[mvpName]
   let fechaSeleccionada = new Date(selectedDate)
