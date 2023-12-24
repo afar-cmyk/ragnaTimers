@@ -117,10 +117,9 @@ const NewMvpForm = () => {
       e.preventDefault()
       setSnackStatus('success')
       setOpen(true)
-      addData(mvp, map, selectedDate)
+      addData(mvp, map, selectedDate, 'true')
     }
   }
-
 
   return (
     <>

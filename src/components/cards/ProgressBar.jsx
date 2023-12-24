@@ -1,5 +1,8 @@
 import React from 'react'
 
+// TODO Arreglar el bug de la barra de carga al reiniciar el componente vuelve a empezar desde el principio
+// se supone que debe de continuar desde donde iba...
+
 export const ProgressBar = ({ computedSeconds }) => {
   return (
     <span style={progressBar}>

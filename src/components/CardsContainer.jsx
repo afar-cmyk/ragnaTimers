@@ -4,26 +4,24 @@ import { db } from '../database/db.js';
 import { useLiveQuery } from 'dexie-react-hooks';
 
 const CardsContainer = () => {
-  const [data, setData] = useState([]);
-
-  const liveQuery = useLiveQuery(() => db.userSelection.toArray());
+  const timedMvps = useLiveQuery(async () => {
+    return await db.userSelection
+    .where('timing')
+    .equals('true')
+    .toArray()
+  });
  
-  useEffect(() => {
-    if (liveQuery) {
-      setData(liveQuery);
-    }
-  }, [liveQuery]);
-
   return (
     <div style={{minWidth: '702px', maxWidth: '702px', marginBottom: '32px'}}>
     <h1 style={title}>MVP Timeados</h1>
     <div style={content}>
-      {data ? data.map((d, index) => 
+      {timedMvps ? timedMvps.map((data, index) => 
         <Card 
-          key={index} 
-          mvpName={d.mvpName} 
-          mapName={d.mapName} 
-          selectedDate={d.selectedDate} 
+          key={index}
+          dataId={data.id}
+          mvpName={data.mvpName} 
+          mapName={data.mapName} 
+          selectedDate={data.selectedDate} 
         />
       ) : null}
     </div>
@@ -32,7 +30,6 @@ const CardsContainer = () => {
 }
 
 export default CardsContainer
-
 
 const title = {
   color: '#DDDDDD',

@@ -7,10 +7,11 @@ import DataSource from '../../database/DataSource.js'
 import CardBackground from './CardBackground.jsx'
 
 
+//TODO Nombrar todos los props y funciones de forma congruente
+
 export const Card = (props) => {
-  let { mvpName, mapName, selectedDate } = props
+  let { dataId, mvpName, mapName, selectedDate } = props
   
-  // let horaActual = ConstruirFecha(2, 47, 'AM')
   let horaActual = Date.now()
 
   let mvpData = DataSource[mvpName]
@@ -26,46 +27,27 @@ export const Card = (props) => {
 
   let tiempoFinal = differenceInSeconds(fechaConRespawn, horaActual)
   let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, fechaConRespawn)
-  // console.log(tiempoFinal)
-  // console.log(tiempoFinal2)
 
 
   return (
-    //TODO Nombrar todos los props de forma congruente
-
     <div style={mainContainer}>
       <CardBackground mvpName={mvpName} />
       <div style={content}>
-
 
         <div style={cardHeader}>
           <span style={headerTitile}>{mvpData['fullName']}</span>
           <span style={headerSubtitile}>{mapName}</span>
         </div>
 
-        
-        <RemainingTime sRespawn={tiempoFinal} sVariable={tiempoFinal2} />
+        <RemainingTime sRespawn={tiempoFinal} sVariable={tiempoFinal2} id={dataId} />
 
         <CardFooter selectedDate={fechaSeleccionada} respawn={base} variable={variable} />
 
         <ProgressBar computedSeconds={tiempoFinal} />
 
-
       </div>
     </div>
   )
-}
-
-function ConstruirFecha(horas, minutos, periodo) {
-  horas = periodo === 'PM' && horas < 12 ? horas + 12 : horas;
-
-  var fechaConstruida = new Date();
-  
-  fechaConstruida.setHours(horas);
-  fechaConstruida.setMinutes(minutos);
-  fechaConstruida.setSeconds(0);
-
-  return fechaConstruida;
 }
 
 const mainContainer = {
