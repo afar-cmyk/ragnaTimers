@@ -6,7 +6,6 @@ import { CardFooter } from './CardFooter.jsx'
 import DataSource from '../../database/DataSource.js'
 import CardBackground from './CardBackground.jsx'
 
-
 //TODO Nombrar todos los props y funciones de forma congruente
 
 export const Card = (props) => {
@@ -39,7 +38,7 @@ export const Card = (props) => {
           <span style={headerSubtitile}>{mapName}</span>
         </div>
 
-        <RemainingTime sRespawn={tiempoFinal} sVariable={tiempoFinal2} id={dataId} respawn={fechaConRespawn} variable={fechaConRespawnVariable} />
+        <RemainingTime id={dataId} respawn={fechaConRespawn} variable={fechaConRespawnVariable} />
 
         <CardFooter selectedDate={fechaSeleccionada} respawn={base} variable={variable} />
 

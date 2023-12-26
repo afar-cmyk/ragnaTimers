@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Card } from './cards/Card.jsx'
 import { db } from '../database/db.js';
 import { useLiveQuery } from 'dexie-react-hooks';
+import ShortUniqueId from 'short-unique-id';
 
 const CardsContainer = () => {
   const timedMvps = useLiveQuery(async () => {
@@ -10,14 +11,16 @@ const CardsContainer = () => {
     .equals('true')
     .toArray()
   });
+
+  const  uid = new ShortUniqueId({ length: 5 });
  
   return (
     <div style={{minWidth: '702px', maxWidth: '702px', marginBottom: '32px'}}>
     <h1 style={title}>MVP Timeados</h1>
     <div style={content}>
-      {timedMvps ? timedMvps.map((data, index) => 
+      {timedMvps ? timedMvps.map((data) => 
         <Card 
-          key={index}
+          key={uid.rnd()}
           dataId={data.id}
           mvpName={data.mvpName} 
           mapName={data.mapName} 

@@ -149,6 +149,9 @@
         treasure02: { respawn: [120, 130] }
       }
     },
+
+
+    // default & debug settings
     debug: {
       fullName: 'debug',
       settings: {
@@ -165,8 +168,6 @@
         debug: { respawn: [1, 2] }
       }
     },
-
-    // default settings
     default: {
       fullName: 'default',
       settings: {
