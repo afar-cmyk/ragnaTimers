@@ -39,7 +39,7 @@ export const Card = (props) => {
           <span style={headerSubtitile}>{mapName}</span>
         </div>
 
-        <RemainingTime sRespawn={tiempoFinal} sVariable={tiempoFinal2} id={dataId} />
+        <RemainingTime sRespawn={tiempoFinal} sVariable={tiempoFinal2} id={dataId} respawn={fechaConRespawn} variable={fechaConRespawnVariable} />
 
         <CardFooter selectedDate={fechaSeleccionada} respawn={base} variable={variable} />
 

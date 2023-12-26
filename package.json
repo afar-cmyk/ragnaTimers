@@ -44,6 +44,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
+    "react-timer-hook": "^3.0.7",
+    "react-use-precision-timer": "^3.4.5",
     "short-uuid": "^4.2.2"
   }
 }

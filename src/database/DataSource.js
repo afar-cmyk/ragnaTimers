@@ -149,6 +149,22 @@
         treasure02: { respawn: [120, 130] }
       }
     },
+    debug: {
+      fullName: 'debug',
+      settings: {
+        thumbnail: {
+          position: '0px 0px',
+          size: '100%'
+        },
+        card: {
+          position: '0px 0px',
+          size: '100%'
+        }
+      },
+      maps: {
+        debug: { respawn: [1, 2] }
+      }
+    },
 
     // default settings
     default: {
