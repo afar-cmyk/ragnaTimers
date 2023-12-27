@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import {differenceInMilliseconds, minutesToMilliseconds } from 'date-fns';
 
-// TODO Arreglar el bug de la barra de carga al reiniciar el componente vuelve a empezar desde el principio
-// se supone que debe de continuar desde donde iba...
+export const ProgressBar = ({ remainingSeconds, selectedRespawn, mvpRespawn }) => {
+  const [currentSeconds, setCurrentSeconds] = useState(remainingSeconds)
+  const [percent, setPercent] = useState(remainingSeconds)
 
-export const ProgressBar = ({ computedSeconds }) => {
+  const currentDate = new Date()
+  const selectedDate = new Date(selectedRespawn)
+  const computeRespawn = minutesToMilliseconds(mvpRespawn)
+
+  const difference = differenceInMilliseconds(selectedDate, currentDate)
+  const percentage = Math.floor((difference / computeRespawn) * 100)
+
+  useEffect(() => {
+    setCurrentSeconds(remainingSeconds)
+    setPercent(percentage)
+  },[remainingSeconds, percentage])
+
   return (
     <span style={progressBar}>
-      <span style={progressBarFill(computedSeconds)} />
+      <span style={progressBarFill(percent, currentSeconds)} />
     </span>
   )
 }
@@ -20,10 +33,11 @@ const progressBar = {
   display: 'flex',
 }
 
-const progressBarFill = (computedSeconds) => ({
+const progressBarFill = (percent, currentSeconds) => ({
   height: '100%',
-  width: '100%',
+  width: `${percent}%`,
   backgroundColor: '#2BB65280',
   borderRadius: '0px 0px 0px 3px',
-  animation: `fillAnimation ${computedSeconds}s linear forwards`,
+  transition: "width 1s",
+  animation: `fillAnimation ${currentSeconds}s linear forwards`,
 })

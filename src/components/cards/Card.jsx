@@ -42,7 +42,7 @@ export const Card = (props) => {
 
         <CardFooter selectedDate={fechaSeleccionada} respawn={base} variable={variable} />
 
-        <ProgressBar computedSeconds={tiempoFinal} />
+        <ProgressBar remainingSeconds={tiempoFinal} selectedRespawn={fechaConRespawn} mvpRespawn={base} />
 
       </div>
     </div>
