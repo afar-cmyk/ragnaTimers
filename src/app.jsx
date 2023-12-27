@@ -17,7 +17,6 @@ root.render(
 
 //TODO Agregar los esqueletos de las barras
 //TODO Agrear un historial y un contador para definir los mvp 'favoritos'
-//TODO Buscar una base de datos liviana para usar localmente (quizas solo un json)
 
 //TODO planificar aun mas en Figma
 //TODO planificar un layout con usuario y dashboard

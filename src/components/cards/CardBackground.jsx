@@ -14,7 +14,9 @@ const CardBackground = ({ mvpName }) => {
     height: '100%',
     filter: 'saturate(0)',
     backgroundRepeat: 'no-repeat',
-    imageRendering: 'pixelated'
+    imageRendering: 'pixelated',
+    border: '1px solid #ffffff42',
+    borderRadius: '3px'
   }
 
   return (

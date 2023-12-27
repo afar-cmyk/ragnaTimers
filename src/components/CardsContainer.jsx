@@ -50,5 +50,6 @@ const content = {
   alignItems: 'flex-start',
   alignContent: 'flex-start',
   gap: '24px',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
+
 }

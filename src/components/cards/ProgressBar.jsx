@@ -38,6 +38,5 @@ const progressBarFill = (percent, currentSeconds) => ({
   width: `${percent}%`,
   backgroundColor: '#2BB65280',
   borderRadius: '0px 0px 0px 3px',
-  transition: "width 1s",
   animation: `fillAnimation ${currentSeconds}s linear forwards`,
 })

@@ -55,7 +55,7 @@ const mainContainer = {
   height: '179px',
   borderRadius: '3px',
   display: 'flex',
-  overflow: 'hidden',
+  overflow: 'hidden'
 }
 
 const content = {
