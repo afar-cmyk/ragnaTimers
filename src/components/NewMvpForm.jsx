@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import Snackbar from '@mui/joy/Snackbar';
-import lodash, { toInteger } from 'lodash';
-import { subDays, isBefore, parse } from 'date-fns';
-import ThumbnailsContainer from "./thumbnails/ThumbnailsContainer.jsx";
-import DataSource from "../database/DataSource.js";
-import { addData } from '../database/dbService.js';
+import React, { useState } from 'react'
+import Select from '@mui/joy/Select'
+import Option from '@mui/joy/Option'
+import Snackbar from '@mui/joy/Snackbar'
+import lodash, { toInteger } from 'lodash'
+import { subDays, isBefore } from 'date-fns'
+import ThumbnailsContainer from './thumbnails/ThumbnailsContainer.jsx'
+import DataSource from '../database/DataSource.js'
+import { addData } from '../database/dbService.js'
 
 const NewMvpForm = () => {
   const [filteredDataSource] = useState(lodash.omit(DataSource, 'default'))
-  const [mvp, setMvp] = useState("")
-  const [map, setMap] = useState("")
+  const [mvp, setMvp] = useState('')
+  const [map, setMap] = useState('')
   const [temporal, setTemporal] = useState(true)
-  const [hours, setHours] = useState("")
-  const [minutes, setMinutes] = useState("")
-  const [timePeriod, setTimePeriod] = useState("")
-  const [open, setOpen] = useState(false);
-  const [snackStatus, setSnackStatus] = useState('');
+  const [hours, setHours] = useState('')
+  const [minutes, setMinutes] = useState('')
+  const [timePeriod, setTimePeriod] = useState('')
+  const [open, setOpen] = useState(false)
+  const [snackStatus, setSnackStatus] = useState('')
 
   let selectedDate = formatDate(hours, minutes, timePeriod, temporal)
 
@@ -40,7 +40,8 @@ const NewMvpForm = () => {
       setHours(formattedHours)
     } else {
       adjustedValue = Math.min(12, Math.max(0, parseInt(hours, 10)))
-      formattedHours = adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString()
+      formattedHours =
+        adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString()
       setHours(formattedHours)
     }
   }
@@ -64,7 +65,8 @@ const NewMvpForm = () => {
       setMinutes(formattedMinutes)
     } else {
       adjustedValue = Math.min(59, Math.max(0, parseInt(minutes, 10)))
-      formattedMinutes = adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString()
+      formattedMinutes =
+        adjustedValue <= 9 ? `0${adjustedValue}` : adjustedValue.toString()
       setMinutes(formattedMinutes)
     }
   }
@@ -73,10 +75,10 @@ const NewMvpForm = () => {
     const currentTime = new Date()
 
     const hours = currentTime.getHours()
-    const formattedHours = (hours % 12 || 12).toString().padStart(2, '0');
+    const formattedHours = (hours % 12 || 12).toString().padStart(2, '0')
 
     const minutes = currentTime.getMinutes()
-    const formattedMinutes = minutes.toString().padStart(2, '0');
+    const formattedMinutes = minutes.toString().padStart(2, '0')
 
     const period = hours >= 12 ? 'PM' : 'AM'
 
@@ -88,7 +90,7 @@ const NewMvpForm = () => {
 
   const formatData = () => {
     const formValues = {
-      mvpName: mvp, 
+      mvpName: mvp,
       mapName: map,
       selectedDate: selectedDate
     }
@@ -96,14 +98,14 @@ const NewMvpForm = () => {
   }
 
   function formatDate(hours, minutes, period, temporal) {
-    hours = toInteger(hours) + (period === 'PM' && hours < 12 ? 12 : 0);
-    const today = new Date();
-    const yesterday = subDays(today, 1);
-    const date = temporal ? today : yesterday;
-    date.setHours(toInteger(hours));
-    date.setMinutes(toInteger(minutes));
-    date.setSeconds(0);
-    return date;
+    hours = toInteger(hours) + (period === 'PM' && hours < 12 ? 12 : 0)
+    const today = new Date()
+    const yesterday = subDays(today, 1)
+    const date = temporal ? today : yesterday
+    date.setHours(toInteger(hours))
+    date.setMinutes(toInteger(minutes))
+    date.setSeconds(0)
+    return date
   }
 
   const handleOnSubmit = (e) => {
@@ -123,29 +125,31 @@ const NewMvpForm = () => {
 
   return (
     <>
-      <div className="newMvp_container">
-        <form 
-          id='my-form' 
-          style={{display: 'flex', flexDirection: 'column', rowGap: '24px'}} 
+      <div className='newMvp_container'>
+        <form
+          id='my-form'
+          style={{ display: 'flex', flexDirection: 'column', rowGap: '24px' }}
           onSubmit={handleOnSubmit}
         >
-
-          <span className="newMvp_span_mvps">
-
-            <Select 
-              variant="plain" 
-              placeholder="Seleccionar MVP" 
-              sx={[selectStyles, Boolean(mvp) ? selectedStyles : {}]} 
-              onChange={(event, value) => {setMvp(value)}}
+          <span className='newMvp_span_mvps'>
+            <Select
+              variant='plain'
+              placeholder='Seleccionar MVP'
+              sx={[selectStyles, Boolean(mvp) ? selectedStyles : {}]}
+              onChange={(event, value) => {
+                setMvp(value)
+              }}
               required
             >
               {Object.keys(filteredDataSource).map((key) => {
                 return (
-                  <Option 
-                    key={key} 
-                    value={key} 
+                  <Option
+                    key={key}
+                    value={key}
                     sx={optionsStyles}
-                    onMouseOver={() => {setMvp(key)}}
+                    onMouseOver={() => {
+                      setMvp(key)
+                    }}
                   >
                     {filteredDataSource[key]['fullName']}
                   </Option>
@@ -154,109 +158,141 @@ const NewMvpForm = () => {
             </Select>
 
             <Select
-              disabled={(mvp == '')}
-              variant="plain" 
-              placeholder="Seleccionar Mapa" 
+              disabled={mvp == ''}
+              variant='plain'
+              placeholder='Seleccionar Mapa'
               sx={[selectStyles, Boolean(map) ? selectedStyles : {}]}
-              onChange={(event, value) => {setMap(value)}}
+              onChange={(event, value) => {
+                setMap(value)
+              }}
               value={map}
               required
             >
-              {
-                mvp == '' ? (
-                  <Option value="default" sx={optionsStyles}>default</Option>
-                ):
-                (
-                  Object.keys(filteredDataSource[mvp]['maps']).map((key) => {
-                    return (
-                      <Option 
-                        key={key} 
-                        value={key} 
-                        sx={optionsStyles}
-                        onMouseOver={() => {setMap(key)}}
-                      >
-                        {key}
-                      </Option>
-                    )
-                  })
-                ) 
-              }
+              {mvp == '' ? (
+                <Option value='default' sx={optionsStyles}>
+                  default
+                </Option>
+              ) : (
+                Object.keys(filteredDataSource[mvp]['maps']).map((key) => {
+                  return (
+                    <Option
+                      key={key}
+                      value={key}
+                      sx={optionsStyles}
+                      onMouseOver={() => {
+                        setMap(key)
+                      }}
+                    >
+                      {key}
+                    </Option>
+                  )
+                })
+              )}
             </Select>
-
           </span>
 
-          <span className="newMvp_span_hora">
+          <span className='newMvp_span_hora'>
+            <button
+              type='button'
+              className='current_date_btn'
+              onClick={setCurrentTime}
+            />
 
-            <button type="button" className="current_date_btn" onClick={setCurrentTime} />
-
-            <Select 
-              name="temporal" 
-              variant="plain" 
-              placeholder="Fecha" 
-              sx={[...temporalStyles, Boolean(temporal) ? selectedPeriodStyles : {}]}
-              onChange={(event, value) => {setTemporal(value)}}
+            <Select
+              name='temporal'
+              variant='plain'
+              placeholder='Fecha'
+              sx={[
+                ...temporalStyles,
+                Boolean(temporal) ? selectedPeriodStyles : {}
+              ]}
+              onChange={(event, value) => {
+                setTemporal(value)
+              }}
               value={temporal}
               required
             >
-              <Option value={true} sx={optionsStyles} >Hoy</Option>
-              <Option value={false} sx={optionsStyles} >Ayer</Option>
+              <Option value={true} sx={optionsStyles}>
+                Hoy
+              </Option>
+              <Option value={false} sx={optionsStyles}>
+                Ayer
+              </Option>
             </Select>
 
-            <input type="number" 
-              name="hora" 
-              id="hora_input" 
-              placeholder="HH" 
-              min="1" 
-              max="12" 
-              onChange={validateHours} 
+            <input
+              type='number'
+              name='hora'
+              id='hora_input'
+              placeholder='HH'
+              min='1'
+              max='12'
+              onChange={validateHours}
               onBlur={formatHours}
               value={hours}
-              required 
+              required
             />
 
-            <span style={{color: '#ABABAB', fontSize: 28, lineHeight: 0, margin: '0px 6px 2px 6px'}}>:</span>
+            <span
+              style={{
+                color: '#ABABAB',
+                fontSize: 28,
+                lineHeight: 0,
+                margin: '0px 6px 2px 6px'
+              }}
+            >
+              :
+            </span>
 
-            <input type="number" 
-              name="minutos" 
-              id="minutos_input" 
-              placeholder="MM" 
-              min="0" 
-              max="59" 
+            <input
+              type='number'
+              name='minutos'
+              id='minutos_input'
+              placeholder='MM'
+              min='0'
+              max='59'
               onChange={validateMinutes}
               onBlur={formatMinutes}
               value={minutes}
               required
             />
 
-            <Select 
-              name="timePeriod" 
-              variant="plain" 
-              placeholder="AM / PM" 
-              sx={[...periodStyles, Boolean(timePeriod) ? selectedPeriodStyles : {}]}
-              onChange={(event, value) => {setTimePeriod(value)}}
+            <Select
+              name='timePeriod'
+              variant='plain'
+              placeholder='AM / PM'
+              sx={[
+                ...periodStyles,
+                Boolean(timePeriod) ? selectedPeriodStyles : {}
+              ]}
+              onChange={(event, value) => {
+                setTimePeriod(value)
+              }}
               value={timePeriod}
               required
             >
-              <Option value="AM" sx={optionsStyles} >AM</Option>
-              <Option value="PM" sx={optionsStyles} >PM</Option>
+              <Option value='AM' sx={optionsStyles}>
+                AM
+              </Option>
+              <Option value='PM' sx={optionsStyles}>
+                PM
+              </Option>
             </Select>
-
           </span>
-
         </form>
-        <ThumbnailsContainer mvpName={mvp} mapName={map}/>
+        <ThumbnailsContainer mvpName={mvp} mapName={map} />
       </div>
       <Snackbar
         autoHideDuration={snackbarOptions.duration[snackStatus]}
         open={open}
-        color={snackbarOptions.color[snackStatus]} 
-        variant="solid"
+        color={snackbarOptions.color[snackStatus]}
+        variant='solid'
         size={snackbarOptions.size[snackStatus]}
         onClose={(event, reason) => {
           if (reason === 'clickaway') {
-            return;
+            return
           }
-          setOpen(false);
+          setOpen(false)
         }}
       >
         {snackbarOptions.text[snackStatus]}
@@ -265,7 +301,7 @@ const NewMvpForm = () => {
   )
 }
 
-export default NewMvpForm;
+export default NewMvpForm
 
 const snackbarOptions = {
   duration: {
@@ -288,8 +324,8 @@ const snackbarOptions = {
 
 const selectStyles = {
   width: '100%',
-  borderRadius: 3, 
-  maxHeight: 30, 
+  borderRadius: 3,
+  maxHeight: 30,
   minHeight: 30,
   color: '#666666',
   backgroundColor: '#EEEEEE14',
@@ -302,7 +338,7 @@ const selectStyles = {
   transition: 'border 0.3s',
   border: '1px solid #1d1d1d',
   outline: 'none',
-  ':hover' : {
+  ':hover': {
     backgroundColor: '#EEEEEE14',
     border: '1px solid #ededed26',
     color: '#ABABAB'
@@ -314,11 +350,11 @@ const selectStyles = {
   }
 }
 
-const selectedStyles = { 
+const selectedStyles = {
   backgroundColor: '#EEEEEE14',
   border: '1px solid #ededed26',
-  color: '#ABABAB' 
-  }
+  color: '#ABABAB'
+}
 
 const optionsStyles = {
   border: '1px solid #1E1E1E',
@@ -327,17 +363,14 @@ const optionsStyles = {
   fontWeight: 400,
   color: '#ABABAB',
   fontSize: 14,
-  ':hover' : {
-  border: '1px solid #ededed26',
-  color: '#ABABAB !important',
-  fontWeight: 500
+  ':hover': {
+    border: '1px solid #ededed26',
+    color: '#ABABAB !important',
+    fontWeight: 500
   }
 }
 
-const periodStyles = [
-  selectStyles, 
-  { width: 105, marginLeft: '16px'}
-]
+const periodStyles = [selectStyles, { width: 105, marginLeft: '16px' }]
 
 const selectedPeriodStyles = {
   backgroundColor: '#EEEEEE14',
@@ -345,7 +378,4 @@ const selectedPeriodStyles = {
   color: '#ABABAB'
 }
 
-const temporalStyles = [
-  selectStyles, 
-  { width: 90, marginRight: '16px'}
-]
+const temporalStyles = [selectStyles, { width: 90, marginRight: '16px' }]

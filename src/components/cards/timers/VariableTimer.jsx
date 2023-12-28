@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { TimerRenderer, useTimer } from "react-use-precision-timer";
-import { removeTiming } from "../../../database/dbService.js";
-import { getTime, formatTime } from "../../cards/RemainingTime.jsx";
+import React, { useState, useEffect } from 'react'
+import { TimerRenderer, useTimer } from 'react-use-precision-timer'
+import { removeTiming } from '../../../database/dbService.js'
+import { getTime, formatTime } from '../../cards/RemainingTime.jsx'
 
-const VariableTimer = ({ date, id }) => {
-  const [currentColor, setCurrentColor] = useState("#c56d82");
-  const callback = React.useCallback(() => {}, []);
-  const timer = useTimer({ delay: 10, runOnce: true }, callback);
+const VariableTimer = ({ variableTime, id, setCardState }) => {
+  const [currentColor, setCurrentColor] = useState('#c56d82')
+  const callback = React.useCallback(() => {}, [])
+  const timer = useTimer({ delay: 10, runOnce: true }, callback)
 
   useEffect(() => {
-    timer.start(getTime(date));
-  }, []);
+    timer.start(getTime(variableTime))
+  }, [])
 
   useEffect(() => {
     const check = () => {
       if (timer.getRemainingTime() == 0) {
-        setCurrentColor("#666666");
+        setCurrentColor('#666666')
+        setCardState('disabled')
         setTimeout(() => {
-          removeTiming(id);
-        }, 5000);
+          removeTiming(id)
+        }, 5000)
       }
-    };
+    }
 
-    const intervalId = setInterval(check, 10);
-    return () => clearInterval(intervalId);
-  }, [timer, currentColor]);
+    const intervalId = setInterval(check, 10)
+    return () => clearInterval(intervalId)
+  }, [timer, currentColor])
 
   return (
     <span style={{ color: currentColor }}>
@@ -34,7 +35,7 @@ const VariableTimer = ({ date, id }) => {
         renderRate={10}
       />
     </span>
-  );
-};
+  )
+}
 
-export default VariableTimer;
+export default VariableTimer

@@ -2,18 +2,20 @@ import React from 'react'
 import { addMinutes, format } from 'date-fns'
 
 export const CardFooter = ({ selectedDate, respawn, variable }) => {
-
   let respawnDate = formatDate(addMinutes(selectedDate, respawn))
   let variableDate = formatDate(addMinutes(selectedDate, variable))
 
   function formatDate(date) {
-    return format(date, 'hh:mm a');
+    return format(date, 'hh:mm a')
   }
 
   return (
     <div style={cardFooter}>
       <span style={footerTitle}>Respawn variable:</span>
-      <span style={footerContent}>de <p style={respawnStyle}>{respawnDate}</p> a <p style={variableStyle}>{variableDate}</p></span>
+      <span style={footerContent}>
+        de <p style={respawnStyle}>{respawnDate}</p> a{' '}
+        <p style={variableStyle}>{variableDate}</p>
+      </span>
     </div>
   )
 }
@@ -22,11 +24,11 @@ const cardFooter = {
   display: 'flex',
   flexDirection: 'column',
   gap: '3px',
-  margin: '0px 8px 8px 8px',
+  margin: '0px 8px 8px 8px'
 }
 
 const footerTitle = {
-  color: '#666',
+  color: '#999999',
   fontFamily: 'Roboto Flex',
   fontSize: '12px',
   fontStyle: 'normal',
@@ -34,11 +36,11 @@ const footerTitle = {
   lineHeight: '12px',
   WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',
-  textRendering: 'optimizeLegibility',
+  textRendering: 'optimizeLegibility'
 }
 
 const footerContent = {
-  color: '#666666',
+  color: '#999999',
   fontFamily: 'Roboto Flex',
   fontSize: '14px',
   fontStyle: 'normal',
@@ -52,7 +54,7 @@ const footerContent = {
 }
 
 const footerTimes = {
-  color: '#ABABAB',
+  color: '#bbbbbb',
   fontFamily: 'Roboto Flex',
   fontSize: '14px',
   fontStyle: 'normal',
@@ -62,12 +64,12 @@ const footerTimes = {
 }
 
 const respawnStyle = {
-  ...footerTimes, 
-  marginLeft: '6px', 
+  ...footerTimes,
+  marginLeft: '6px',
   marginRight: '6px'
 }
 
 const variableStyle = {
-  ...footerTimes, 
+  ...footerTimes,
   marginLeft: '6px'
 }

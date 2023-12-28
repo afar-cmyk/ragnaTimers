@@ -8,14 +8,19 @@ export const addData = async (mvpName, mapName, selectedDate, timing) => {
       selectedDate,
       timing
     })
-    console.log(`added data: ${mvpName}, ${mapName}, ${selectedDate}, ${timing}`)
+    console.log(
+      `added data: ${mvpName}, ${mapName}, ${selectedDate}, ${timing}`
+    )
   } catch (error) {
-    console.error(error, `failed to add data: ${mvpName}, ${mapName}, ${selectedDate}, ${timing}`)
+    console.error(
+      error,
+      `failed to add data: ${mvpName}, ${mapName}, ${selectedDate}, ${timing}`
+    )
   }
 }
 
 export const removeTiming = async (id) => {
-  await db.userSelection.update(id, {timing: 'false'})
+  await db.userSelection.update(id, { timing: 'false' })
 }
 
 export const deleteData = async (id) => {

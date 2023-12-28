@@ -1,27 +1,51 @@
 import React from 'react'
 import DataSource from '../../database/DataSource.js'
 
-const CardBackground = ({ mvpName }) => {
-
-  const mvpContext = require.context("../../images/mvps/", true, /\.png$/)
+const CardBackground = ({ mvpName, cardState }) => {
+  const mvpContext = require.context('../../images/mvps/', true, /\.png$/)
   let mvpImage = mvpContext(`./${mvpName}.png`)
-  
+
   const backgroundImage = {
     backgroundImage: `url(${mvpImage})`,
     backgroundPosition: DataSource[mvpName].settings.card.position,
     backgroundSize: DataSource[mvpName].settings.card.size,
     width: '100%',
     height: '100%',
-    filter: 'saturate(0)',
+    filter: colorState.filter[cardState],
     backgroundRepeat: 'no-repeat',
     imageRendering: 'pixelated',
-    border: '1px solid #ffffff42',
-    borderRadius: '3px'
+    borderRadius: '3px',
+    transition: 'filter 1s'
+  }
+
+  const backgroundBorder = {
+    position: 'absolute',
+    width: '99%',
+    height: '99%',
+    borderRadius: '3px',
+    border: `1px solid ${colorState.border[cardState]}`,
+    transition: 'border 1s'
   }
 
   return (
-    <div style={backgroundImage} />
+    <>
+      <div style={backgroundBorder} />
+      <div style={backgroundImage} />
+    </>
   )
 }
 
 export default CardBackground
+
+const colorState = {
+  border: {
+    respawn: '#ffffffe6',
+    variable: '#ff86be',
+    disabled: '#555555ad'
+  },
+  filter: {
+    respawn: 'saturate(0)',
+    variable: 'grayscale(0.5)',
+    disabled: 'saturate(0)'
+  }
+}

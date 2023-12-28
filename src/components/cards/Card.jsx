@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ProgressBar } from './ProgressBar.jsx'
 import RemainingTime from './RemainingTime.jsx'
 import { differenceInSeconds, addMinutes } from 'date-fns'
@@ -6,44 +6,54 @@ import { CardFooter } from './CardFooter.jsx'
 import DataSource from '../../database/DataSource.js'
 import CardBackground from './CardBackground.jsx'
 
-//TODO Nombrar todos los props y funciones de forma congruente
+//TODO Poner un barrita flotante con los botones de accion <--- !important
 
 export const Card = (props) => {
+  const [cardState, setCardState] = useState('respawn')
+
   let { dataId, mvpName, mapName, selectedDate } = props
-  
-  let horaActual = Date.now()
 
   let mvpData = DataSource[mvpName]
-  let fechaSeleccionada = new Date(selectedDate)
+  let formattedDate = new Date(selectedDate)
 
-  let base = mvpData.maps[mapName].respawn[0]
+  let respawn = mvpData.maps[mapName].respawn[0]
   let variable = mvpData.maps[mapName].respawn[1]
-  
 
-  let fechaConRespawn = addMinutes(fechaSeleccionada, base)
-  let fechaConRespawnVariable = addMinutes(fechaSeleccionada, variable)
+  let respawnTime = addMinutes(formattedDate, respawn)
+  let variableTime = addMinutes(formattedDate, variable)
 
-
-  let tiempoFinal = differenceInSeconds(fechaConRespawn, horaActual)
-  let tiempoFinal2 = differenceInSeconds(fechaConRespawnVariable, fechaConRespawn)
-
+  let respawnTimeLeft = differenceInSeconds(respawnTime, Date.now())
+  let variableTimeLeft = differenceInSeconds(variableTime, respawnTime)
 
   return (
     <div style={mainContainer}>
-      <CardBackground mvpName={mvpName} />
+      <CardBackground mvpName={mvpName} cardState={cardState} />
       <div style={content}>
-
         <div style={cardHeader}>
           <span style={headerTitile}>{mvpData['fullName']}</span>
           <span style={headerSubtitile}>{mapName}</span>
         </div>
 
-        <RemainingTime id={dataId} respawn={fechaConRespawn} variable={fechaConRespawnVariable} />
+        <RemainingTime
+          id={dataId}
+          respawnTime={respawnTime}
+          variableTime={variableTime}
+          cardState={cardState}
+          setCardState={setCardState}
+        />
 
-        <CardFooter selectedDate={fechaSeleccionada} respawn={base} variable={variable} />
+        <CardFooter
+          selectedDate={formattedDate}
+          respawn={respawn}
+          variable={variable}
+        />
 
-        <ProgressBar remainingSeconds={tiempoFinal} selectedRespawn={fechaConRespawn} mvpRespawn={base} />
-
+        <ProgressBar
+          remainingSeconds={respawnTimeLeft}
+          selectedRespawn={respawnTime}
+          mvpRespawn={respawn}
+          cardState={cardState}
+        />
       </div>
     </div>
   )
@@ -67,7 +77,7 @@ const content = {
   display: 'flex',
   flexDirection: 'column',
   zIndex: 1,
-  backgroundColor: '#090706D9',
+  backgroundColor: '#090706d9'
 }
 
 const cardHeader = {
@@ -77,19 +87,19 @@ const cardHeader = {
 }
 
 const headerTitile = {
-  color: '#DDDDDD',
+  color: '#bbbbbb',
   fontFamily: 'Roboto Flex',
   fontSize: '16px',
   fontStyle: 'normal',
   fontWeight: 900,
-  lineHeight: 'normal',
+  lineHeight: 'normal'
 }
 
 const headerSubtitile = {
-  color: '#666',
+  color: '#999999',
   fontFamily: 'Roboto Flex',
   fontSize: '12px',
   fontStyle: 'normal',
   fontWeight: 500,
-  lineHeight: 'normal',
+  lineHeight: 'normal'
 }

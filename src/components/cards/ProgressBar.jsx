@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import {differenceInMilliseconds, minutesToMilliseconds } from 'date-fns';
+import { differenceInMilliseconds, minutesToMilliseconds } from 'date-fns'
 
-export const ProgressBar = ({ remainingSeconds, selectedRespawn, mvpRespawn }) => {
+export const ProgressBar = (props) => {
+  const { remainingSeconds, selectedRespawn, mvpRespawn, cardState } = props
+  
   const [currentSeconds, setCurrentSeconds] = useState(remainingSeconds)
   const [percent, setPercent] = useState(remainingSeconds)
 
@@ -15,7 +17,17 @@ export const ProgressBar = ({ remainingSeconds, selectedRespawn, mvpRespawn }) =
   useEffect(() => {
     setCurrentSeconds(remainingSeconds)
     setPercent(percentage)
-  },[remainingSeconds, percentage])
+  }, [remainingSeconds, percentage])
+
+  const progressBar = {
+    height: '11px',
+    width: '100%',
+    backgroundColor: colorState[cardState],
+    borderRadius: '0px 0px 2px 2px',
+    alignSelf: 'flex-end',
+    display: 'flex',
+    transition: 'background-color 1s'
+  }
 
   return (
     <span style={progressBar}>
@@ -24,13 +36,10 @@ export const ProgressBar = ({ remainingSeconds, selectedRespawn, mvpRespawn }) =
   )
 }
 
-const progressBar = {
-  height: '11px',
-  width: '100%',
-  backgroundColor: '#EEEEEE66',
-  borderRadius: '0px 0px 2px 2px',
-  alignSelf: 'flex-end',
-  display: 'flex',
+const colorState = {
+  respawn: '#EEEEEE66',
+  variable: '#ef8fa55c',
+  disabled: '#555555ad'
 }
 
 const progressBarFill = (percent, currentSeconds) => ({
@@ -38,5 +47,5 @@ const progressBarFill = (percent, currentSeconds) => ({
   width: `${percent}%`,
   backgroundColor: '#2BB65280',
   borderRadius: '0px 0px 0px 3px',
-  animation: `fillAnimation ${currentSeconds}s linear forwards`,
+  animation: `fillAnimation ${currentSeconds}s linear forwards`
 })
