@@ -46,7 +46,7 @@ const Overlay = (props) => {
     handleState()
     setTimeout(() => {
       deleteData(id)
-    }, 2000),
+    }, 1000),
       setBorderColor('delete'),
       () => setOverlayState(!overlayState)
   }
@@ -59,7 +59,7 @@ const Overlay = (props) => {
     setTimeout(() => {
       setBorderColor('default')
       removeTiming(id)
-    }, 2000),
+    }, 1000),
       () => setOverlayState(!overlayState)
   }
 

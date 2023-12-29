@@ -24,10 +24,10 @@ export default function Thumbnails({
   const backgroundImage = type == 'map' ? mapImage : mvpImage
   const backgroundPosition =
     type == 'map'
-      ? '-4px -1px'
+      ? '-3px -2px'
       : DataSource[mvpName].settings.thumbnail.position
   const backgroundSize =
-    type == 'map' ? '110%' : DataSource[mvpName].settings.thumbnail.size
+    type == 'map' ? '108%' : DataSource[mvpName].settings.thumbnail.size
 
   let style = {
     background:
