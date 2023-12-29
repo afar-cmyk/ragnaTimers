@@ -1,8 +1,8 @@
 @import url(./fonts/fonts.css);
 
 body {
-  font-family: 'Roboto Flex',-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
+  font-family: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
   margin: 0 23px 0 23px;
   background: linear-gradient(180deg, #000 17.19%, #121212 86.98%);
   display: flex;
@@ -61,18 +61,20 @@ body {
 }
 
 /* Joy UI Select options */
-.css-121moso-JoySelect-listbox, .MuiSelect-listbox {
-  background-color: #1E1E1E !important;
+.css-121moso-JoySelect-listbox,
+.MuiSelect-listbox {
+  background-color: #1e1e1e !important;
 }
 
 /* Joy UI Select focus */
 .Mui-focusVisible {
-  --Select-focusedHighlight: #1E1E1E !important;
+  --Select-focusedHighlight: #1e1e1e !important;
   border: 1px solid !important;
 }
 
 /* Joy UI Select DISABLED */
-.Mui-disabled, .Mui-disabled>.css-b0m4zx-JoySelect-indicator {
+.Mui-disabled,
+.Mui-disabled > .css-b0m4zx-JoySelect-indicator {
   color: #343434 !important;
   background-color: #161616 !important;
   border: none !important;
@@ -87,7 +89,7 @@ body {
 
 .current_date_btn {
   background: url('./images/location.svg') no-repeat center center;
-  background-color: #266A79;
+  background-color: #266a79;
   background-size: 65%;
   margin-right: 16px;
   min-height: 30px;
@@ -103,31 +105,31 @@ body {
 }
 
 .current_date_btn:hover {
-  background-color: #1E5561;
+  background-color: #1e5561;
 }
 
 .current_date_btn:active {
-  background-color: #2D7E90;
+  background-color: #2d7e90;
 }
 
 .current_date_btn:focus-visible {
   outline: none;
   border: 1px solid #abababcc;
-  color: #EEEEEE;
+  color: #eeeeee;
   background: url('./images/location.svg') no-repeat center center;
-  background-color: #266A79;
+  background-color: #266a79;
   background-size: 70%;
 }
 
-.newMvp_span_hora input{
+.newMvp_span_hora input {
   appearance: none;
   min-width: 48px;
   max-width: 54px;
   min-height: 26px;
   border: 1px solid rgba(238, 238, 238, 0.22);
-  background: rgba(18, 18, 18, 0.40);
+  background: rgba(18, 18, 18, 0.4);
   border-radius: 3px;
-  color: #ABABAB;
+  color: #ababab;
   font-family: 'Roboto Flex';
   font-size: 14px;
   font-style: normal;
@@ -141,14 +143,14 @@ body {
 }
 
 .newMvp_span_hora input:hover {
-  border: 1px solid #ABABAB;
-  color: #EEEEEE;
+  border: 1px solid #ababab;
+  color: #eeeeee;
 }
 
 .newMvp_span_hora input:focus-visible {
   outline: none;
   border: 1px solid #abababcc;
-  color: #EEEEEE;
+  color: #eeeeee;
 }
 
 .newMvp_span_hora input::-webkit-outer-spin-button,
@@ -185,4 +187,67 @@ body {
   to {
     width: 0%;
   }
+}
+.overlayButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 42px;
+  height: 42px;
+  background-color: #777777cf;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+}
+
+.overlayButtons:hover {
+  background-color: #aaaaaa;
+}
+
+.deleteButton {
+  transition: background-color 1s;
+}
+
+.deleteButton .trash-icon {
+  color: #470122;
+  transition: color 1s;
+}
+
+.deleteButton:hover .trash-icon {
+  color: #990d4c;
+  transition: color 1s;
+}
+
+.finishButton {
+  transition: background-color 1s;
+}
+
+.finishButton .check-icon {
+  color: #002d18;
+  transition: color 1s;
+}
+
+.finishButton:hover .check-icon {
+  color: #0c754e;
+  transition: color 1s;
+}
+
+.overlayButtons:disabled {
+  background-color: #333333;
+  color: #222222;
+  cursor: default;
+  pointer-events: none;
+}
+
+.finishButton:disabled .check-icon {
+  color: #222222;
+  cursor: default;
+  pointer-events: none;
+}
+
+.deleteButton:disabled .trash-icon {
+  color: #222222;
+  cursor: default;
+  pointer-events: none;
 }

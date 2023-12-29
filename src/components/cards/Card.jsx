@@ -5,11 +5,11 @@ import { differenceInSeconds, addMinutes } from 'date-fns'
 import { CardFooter } from './CardFooter.jsx'
 import DataSource from '../../database/DataSource.js'
 import CardBackground from './CardBackground.jsx'
-
-//TODO Poner un barrita flotante con los botones de accion <--- !important
+import Overlay from './Overlay.jsx'
 
 export const Card = (props) => {
   const [cardState, setCardState] = useState('respawn')
+  const [overlayState, setOverlayState] = useState(false)
 
   let { dataId, mvpName, mapName, selectedDate } = props
 
@@ -26,7 +26,16 @@ export const Card = (props) => {
   let variableTimeLeft = differenceInSeconds(variableTime, respawnTime)
 
   return (
-    <div style={mainContainer}>
+    <div
+      style={mainContainer}
+      onMouseEnter={() => setOverlayState(true)}
+      onMouseLeave={() => setOverlayState(false)}
+    >
+      <Overlay
+        overlayState={overlayState}
+        setOverlayState={setOverlayState}
+        id={dataId}
+      />
       <CardBackground mvpName={mvpName} cardState={cardState} />
       <div style={content}>
         <div style={cardHeader}>
