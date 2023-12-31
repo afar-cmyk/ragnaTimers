@@ -43,7 +43,10 @@ export default function Thumbnails({
   }
 
   return mvpName == 'default' && mapName == 'default' ? (
-    <div className='newMvp_thumbnail' style={defaultStyle} />
+    <div
+      className='newMvp_thumbnail'
+      style={{ ...defaultStyle, imageRendering: 'pixelated' }}
+    />
   ) : (
     <div className='newMvp_thumbnail' style={style} />
   )
