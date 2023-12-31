@@ -43,8 +43,8 @@ body {
   gap: 48px;
   align-items: center;
   border-radius: 6px;
-  padding: 20px 0px;
-  width: 100%;
+  padding: 20px 38.59px;
+  /* width: 100%; */
   flex-direction: row;
   justify-content: center;
 }
@@ -250,4 +250,48 @@ body {
   color: #222222;
   cursor: default;
   pointer-events: none;
+}
+
+/* Form Main Buttons */
+.formButtons {
+  width: 186px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  font-family: 'Roboto Flex';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background-color: #eeeeee29;
+  color: #ababab;
+}
+
+.cancelButton:hover {
+  background-color: #eeeeee30;
+  color: #cccccc;
+}
+
+.cancelButton:active {
+  background-color: #eeeeee1a;
+  color: #ababab;
+}
+
+.newMvpButton {
+  background-color: #249945;
+  color: #121212;
+}
+
+.newMvpButton:hover {
+  background-color: #2bb652;
+}
+
+.newMvpButton:active {
+  background-color: #17632d;
 }

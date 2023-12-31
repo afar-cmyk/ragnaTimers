@@ -12,7 +12,15 @@ const CardsContainer = () => {
   const uid = new ShortUniqueId({ length: 5 })
 
   return (
-    <div style={{ minWidth: '702px', maxWidth: '702px', marginBottom: '32px' }}>
+    <div
+      style={{
+        minWidth: '702px',
+        // maxWidth: '702px',
+        marginTop: '40px',
+        marginBottom: '32px',
+        paddingBottom: '40px'
+      }}
+    >
       <h1 style={title}>MVP Timeados</h1>
       <div style={content}>
         {timedMvps
@@ -40,8 +48,7 @@ const title = {
   fontStyle: 'normal',
   fontWeight: 900,
   lineHeight: 'normal',
-  marginBottom: '24px',
-  marginTop: 0
+  marginBottom: '24px'
 }
 
 const content = {
