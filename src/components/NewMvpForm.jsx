@@ -9,7 +9,9 @@ import DataSource from '../database/DataSource.js'
 import { addData } from '../database/dbService.js'
 
 const NewMvpForm = () => {
-  const [filteredDataSource] = useState(lodash.omit(DataSource, 'default')) // TODO remove debug from the select
+  const [filteredDataSource] = useState(
+    lodash.omit(DataSource, 'default', 'debug')
+  )
   const [mvp, setMvp] = useState('')
   const [map, setMap] = useState('')
   const [temporal, setTemporal] = useState(true)

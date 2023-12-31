@@ -280,6 +280,7 @@ body {
 .cancelButton {
   background-color: #eeeeee29;
   color: #ababab;
+  display: none;
 }
 
 .cancelButton:hover {
