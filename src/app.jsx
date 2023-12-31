@@ -18,10 +18,10 @@ const prueba = {
 
 root.render(
   <>
-    <div style={prueba}>
-      <ContentContainer />
-    </div>
     <main>
+      <div style={prueba}>
+        <ContentContainer />
+      </div>
       <CardsContainer />
     </main>
   </>
@@ -30,7 +30,7 @@ root.render(
 //TODO HACER UN RELEASE ALFA Y SEGUIR DESARROLLANDO EN OTRO BRANCH
 //TODO Investigar como mantener el release actualizado
 //TODO Agregar mas mvp
-//TODO Actualizar la version de package.json y index.html adecuadamente major.minor.patch 0.0.10
+//TODO Actualizar la version de package.json y index.html adecuadamente major.minor.patch 0.0.11
 
 //TODO Trabajar en un Logo y un Icono
 

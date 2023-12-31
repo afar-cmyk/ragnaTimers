@@ -16,9 +16,7 @@ const CardsContainer = () => {
       style={{
         minWidth: '702px',
         // maxWidth: '702px',
-        marginTop: '40px',
-        marginBottom: '32px',
-        paddingBottom: '40px'
+        marginTop: '40px'
       }}
     >
       <h1 style={title}>MVP Timeados</h1>
