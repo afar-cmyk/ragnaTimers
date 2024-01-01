@@ -27,7 +27,7 @@ root.render(
   </>
 )
 
-//TODO HACER UN RELEASE ALFA Y SEGUIR DESARROLLANDO EN OTRO BRANCH
+//TODO CONVERTIR EN UN PWA PARA QUE SIRVA EN WINDOWS 7/8/8.1 o hacer downgrade a Electron 22
 //TODO Investigar como mantener el release actualizado
 //TODO Agregar mas mvp
 //TODO Actualizar la version de package.json y index.html adecuadamente major.minor.patch 0.0.11
