@@ -35,6 +35,22 @@ let DataSource = {
       ve_fild02: { respawn: [360, 370] }
     }
   },
+  beelzebub: {
+    fullName: 'Beelzebub',
+    settings: {
+      thumbnail: {
+        position: '-39px -43px',
+        size: '220%'
+      },
+      card: {
+        position: '-51px -105px',
+        size: '166%'
+      }
+    },
+    maps: {
+      abbey03: { respawn: [720, 730] }
+    }
+  },
   detale: {
     fullName: 'Detardeurus',
     settings: {
@@ -49,6 +65,22 @@ let DataSource = {
     },
     maps: {
       abyss_03: { respawn: [180, 190] }
+    }
+  },
+  doppelganger: {
+    fullName: 'Doppelganger',
+    settings: {
+      thumbnail: {
+        position: '10px 2px',
+        size: '76%'
+      },
+      card: {
+        position: '60px 6px',
+        size: '50%'
+      }
+    },
+    maps: {
+      gef_dun02: { respawn: [120, 130] }
     }
   },
   drake: {
@@ -273,6 +305,22 @@ let DataSource = {
     },
     maps: {
       beach_dun: { respawn: [300, 310] }
+    }
+  },
+  turtle: {
+    fullName: 'Turtle General',
+    settings: {
+      thumbnail: {
+        position: '-3px -8px',
+        size: '115%'
+      },
+      card: {
+        position: '12px -32px',
+        size: '100%'
+      }
+    },
+    maps: {
+      tur_dun04: { respawn: [60, 70] }
     }
   },
   ungoliant: {
