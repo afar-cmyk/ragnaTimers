@@ -35,6 +35,22 @@ let DataSource = {
       ve_fild02: { respawn: [360, 370] }
     }
   },
+  bacsojin: {
+    fullName: 'Bacsojin',
+    settings: {
+      thumbnail: {
+        position: '2px 3px',
+        size: '115%'
+      },
+      card: {
+        position: '46px -15px',
+        size: '90%'
+      }
+    },
+    maps: {
+      lou_dun03: { respawn: [117, 127] }
+    }
+  },
   beelzebub: {
     fullName: 'Beelzebub',
     settings: {
@@ -83,6 +99,22 @@ let DataSource = {
       gef_dun02: { respawn: [120, 130] }
     }
   },
+  dracula: {
+    fullName: 'Dracula',
+    settings: {
+      thumbnail: {
+        position: '-13px 3px',
+        size: '130%'
+      },
+      card: {
+        position: '1px -1px',
+        size: '100%'
+      }
+    },
+    maps: {
+      gef_dun01: { respawn: [60, 70] }
+    }
+  },
   drake: {
     fullName: 'Drake',
     settings: {
@@ -115,6 +147,22 @@ let DataSource = {
       pay_fild11: { respawn: [120, 130] }
     }
   },
+  evilSnake: {
+    fullName: 'Evil Snake Lord',
+    settings: {
+      thumbnail: {
+        position: '-8px -6px',
+        size: '150%'
+      },
+      card: {
+        position: '12px -25px',
+        size: '114%'
+      }
+    },
+    maps: {
+      gon_dun03: { respawn: [94, 104] }
+    }
+  },
   garm: {
     fullName: 'Garm',
     settings: {
@@ -129,6 +177,22 @@ let DataSource = {
     },
     maps: {
       xmas_fild01: { respawn: [120, 130] }
+    }
+  },
+  gopinich: {
+    fullName: 'Gopinich',
+    settings: {
+      thumbnail: {
+        position: '-10px -8px',
+        size: '200%'
+      },
+      card: {
+        position: '-26px -14px',
+        size: '166%'
+      }
+    },
+    maps: {
+      mosk_dun03: { respawn: [120, 130] }
     }
   },
   gtb: {
@@ -305,6 +369,22 @@ let DataSource = {
     },
     maps: {
       beach_dun: { respawn: [300, 310] }
+    }
+  },
+  thanatos: {
+    fullName: 'Thanatos',
+    settings: {
+      thumbnail: {
+        position: '-8px -6px',
+        size: '135%'
+      },
+      card: {
+        position: '-7px -16px',
+        size: '112%'
+      }
+    },
+    maps: {
+      thana_boss: { respawn: [120, 120] }
     }
   },
   turtle: {
