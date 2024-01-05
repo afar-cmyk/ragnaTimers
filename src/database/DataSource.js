@@ -51,6 +51,22 @@ let DataSource = {
       lou_dun03: { respawn: [117, 127] }
     }
   },
+  baphomet: {
+    fullName: 'Baphomet',
+    settings: {
+      thumbnail: {
+        position: '-83px -20px',
+        size: '200%'
+      },
+      card: {
+        position: '-105px -40px',
+        size: '150%'
+      }
+    },
+    maps: {
+      prt_maze03: { respawn: [120, 130] }
+    }
+  },
   beelzebub: {
     fullName: 'Beelzebub',
     settings: {
@@ -65,6 +81,22 @@ let DataSource = {
     },
     maps: {
       abbey03: { respawn: [720, 730] }
+    }
+  },
+  darkLord: {
+    fullName: 'Dark Lord',
+    settings: {
+      thumbnail: {
+        position: '-40px -25px',
+        size: '180%'
+      },
+      card: {
+        position: '-55px -80px',
+        size: '166%'
+      }
+    },
+    maps: {
+      gl_chyard: { respawn: [60, 70] }
     }
   },
   detale: {
@@ -211,6 +243,38 @@ let DataSource = {
       prt_sewb4: { respawn: [60, 70] }
     }
   },
+  ladyTanee: {
+    fullName: 'Lady Tanee',
+    settings: {
+      thumbnail: {
+        position: '-43px -42px',
+        size: '208%'
+      },
+      card: {
+        position: '-80px -100px',
+        size: '167%'
+      }
+    },
+    maps: {
+      ayo_dun02: { respawn: [420, 430] }
+    }
+  },
+  lod: {
+    fullName: 'Lord of Death',
+    settings: {
+      thumbnail: {
+        position: '-39px -24px',
+        size: '190%'
+      },
+      card: {
+        position: '-80px -53px',
+        size: '145%'
+      }
+    },
+    maps: {
+      niflheim: { respawn: [133, 133] }
+    }
+  },
   maya: {
     fullName: 'Maya',
     settings: {
@@ -257,6 +321,39 @@ let DataSource = {
     },
     maps: {
       pay_dun04: { respawn: [60, 70] }
+    }
+  },
+  orcHero: {
+    fullName: 'Orc Hero',
+    settings: {
+      thumbnail: {
+        position: '0px -55px',
+        size: '110%'
+      },
+      card: {
+        position: '32px -143px',
+        size: '90%'
+      }
+    },
+    maps: {
+      gef_fild02: { respawn: [1440, 1450] },
+      gef_fild14: { respawn: [60, 70] }
+    }
+  },
+  orcLord: {
+    fullName: 'Orc Lord',
+    settings: {
+      thumbnail: {
+        position: '-8px -6px',
+        size: '135%'
+      },
+      card: {
+        position: '-7px -16px',
+        size: '112%'
+      }
+    },
+    maps: {
+      gef_fild10: { respawn: [120, 130] }
     }
   },
   osiris: {
@@ -321,6 +418,22 @@ let DataSource = {
     },
     maps: {
       odin_tem03: { respawn: [480, 490] }
+    }
+  },
+  rsx: {
+    fullName: 'RSX-0806',
+    settings: {
+      thumbnail: {
+        position: '-22px 2px',
+        size: '180%'
+      },
+      card: {
+        position: '-36px 5px',
+        size: '166%'
+      }
+    },
+    maps: {
+      ein_dun02: { respawn: [125, 135] }
     }
   },
   samurai: {
@@ -421,6 +534,22 @@ let DataSource = {
       ein_fild07: { respawn: [1440, 2873] }
     }
   },
+  vesper: {
+    fullName: 'Vesper',
+    settings: {
+      thumbnail: {
+        position: '-25px -24px',
+        size: '190%'
+      },
+      card: {
+        position: '14px -53px',
+        size: '120%'
+      }
+    },
+    maps: {
+      jupe_core: { respawn: [120, 130] }
+    }
+  },
   ygnizem: {
     fullName: 'Egnigem Cenia',
     settings: {
@@ -439,6 +568,7 @@ let DataSource = {
   },
 
   // default & debug settings
+
   debug: {
     fullName: 'debug',
     settings: {
