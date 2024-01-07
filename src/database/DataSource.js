@@ -83,6 +83,22 @@ let DataSource = {
       abbey03: { respawn: [720, 730] }
     }
   },
+  boitata: {
+    fullName: 'Boitata',
+    settings: {
+      thumbnail: {
+        position: '-14px -38px',
+        size: '208%'
+      },
+      card: {
+        position: '-22px -100px',
+        size: '167%'
+      }
+    },
+    maps: {
+      bra_dun02: { respawn: [120, 130] }
+    }
+  },
   darkLord: {
     fullName: 'Dark Lord',
     settings: {
@@ -211,22 +227,6 @@ let DataSource = {
       xmas_fild01: { respawn: [120, 130] }
     }
   },
-  gopinich: {
-    fullName: 'Gopinich',
-    settings: {
-      thumbnail: {
-        position: '-10px -8px',
-        size: '200%'
-      },
-      card: {
-        position: '-26px -14px',
-        size: '166%'
-      }
-    },
-    maps: {
-      mosk_dun03: { respawn: [120, 130] }
-    }
-  },
   gtb: {
     fullName: 'Golden Thief Bug',
     settings: {
@@ -243,6 +243,70 @@ let DataSource = {
       prt_sewb4: { respawn: [60, 70] }
     }
   },
+  gopinich: {
+    fullName: 'Gopinich',
+    settings: {
+      thumbnail: {
+        position: '-10px -8px',
+        size: '200%'
+      },
+      card: {
+        position: '-26px -14px',
+        size: '166%'
+      }
+    },
+    maps: {
+      mosk_dun03: { respawn: [120, 130] }
+    }
+  },
+  magaleta: {
+    fullName: 'High Priest Magaleta',
+    settings: {
+      thumbnail: {
+        position: '0px -12px',
+        size: '115%'
+      },
+      card: {
+        position: '12px -32px',
+        size: '100%'
+      }
+    },
+    maps: {
+      lhz_dun03: { respawn: [100, 130] }
+    }
+  },
+  katrinn: {
+    fullName: 'High Wizard Katrinn',
+    settings: {
+      thumbnail: {
+        position: '0px -12px',
+        size: '115%'
+      },
+      card: {
+        position: '12px -32px',
+        size: '100%'
+      }
+    },
+    maps: {
+      lhz_dun03: { respawn: [100, 130] }
+    }
+  },
+  samurai: {
+    fullName: 'Incantation Samurai',
+    settings: {
+      thumbnail: {
+        position: '-36px -69px',
+        size: '195%'
+      },
+      card: {
+        position: '-71px -181px',
+        size: '150%'
+      }
+    },
+    maps: {
+      ama_dun03: { respawn: [91, 101] }
+    }
+  },
   ladyTanee: {
     fullName: 'Lady Tanee',
     settings: {
@@ -257,6 +321,22 @@ let DataSource = {
     },
     maps: {
       ayo_dun02: { respawn: [420, 430] }
+    }
+  },
+  leak: {
+    fullName: 'Leak',
+    settings: {
+      thumbnail: {
+        position: '-37px -15px',
+        size: '200%'
+      },
+      card: {
+        position: '-100px -84px',
+        size: '190%'
+      }
+    },
+    maps: {
+      dew_dun01: { respawn: [120, 120] }
     }
   },
   lod: {
@@ -436,20 +516,20 @@ let DataSource = {
       ein_dun02: { respawn: [125, 135] }
     }
   },
-  samurai: {
-    fullName: 'Incantation Samurai',
+  shecil: {
+    fullName: 'Sniper Shecil',
     settings: {
       thumbnail: {
-        position: '-36px -69px',
-        size: '195%'
+        position: '0px -12px',
+        size: '115%'
       },
       card: {
-        position: '-71px -181px',
-        size: '150%'
+        position: '12px -32px',
+        size: '100%'
       }
     },
     maps: {
-      ama_dun03: { respawn: [91, 101] }
+      lhz_dun03: { respawn: [100, 130] }
     }
   },
   stormy: {
