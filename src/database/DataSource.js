@@ -15,6 +15,22 @@ let DataSource = {
       moc_pryd06: { respawn: [60, 70] }
     }
   },
+  assaCross: {
+    fullName: 'Assassin Cross Eremes',
+    settings: {
+      thumbnail: {
+        position: '0px -12px',
+        size: '115%'
+      },
+      card: {
+        position: '12px -32px',
+        size: '100%'
+      }
+    },
+    maps: {
+      lhz_dun03: { respawn: [100, 130] }
+    }
+  },
   atroce: {
     fullName: 'Atroce',
     settings: {
@@ -227,6 +243,22 @@ let DataSource = {
       xmas_fild01: { respawn: [120, 130] }
     }
   },
+  gloom: {
+    fullName: 'Gloom Under Night',
+    settings: {
+      thumbnail: {
+        position: '1px -22px',
+        size: '190%'
+      },
+      card: {
+        position: '14px -53px',
+        size: '120%'
+      }
+    },
+    maps: {
+      ra_san05: { respawn: [300, 310] }
+    }
+  },
   gtb: {
     fullName: 'Golden Thief Bug',
     settings: {
@@ -307,6 +339,22 @@ let DataSource = {
       ama_dun03: { respawn: [91, 101] }
     }
   },
+  kiel: {
+    fullName: 'Kiel D-01',
+    settings: {
+      thumbnail: {
+        position: '-30px -50px',
+        size: '255%'
+      },
+      card: {
+        position: '-19px -100px',
+        size: '190%'
+      }
+    },
+    maps: {
+      kh_dun02: { respawn: [120, 180] }
+    }
+  },
   ladyTanee: {
     fullName: 'Lady Tanee',
     settings: {
@@ -337,6 +385,22 @@ let DataSource = {
     },
     maps: {
       dew_dun01: { respawn: [120, 120] }
+    }
+  },
+  lordKnight: {
+    fullName: 'Lord Knight Seyren',
+    settings: {
+      thumbnail: {
+        position: '0px -12px',
+        size: '115%'
+      },
+      card: {
+        position: '12px -32px',
+        size: '100%'
+      }
+    },
+    maps: {
+      lhz_dun03: { respawn: [100, 130] }
     }
   },
   lod: {
@@ -484,6 +548,22 @@ let DataSource = {
       moc_fild17: { respawn: [120, 130] }
     }
   },
+  queenScaraba: {
+    fullName: 'Queen Scaraba',
+    settings: {
+      thumbnail: {
+        position: '-10px -5px',
+        size: '125%'
+      },
+      card: {
+        position: '-7px -16px',
+        size: '112%'
+      }
+    },
+    maps: {
+      dic_dun02: { respawn: [120, 120] }
+    }
+  },
   randgris: {
     fullName: 'Valkyrie Randgris',
     settings: {
@@ -628,6 +708,22 @@ let DataSource = {
     },
     maps: {
       jupe_core: { respawn: [120, 130] }
+    }
+  },
+  whitesmith: {
+    fullName: 'Whitesmith Harword',
+    settings: {
+      thumbnail: {
+        position: '0px -12px',
+        size: '115%'
+      },
+      card: {
+        position: '12px -32px',
+        size: '100%'
+      }
+    },
+    maps: {
+      lhz_dun03: { respawn: [100, 130] }
     }
   },
   ygnizem: {
