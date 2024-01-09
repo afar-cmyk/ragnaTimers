@@ -227,6 +227,22 @@ let DataSource = {
       gon_dun03: { respawn: [94, 104] }
     }
   },
+  fallenBishop: {
+    fullName: 'Fallen Bishop',
+    settings: {
+      thumbnail: {
+        position: '-65px -36px',
+        size: '220%'
+      },
+      card: {
+        position: '-71px -70px',
+        size: '166%'
+      }
+    },
+    maps: {
+      abbey02: { respawn: [120, 130] }
+    }
+  },
   garm: {
     fullName: 'Garm',
     settings: {
@@ -321,6 +337,22 @@ let DataSource = {
     },
     maps: {
       lhz_dun03: { respawn: [100, 130] }
+    }
+  },
+  ifrit: {
+    fullName: 'Ifrit',
+    settings: {
+      thumbnail: {
+        position: '-52px -50px',
+        size: '201%'
+      },
+      card: {
+        position: '-34px -109px',
+        size: '130%'
+      }
+    },
+    maps: {
+      thor_v03: { respawn: [660, 670] }
     }
   },
   samurai: {
@@ -724,6 +756,22 @@ let DataSource = {
     },
     maps: {
       lhz_dun03: { respawn: [100, 130] }
+    }
+  },
+  woundedMorroc: {
+    fullName: 'Wounded Morroc',
+    settings: {
+      thumbnail: {
+        position: '-6px -21px',
+        size: '180%'
+      },
+      card: {
+        position: '-36px -63px',
+        size: '166%'
+      }
+    },
+    maps: {
+      moc_fild22: { respawn: [720, 780] }
     }
   },
   ygnizem: {
