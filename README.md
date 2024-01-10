@@ -1,9 +1,16 @@
-![Logo](/public/logo.png)
-MVP Timer for Ragnarok Online built with Electron using ReactJS
+<p align="center">
+  <img src="/public/logo.png">
+  <p align="center">MVP Timer for Ragnarok Online built with Electron using ReactJS</p>
+</p>
+
+##
+</br>
 
 ## Screenshot
 
 ![Alt Text](/public/preview.png)
+
+</br>
 
 ## License
 
