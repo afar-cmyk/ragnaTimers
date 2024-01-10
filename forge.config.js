@@ -1,30 +1,32 @@
 module.exports = {
   packagerConfig: {
     asar: true,
+    icon: './public/favicon.ico',
+    iconSize: 256
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {}
     },
     {
       name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
+      platforms: ['darwin']
     },
     {
       name: '@electron-forge/maker-deb',
-      config: {},
+      config: {}
     },
     {
       name: '@electron-forge/maker-rpm',
-      config: {},
-    },
+      config: {}
+    }
   ],
   plugins: [
     {
       name: '@electron-forge/plugin-auto-unpack-natives',
-      config: {},
+      config: {}
     },
     {
       name: '@electron-forge/plugin-webpack',
@@ -38,12 +40,12 @@ module.exports = {
               js: './src/renderer.js',
               name: 'main_window',
               preload: {
-                js: './src/preload.js',
-              },
-            },
-          ],
-        },
-      },
-    },
-  ],
-};
+                js: './src/preload.js'
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
