@@ -1,6 +1,7 @@
 <p align="center">
   <img src="/public/logo.png">
   <p align="center">MVP Timer for Ragnarok Online built with Electron using ReactJS</p>
+  <p align="center">Web version in development <a href="https://github.com/afar-cmyk/ragnaTimers-PWA">here</a> </p>
 </p>
 
 ##
