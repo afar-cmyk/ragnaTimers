@@ -130,6 +130,7 @@ const NewMvpForm = () => {
       <div className='newMvp_container'>
         <form
           id='my-form'
+          name='new-mvp-form'
           style={{ display: 'flex', flexDirection: 'column', rowGap: '24px' }}
           onSubmit={handleOnSubmit}
         >

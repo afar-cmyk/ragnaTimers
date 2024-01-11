@@ -6,22 +6,10 @@ import CardsContainer from './components/CardsContainer.jsx'
 const container = document.getElementById('root')
 const root = createRoot(container)
 
-const prueba = {
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'nowrap',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '38px'
-}
-
 root.render(
   <>
     <main>
-      <div style={prueba}>
-        <ContentContainer />
-      </div>
+      <ContentContainer />
       <CardsContainer />
     </main>
   </>

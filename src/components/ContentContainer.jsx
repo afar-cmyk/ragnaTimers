@@ -3,7 +3,7 @@ import NewMvpForm from './NewMvpForm.jsx'
 
 const ContentContainer = () => {
   return (
-    <>
+    <div style={mainContainer}>
       <div style={buttonsContainer}>
         <button
           type='button'
@@ -23,11 +23,21 @@ const ContentContainer = () => {
       </div>
 
       <NewMvpForm />
-    </>
+    </div>
   )
 }
 
 export default ContentContainer
+
+const mainContainer = {
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '38px'
+}
 
 const buttonsContainer = {
   display: 'flex',
