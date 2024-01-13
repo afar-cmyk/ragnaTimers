@@ -2,7 +2,7 @@
   "name": "ragnatimers",
   "productName": "ragnatimers",
   "version": "0.1.9-alpha",
-  "description": "My Electron application description",
+  "description": "MVP Timer for Ragnarok Online built with Electron using ReactJS",
   "main": ".webpack/main",
   "scripts": {
     "start": "pnpm electron-forge start",
