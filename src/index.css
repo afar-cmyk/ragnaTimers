@@ -341,3 +341,7 @@ body {
 .newMvpButton:active {
   background-color: #17632d;
 }
+
+.MuiDrawer-content {
+  background-color: #1a1a1a !important;
+}
