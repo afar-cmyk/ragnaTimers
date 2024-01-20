@@ -26,3 +26,22 @@ export const removeTiming = async (id) => {
 export const deleteData = async (id) => {
   await db.userSelection.delete(id)
 }
+
+export const addCustomMVP = async (
+  mvpName,
+  mapName,
+  customRespawn = 0,
+  customVariable = 0
+) => {
+  try {
+    await db.customMVP.add({ mvpName, mapName, customRespawn, customVariable })
+    console.log(
+      `added custom MVP: ${mvpName}, ${mapName}, ${customRespawn}, ${customVariable}`
+    )
+  } catch (error) {
+    console.error(
+      error,
+      `failed to add custom MVP: ${mvpName}, ${mapName}, ${customRespawn}, ${customVariable}`
+    )
+  }
+}

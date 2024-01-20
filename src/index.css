@@ -18,7 +18,7 @@ body {
 #root {
   width: 100%;
   height: 100%;
-  padding-top: 32px;
+  /* padding-top: 32px; */
   padding-bottom: 32px;
 }
 
@@ -44,6 +44,42 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: #333 #12121288;
+}
+
+/* Menu */
+.menu-button {
+  display: flex;
+  flex-flow: column;
+  place-content: center;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  gap: 3px;
+  background: #eeeeee29;
+  border-radius: 6px;
+}
+
+.menu-button:hover {
+  background-color: #eeeeee38;
+  cursor: pointer;
+}
+
+.menu-button:active {
+  background-color: #eeeeee1c;
+}
+
+.menu-button:hover .menu-button__bar {
+  background-color: #d1d1d1;
+}
+
+.menu-button:active .menu-button__bar {
+  background-color: #919191;
+}
+
+.menu-button__bar {
+  width: 14px;
+  height: 2px;
+  background: #ababab;
 }
 
 .newMvp_container {
@@ -304,4 +340,8 @@ body {
 
 .newMvpButton:active {
   background-color: #17632d;
+}
+
+.MuiDrawer-content {
+  background-color: #1a1a1a !important;
 }

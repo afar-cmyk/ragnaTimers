@@ -2,12 +2,23 @@ import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 import ContentContainer from './components/ContentContainer.jsx'
 import CardsContainer from './components/CardsContainer.jsx'
+import MenuContainer from './components/MenuContainer.jsx'
 
 const container = document.getElementById('root')
 const root = createRoot(container)
 
 root.render(
   <>
+    <header
+      style={{
+        marginTop: '32px',
+        marginBottom: '32px',
+        height: '56px',
+        width: '100%'
+      }}
+    >
+      <MenuContainer />
+    </header>
     <main>
       <ContentContainer />
       <CardsContainer />
@@ -15,7 +26,6 @@ root.render(
   </>
 )
 
-//TODO CONVERTIR EN UN PWA PARA QUE SIRVA EN WINDOWS 7/8/8.1 o hacer downgrade a Electron 22
 //TODO Investigar como mantener el release actualizado
 
 //TODO Agregar un sistema para que los usuarios puedan ajustar el tiempo de respawn de cualquier mvp
