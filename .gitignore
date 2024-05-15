@@ -93,3 +93,4 @@ out/
 
 # VS Code
 .vscode/
+/pnpm-lock.yaml
