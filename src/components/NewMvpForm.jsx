@@ -8,8 +8,11 @@ import ThumbnailsContainer from './thumbnails/ThumbnailsContainer.jsx'
 import DataSource from '../database/DataSource.js'
 import { addData } from '../database/dbService.js'
 import SwitchButton from './menu/SwitchButton.jsx'
+import { useGlobalState } from '../hooks/globalState.jsx'
 
 const NewMvpForm = () => {
+  const switchState = useGlobalState((state) => state.globalSwitchState)
+
   const [filteredDataSource] = useState(
     lodash.omit(DataSource, 'default', 'debug')
   )

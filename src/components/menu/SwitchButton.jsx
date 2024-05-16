@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useGlobalState } from '../../hooks/globalState.jsx'
 
 const SwitchButton = ({ onStateChange }) => {
   const [state, setState] = useState({
@@ -12,6 +13,7 @@ const SwitchButton = ({ onStateChange }) => {
       mvpActive: true,
       miniActive: false
     }))
+    useGlobalState.getState().setGlobalSwitchState('mvp')
     onStateChange()
   }
 
@@ -21,6 +23,7 @@ const SwitchButton = ({ onStateChange }) => {
       mvpActive: false,
       miniActive: true
     }))
+    useGlobalState.getState().setGlobalSwitchState('mini')
     onStateChange()
   }
 
