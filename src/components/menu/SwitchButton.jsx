@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useGlobalState } from '../../hooks/globalState.jsx'
 
 const SwitchButton = ({ onStateChange }) => {
@@ -8,24 +8,28 @@ const SwitchButton = ({ onStateChange }) => {
   })
 
   const toggleMvp = () => {
-    setState((prevState) => ({
-      ...prevState,
+    setState({
       mvpActive: true,
       miniActive: false
-    }))
-    useGlobalState.getState().setGlobalSwitchState('mvp')
-    onStateChange()
+    })
+    useGlobalState.getState().setMvpState()
   }
 
   const toggleMini = () => {
-    setState((prevState) => ({
-      ...prevState,
+    setState({
       mvpActive: false,
       miniActive: true
-    }))
-    useGlobalState.getState().setGlobalSwitchState('mini')
-    onStateChange()
+    })
+    useGlobalState.getState().setMiniState()
   }
+
+  useEffect(() => {
+    toggleMvp()
+  }, [])
+
+  useEffect(() => {
+    onStateChange(state)
+  }, [state])
 
   const mvpState = state.mvpActive ? 'switchState__active' : ''
   const miniState = state.miniActive ? 'switchState__active' : ''

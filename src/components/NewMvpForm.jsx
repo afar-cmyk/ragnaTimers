@@ -5,16 +5,17 @@ import Snackbar from '@mui/joy/Snackbar'
 import lodash, { toInteger } from 'lodash'
 import { subDays, isBefore } from 'date-fns'
 import ThumbnailsContainer from './thumbnails/ThumbnailsContainer.jsx'
-import DataSource from '../database/DataSource.js'
+import { dynamicData } from '../database/DataSource.js'
 import { addData } from '../database/dbService.js'
 import SwitchButton from './menu/SwitchButton.jsx'
 import { useGlobalState } from '../hooks/globalState.jsx'
 
 const NewMvpForm = () => {
-  const switchState = useGlobalState((state) => state.globalSwitchState)
+  let switchState = useGlobalState((state) => state.globalSwitchState)
+  let currentData = dynamicData(switchState)
 
-  const [filteredDataSource] = useState(
-    lodash.omit(DataSource, 'default', 'debug')
+  const [filteredDataSource, setFilteredDataSource] = useState(
+    lodash.omit(currentData, 'default', 'debug')
   )
   const [mvp, setMvp] = useState('')
   const [map, setMap] = useState('')
@@ -94,14 +95,14 @@ const NewMvpForm = () => {
     setTemporal(true)
   }
 
-  const formatData = () => {
-    const formValues = {
-      mvpName: mvp,
-      mapName: map,
-      selectedDate: selectedDate
-    }
-    return formValues
-  }
+  // const formatData = () => {
+  //   const formValues = {
+  //     mvpName: mvp,
+  //     mapName: map,
+  //     selectedDate: selectedDate
+  //   }
+  //   return formValues
+  // }
 
   function formatDate(hours, minutes, period, temporal) {
     hours = toInteger(hours) + (period === 'PM' && hours < 12 ? 12 : 0)
@@ -136,6 +137,7 @@ const NewMvpForm = () => {
     setHours('')
     setMinutes('')
     setTimePeriod('')
+    setFilteredDataSource(lodash.omit(currentData, 'default', 'debug'))
   }
 
   return (

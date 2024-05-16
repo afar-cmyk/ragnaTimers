@@ -1,5 +1,5 @@
 import React from 'react'
-import DataSource from '../../database/DataSource.js'
+import { DataSource } from '../../database/DataSource.js'
 
 const CardBackground = ({ mvpName, cardState }) => {
   const mvpContext = require.context('../../images/mvps/', true, /\.png$/)
