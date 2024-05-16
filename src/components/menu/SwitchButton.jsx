@@ -28,13 +28,18 @@ const SwitchButton = ({ onStateChange }) => {
   const miniState = state.miniActive ? 'switchState__active' : ''
 
   return (
-    <div className='switchButton'>
-      <span className={`switchState ${mvpState}`} onClick={toggleMvp}>
-        MVP
+    <div className='switchSection_container'>
+      <span className='form_title'>
+        Nuevo timer de {state.mvpActive ? 'MVP' : 'Mini Boss'}
       </span>
-      <span className={`switchState ${miniState}`} onClick={toggleMini}>
-        Mini
-      </span>
+      <div className='switchButton'>
+        <span className={`switchState ${mvpState}`} onClick={toggleMvp}>
+          MVP
+        </span>
+        <span className={`switchState ${miniState}`} onClick={toggleMini}>
+          Mini
+        </span>
+      </div>
     </div>
   )
 }

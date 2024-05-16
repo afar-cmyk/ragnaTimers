@@ -18,7 +18,7 @@ const ContentContainer = () => {
           type='submit'
           className='formButtons newMvpButton'
         >
-          Agregar MVP
+          Nuevo timer
         </button>
       </div>
 
@@ -35,14 +35,16 @@ const mainContainer = {
   flexDirection: 'row',
   flexWrap: 'nowrap',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   gap: '38px'
 }
 
 const buttonsContainer = {
   display: 'flex',
   flexDirection: 'column',
-  columnGap: '16px',
-  // gap: '8px'
-  gap: '16px'
+  rowGap: '8px',
+  justifyContent: 'flex-start',
+  alignIitems: 'center',
+  height: '163px',
+  width: 'fit-content'
 }
