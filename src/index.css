@@ -345,3 +345,42 @@ body {
 .MuiDrawer-content {
   background-color: #1a1a1a !important;
 }
+
+.switchButton {
+  background-color: #eeeeee0a;
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  width: fit-content;
+  border-radius: 3px;
+  padding: 3px 4px;
+  margin-bottom: 8px;
+  font-family: 'Roboto Flex';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+
+.switchState {
+  background-color: transparent;
+  border-radius: 3px;
+  padding: 5px 16px;
+  cursor: pointer;
+  user-select: none;
+  color: #666666;
+  transition: 0.2s ease-in-out;
+}
+
+.switchState:hover {
+  color: #ababab;
+}
+
+.switchState__active {
+  background-color: #2b2b2b;
+  color: #dddddd;
+}
+
+.switchState__active:hover {
+  color: #dddddd;
+}

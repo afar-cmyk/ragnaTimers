@@ -7,6 +7,7 @@ import { subDays, isBefore } from 'date-fns'
 import ThumbnailsContainer from './thumbnails/ThumbnailsContainer.jsx'
 import DataSource from '../database/DataSource.js'
 import { addData } from '../database/dbService.js'
+import SwitchButton from './menu/SwitchButton.jsx'
 
 const NewMvpForm = () => {
   const [filteredDataSource] = useState(
@@ -125,8 +126,18 @@ const NewMvpForm = () => {
     }
   }
 
+  const resetForm = () => {
+    setMvp('')
+    setMap('')
+    setTemporal(true)
+    setHours('')
+    setMinutes('')
+    setTimePeriod('')
+  }
+
   return (
-    <>
+    <div style={containerStyles}>
+      <SwitchButton onStateChange={resetForm} />
       <div className='newMvp_container'>
         <form
           id='my-form'
@@ -142,6 +153,7 @@ const NewMvpForm = () => {
               onChange={(event, value) => {
                 setMvp(value)
               }}
+              value={mvp || ''}
               required
             >
               {Object.keys(filteredDataSource).map((key) => {
@@ -161,7 +173,7 @@ const NewMvpForm = () => {
             </Select>
 
             <Select
-              disabled={mvp == ''}
+              disabled={mvp == '' || mvp == null}
               variant='plain'
               placeholder='Seleccionar Mapa'
               sx={[selectStyles, Boolean(map) ? selectedStyles : {}]}
@@ -171,7 +183,7 @@ const NewMvpForm = () => {
               value={map}
               required
             >
-              {mvp == '' ? (
+              {mvp == '' || mvp == null ? (
                 <Option value='default' sx={optionsStyles}>
                   default
                 </Option>
@@ -300,11 +312,16 @@ const NewMvpForm = () => {
       >
         {snackbarOptions.text[snackStatus]}
       </Snackbar>
-    </>
+    </div>
   )
 }
 
 export default NewMvpForm
+
+const containerStyles = {
+  display: 'flex',
+  flexDirection: 'column'
+}
 
 const snackbarOptions = {
   duration: {

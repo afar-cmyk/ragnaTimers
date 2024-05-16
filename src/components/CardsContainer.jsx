@@ -3,7 +3,7 @@ import { Card } from './cards/Card.jsx'
 import { db } from '../database/db.js'
 import { useLiveQuery } from 'dexie-react-hooks'
 import ShortUniqueId from 'short-unique-id'
-import { addCustomMVP } from '../database/dbService.js'
+// import { addCustomMVP } from '../database/dbService.js'
 
 const CardsContainer = () => {
   const timedMvps = useLiveQuery(async () => {
@@ -12,7 +12,8 @@ const CardsContainer = () => {
 
   const uid = new ShortUniqueId({ length: 5 })
 
-  const newCustomMVP = {
+  /* Custom MVP debug*/
+  /*   const newCustomMVP = {
     amonra: {
       fullName: 'Amon Ra',
       settings: {
@@ -29,9 +30,9 @@ const CardsContainer = () => {
         moc_pryd06: { respawn: [60, 70] }
       }
     }
-  }
-
-  console.log()
+  } 
+    console.log()
+  */
 
   return (
     <div
@@ -55,7 +56,8 @@ const CardsContainer = () => {
             ))
           : null}
       </div>
-      <div>
+      {/* Custom MVP debug */}
+      {/* <div>
         <button
           onClick={() =>
             addCustomMVP(
@@ -68,7 +70,7 @@ const CardsContainer = () => {
         >
           customMVP
         </button>
-      </div>
+      </div> */}
     </div>
   )
 }
