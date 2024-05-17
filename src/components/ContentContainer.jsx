@@ -2,13 +2,15 @@ import React from 'react'
 import NewMvpForm from './NewMvpForm.jsx'
 
 const ContentContainer = () => {
+  const childRef = React.useRef()
+
   return (
     <div style={mainContainer}>
       <div style={buttonsContainer}>
         <button
           type='button'
           className='formButtons cancelButton'
-          onClick={() => console.log('Cancel callback')}
+          onClick={() => childRef.current.resetForm()}
         >
           Cancelar
         </button>
@@ -18,11 +20,11 @@ const ContentContainer = () => {
           type='submit'
           className='formButtons newMvpButton'
         >
-          Agregar MVP
+          Nuevo timer
         </button>
       </div>
 
-      <NewMvpForm />
+      <NewMvpForm ref={childRef} />
     </div>
   )
 }
@@ -35,14 +37,16 @@ const mainContainer = {
   flexDirection: 'row',
   flexWrap: 'nowrap',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   gap: '38px'
 }
 
 const buttonsContainer = {
   display: 'flex',
   flexDirection: 'column',
-  columnGap: '16px',
-  // gap: '8px'
-  gap: '16px'
+  rowGap: '8px',
+  justifyContent: 'flex-start',
+  alignIitems: 'center',
+  height: '163px',
+  width: 'fit-content'
 }

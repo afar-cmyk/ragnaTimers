@@ -3,7 +3,7 @@ import { ProgressBar } from './ProgressBar.jsx'
 import RemainingTime from './RemainingTime.jsx'
 import { differenceInSeconds, addMinutes } from 'date-fns'
 import { CardFooter } from './CardFooter.jsx'
-import DataSource from '../../database/DataSource.js'
+import { DataSource } from '../../database/DataSource.js'
 import CardBackground from './CardBackground.jsx'
 import Overlay from './Overlay.jsx'
 

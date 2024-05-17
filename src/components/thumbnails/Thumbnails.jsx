@@ -1,5 +1,5 @@
 import React from 'react'
-import DataSource from '../../database/DataSource.js'
+import { DataSource } from '../../database/DataSource.js'
 
 export default function Thumbnails({
   type = 'mvp',

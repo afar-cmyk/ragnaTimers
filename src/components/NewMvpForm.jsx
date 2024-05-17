@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import Select from '@mui/joy/Select'
 import Option from '@mui/joy/Option'
 import Snackbar from '@mui/joy/Snackbar'
 import lodash, { toInteger } from 'lodash'
 import { subDays, isBefore } from 'date-fns'
 import ThumbnailsContainer from './thumbnails/ThumbnailsContainer.jsx'
-import DataSource from '../database/DataSource.js'
+import { dynamicData } from '../database/DataSource.js'
 import { addData } from '../database/dbService.js'
+import SwitchButton from './menu/SwitchButton.jsx'
+import { useGlobalState } from '../hooks/globalState.jsx'
 
-const NewMvpForm = () => {
-  const [filteredDataSource] = useState(
-    lodash.omit(DataSource, 'default', 'debug')
+const NewMvpForm = forwardRef((props, ref) => {
+  useImperativeHandle(ref, () => {
+    return { resetForm: resetForm }
+  })
+
+  let switchState = useGlobalState((state) => state.globalSwitchState)
+  let currentData = dynamicData(switchState)
+
+  const [filteredDataSource, setFilteredDataSource] = useState(
+    lodash.omit(currentData, 'default', 'debug')
   )
   const [mvp, setMvp] = useState('')
   const [map, setMap] = useState('')
@@ -90,14 +99,14 @@ const NewMvpForm = () => {
     setTemporal(true)
   }
 
-  const formatData = () => {
-    const formValues = {
-      mvpName: mvp,
-      mapName: map,
-      selectedDate: selectedDate
-    }
-    return formValues
-  }
+  // const formatData = () => {
+  //   const formValues = {
+  //     mvpName: mvp,
+  //     mapName: map,
+  //     selectedDate: selectedDate
+  //   }
+  //   return formValues
+  // }
 
   function formatDate(hours, minutes, period, temporal) {
     hours = toInteger(hours) + (period === 'PM' && hours < 12 ? 12 : 0)
@@ -125,8 +134,19 @@ const NewMvpForm = () => {
     }
   }
 
+  const resetForm = () => {
+    setMvp('')
+    setMap('')
+    setTemporal(true)
+    setHours('')
+    setMinutes('')
+    setTimePeriod('')
+    setFilteredDataSource(lodash.omit(currentData, 'default', 'debug'))
+  }
+
   return (
-    <>
+    <div style={containerStyles}>
+      <SwitchButton onStateChange={resetForm} />
       <div className='newMvp_container'>
         <form
           id='my-form'
@@ -142,6 +162,7 @@ const NewMvpForm = () => {
               onChange={(event, value) => {
                 setMvp(value)
               }}
+              value={mvp || ''}
               required
             >
               {Object.keys(filteredDataSource).map((key) => {
@@ -161,7 +182,7 @@ const NewMvpForm = () => {
             </Select>
 
             <Select
-              disabled={mvp == ''}
+              disabled={mvp == '' || mvp == null}
               variant='plain'
               placeholder='Seleccionar Mapa'
               sx={[selectStyles, Boolean(map) ? selectedStyles : {}]}
@@ -171,7 +192,7 @@ const NewMvpForm = () => {
               value={map}
               required
             >
-              {mvp == '' ? (
+              {mvp == '' || mvp == null ? (
                 <Option value='default' sx={optionsStyles}>
                   default
                 </Option>
@@ -300,11 +321,16 @@ const NewMvpForm = () => {
       >
         {snackbarOptions.text[snackStatus]}
       </Snackbar>
-    </>
+    </div>
   )
-}
+})
 
 export default NewMvpForm
+
+const containerStyles = {
+  display: 'flex',
+  flexDirection: 'column'
+}
 
 const snackbarOptions = {
   duration: {
