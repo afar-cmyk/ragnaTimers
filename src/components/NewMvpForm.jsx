@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import Select from '@mui/joy/Select'
 import Option from '@mui/joy/Option'
 import Snackbar from '@mui/joy/Snackbar'
@@ -10,7 +10,11 @@ import { addData } from '../database/dbService.js'
 import SwitchButton from './menu/SwitchButton.jsx'
 import { useGlobalState } from '../hooks/globalState.jsx'
 
-const NewMvpForm = () => {
+const NewMvpForm = forwardRef((props, ref) => {
+  useImperativeHandle(ref, () => {
+    return { resetForm: resetForm }
+  })
+
   let switchState = useGlobalState((state) => state.globalSwitchState)
   let currentData = dynamicData(switchState)
 
@@ -319,7 +323,7 @@ const NewMvpForm = () => {
       </Snackbar>
     </div>
   )
-}
+})
 
 export default NewMvpForm
 

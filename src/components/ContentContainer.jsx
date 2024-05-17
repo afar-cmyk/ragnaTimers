@@ -2,13 +2,15 @@ import React from 'react'
 import NewMvpForm from './NewMvpForm.jsx'
 
 const ContentContainer = () => {
+  const childRef = React.useRef()
+
   return (
     <div style={mainContainer}>
       <div style={buttonsContainer}>
         <button
           type='button'
           className='formButtons cancelButton'
-          onClick={() => console.log('Cancel callback')}
+          onClick={() => childRef.current.resetForm()}
         >
           Cancelar
         </button>
@@ -22,7 +24,7 @@ const ContentContainer = () => {
         </button>
       </div>
 
-      <NewMvpForm />
+      <NewMvpForm ref={childRef} />
     </div>
   )
 }
