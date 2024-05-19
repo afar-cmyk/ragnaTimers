@@ -149,6 +149,132 @@ const miniBoss = {
       prt_maze03: { respawn: [32, 35] }
     }
   },
+  executioner: {
+    fullName: 'Executioner',
+    settings: {
+      thumbnail: {
+        position: '8px 16px',
+        size: '80%'
+      },
+      card: {
+        position: '28px 14px',
+        size: '80%'
+      }
+    },
+    maps: {
+      alde_dun04: { respawn: [60, 90] },
+      c_tower4: { respawn: [120, 180] },
+      gefenia01: { respawn: [300, 540] },
+      gefenia02: { respawn: [300, 540] },
+      gefenia03: { respawn: [180, 300] },
+      gefenia04: { respawn: [300, 540] }
+    }
+  },
+  gemini: {
+    fullName: 'Gemini-S58',
+    settings: {
+      thumbnail: {
+        position: '19px 1px',
+        size: '56%'
+      },
+      card: {
+        position: '81px -1px',
+        size: '44%'
+      }
+    },
+    maps: {
+      lhz_dun01: { respawn: [120, 210] },
+      lhz_dun02: { respawn: [90, 93] }
+    }
+  },
+  ghostring: {
+    fullName: 'Ghostring',
+    settings: {
+      thumbnail: {
+        position: '8px 4px',
+        size: '80%'
+      },
+      card: {
+        position: '45px 7px',
+        size: '63%'
+      }
+    },
+    maps: {
+      gld_dun04: { respawn: [240, 360] },
+      pay_fild04: { respawn: [60, 90] },
+      prt_maze03: { respawn: [113, 170] },
+      treasure02: { respawn: [33, 53] }
+    }
+  },
+  gryphon: {
+    fullName: 'Gryphon',
+    settings: {
+      thumbnail: {
+        position: '-16px -19px',
+        size: '137%'
+      },
+      card: {
+        position: '-50px -123px',
+        size: '148%'
+      }
+    },
+    maps: {
+      cmd_fild08: { respawn: [60, 90] },
+      ra_fild01: { respawn: [60, 60] },
+      um_fild03: { respawn: [58, 90] }
+    }
+  },
+  hardrockMammoth: {
+    fullName: 'Hardrock Mammoth',
+    settings: {
+      thumbnail: {
+        position: '0px -25px',
+        size: '137%'
+      },
+      card: {
+        position: '6px -66px',
+        size: '119%'
+      }
+    },
+    maps: {
+      man_fild03: { respawn: [240, 240] }
+    }
+  },
+  hydro: {
+    fullName: 'Hydrolancer',
+    settings: {
+      thumbnail: {
+        position: '-5px -5px',
+        size: '112%'
+      },
+      card: {
+        position: '-22px -29px',
+        size: '119%'
+      }
+    },
+    maps: {
+      abyss_03: { respawn: [50, 90] }
+    }
+  },
+  mastering: {
+    fullName: 'Mastering',
+    settings: {
+      thumbnail: {
+        position: '-1px 2px',
+        size: '102%'
+      },
+      card: {
+        position: '11px -6px',
+        size: '87%'
+      }
+    },
+    maps: {
+      pay_fild04: { respawn: [60, 90] },
+      prt_maze03: { respawn: [32, 35] },
+      xmas_dun01: { respawn: [30, 45] },
+      yuno_fild04: { respawn: [60, 90] }
+    }
+  },
   ungoliant: {
     fullName: 'Ungoliant',
     settings: {
