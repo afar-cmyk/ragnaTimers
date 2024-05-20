@@ -275,6 +275,119 @@ const miniBoss = {
       yuno_fild04: { respawn: [60, 90] }
     }
   },
+  mayaPurple: {
+    fullName: 'Maya Purple',
+    settings: {
+      thumbnail: {
+        position: '-18px -23px',
+        size: '220%'
+      },
+      card: {
+        position: '30px -58px',
+        size: '120%'
+      }
+    },
+    maps: {
+      anthell01: { respawn: [120, 180] },
+      gld2_ald: { respawn: [20, 20] },
+      gld_dun02_2: { respawn: [20, 30] },
+      gld_dun03: { respawn: [20, 30] }
+    }
+  },
+  mutantDragon: {
+    fullName: 'Mutant Dragon',
+    settings: {
+      thumbnail: {
+        position: '-9px -70px',
+        size: '201%'
+      },
+      card: {
+        position: '-4px -109px',
+        size: '130%'
+      }
+    },
+    maps: {
+      hu_fild05: { respawn: [400, 430] }
+    }
+  },
+  mysteltainn: {
+    fullName: 'Mysteltainn',
+    settings: {
+      thumbnail: {
+        position: '8px 4px',
+        size: '80%'
+      },
+      card: {
+        position: '28px 14px',
+        size: '80%'
+      }
+    },
+    maps: {
+      alde_dun04: { respawn: [60, 90] },
+      gefenia01: { respawn: [180, 300] },
+      gefenia02: { respawn: [300, 540] },
+      gefenia03: { respawn: [300, 540] },
+      gefenia04: { respawn: [300, 540] },
+      gl_cas02: { respawn: [120, 180] },
+      gl_knt02: { respawn: [30, 50] }
+    }
+  },
+  ogretooth: {
+    fullName: 'Ogretooth',
+    settings: {
+      thumbnail: {
+        position: '12px -31px',
+        size: '70%'
+      },
+      card: {
+        position: '54px -74px',
+        size: '64%'
+      }
+    },
+    maps: {
+      alde_dun04: { respawn: [60, 90] },
+      gefenia01: { respawn: [300, 540] },
+      gefenia02: { respawn: [180, 300] },
+      gefenia03: { respawn: [300, 540] },
+      gefenia04: { respawn: [300, 540] },
+      gef_dun01: { respawn: [30, 50] },
+      gl_cas01: { respawn: [120, 180] },
+      gl_cas02: { respawn: [120, 180] }
+    }
+  },
+  tendrillion: {
+    fullName: 'Tendrillion',
+    settings: {
+      thumbnail: {
+        position: '-3px -11px',
+        size: '162%'
+      },
+      card: {
+        position: '26px -25px',
+        size: '131%'
+      }
+    },
+    maps: {
+      spl_fild03: { respawn: [60, 60] }
+    }
+  },
+  toad: {
+    fullName: 'Toad',
+    settings: {
+      thumbnail: {
+        position: '2px 2px',
+        size: '90%'
+      },
+      card: {
+        position: '21px -12px',
+        size: '85%'
+      }
+    },
+    maps: {
+      cmd_fild03: { respawn: [60, 90] },
+      gef_fild01: { respawn: [60, 90] }
+    }
+  },
   ungoliant: {
     fullName: 'Ungoliant',
     settings: {
@@ -291,6 +404,42 @@ const miniBoss = {
       ein_dun01: { respawn: [60, 110] },
       ein_fild02: { respawn: [1260, 2510] },
       ein_fild07: { respawn: [1440, 2873] }
+    }
+  },
+  vagabondWolf: {
+    fullName: 'Vagabond Wolf',
+    settings: {
+      thumbnail: {
+        position: '-15px -9px',
+        size: '156%'
+      },
+      card: {
+        position: '5px -42px',
+        size: '130%'
+      }
+    },
+    maps: {
+      gld_dun01: { respawn: [240, 360] },
+      moc_fild03: { respawn: [30, 50] },
+      prt_maze01: { respawn: [60, 90] },
+      prt_maze03: { respawn: [32, 35] }
+    }
+  },
+  valkyrie: {
+    fullName: 'Valkyrie',
+    settings: {
+      thumbnail: {
+        position: '-64px -34px',
+        size: '255%'
+      },
+      card: {
+        position: '-58px -84px',
+        size: '190%'
+      }
+    },
+    maps: {
+      odin_tem02: { respawn: [90, 120] },
+      odin_tem03: { respawn: [30, 50] }
     }
   }
 }
