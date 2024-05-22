@@ -14,7 +14,10 @@ root.render(
         marginTop: '32px',
         marginBottom: '32px',
         height: '56px',
-        width: '100%'
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        columnGap: '14px'
       }}
     >
       <MenuContainer />

@@ -4,6 +4,8 @@ import Drawer from '@mui/joy/Drawer'
 import Sheet from '@mui/joy/Sheet'
 import DialogTitle from '@mui/joy/DialogTitle'
 import ModalClose from '@mui/joy/ModalClose'
+import FavoritesBar from './favorites/FavoritesBar.jsx'
+import ClockContainer from './clock/ClockContainer.jsx'
 
 const MenuContainer = () => {
   const [open, setOpen] = useState(false)
@@ -22,6 +24,8 @@ const MenuContainer = () => {
   return (
     <>
       <MainButton toggleDrawer={toggleDrawer(true)} />
+      <FavoritesBar />
+      <ClockContainer />
       <Drawer open={open} onClose={toggleDrawer(false)} size='lg'>
         <Sheet
           sx={{
