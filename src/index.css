@@ -346,6 +346,12 @@ body {
   background-color: #1a1a1a !important;
 }
 
+.optionsLabel {
+  color: #bfbfbf;
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .switchSection_container {
   display: flex;
   flex-direction: row;
@@ -404,8 +410,8 @@ body {
 
 .favoritesBar {
   border-radius: 6px;
-  background: #eeeeee1a;
-  width: 702px;
+  background: #eeeeee0f;
+  width: 696px;
   height: 56px;
   flex-shrink: 0;
 }
@@ -416,4 +422,49 @@ body {
   flex-shrink: 0;
   border-radius: 6px;
   background: #eeeeee1a;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.clockTitle {
+  color: #ababab;
+  text-align: center;
+  font-family: 'Roboto Flex';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.clockTime {
+  color: #ababab;
+  font-family: 'Roboto Flex';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.clockSeparator {
+  line-height: 25px;
+  opacity: 0.85;
+  animation: clockPulse 5s infinite;
+}
+
+@keyframes clockPulse {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }
