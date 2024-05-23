@@ -11,12 +11,20 @@ import Option from '@mui/joy/Option'
 import { useAtom } from 'jotai'
 import { timeZoneAtom } from '../hooks/stateManager.jsx'
 import ShortUniqueId from 'short-unique-id'
+import { editTimeZone } from '../database/dbService.js'
+import { useLiveQuery } from 'dexie-react-hooks'
+import { db } from '../database/db.js'
+import gmtData from '../database/gmtData.js'
 
 const MenuContainer = () => {
   const [open, setOpen] = useState(false)
-  const [timeZone, setTimeZone] = useAtom(timeZoneAtom)
+  const [timeZone] = useAtom(timeZoneAtom)
 
   const uid = new ShortUniqueId({ length: 5 })
+
+  const dbTimeZone = useLiveQuery(async () => {
+    return await db.config.get(1)
+  })
 
   const toggleDrawer = (inOpen) => (event) => {
     if (
@@ -51,18 +59,18 @@ const MenuContainer = () => {
           <ModalClose />
           <DialogTitle>Opciones</DialogTitle>
           <div>
-            <span className='optionsLabel'>Zona Horaria del servidor:</span>
+            <span className='optionsLabel'>Zona horaria del servidor:</span>
             <Select
               variant='plain'
               placeholder='Seleccionar Zona Horaria'
               sx={[selectStyles, Boolean(timeZone) ? selectedStyles : {}]}
               onChange={(event, value) => {
-                setTimeZone(value)
+                editTimeZone(value)
               }}
-              value={timeZone || ''}
+              value={dbTimeZone?.timeZone || timeZone}
               required
             >
-              {gmtOffsets.map((offset) => {
+              {gmtData.map((offset) => {
                 return (
                   <Option
                     key={uid.rnd()}
@@ -131,33 +139,3 @@ const optionsStyles = {
     fontWeight: 500
   }
 }
-
-const gmtOffsets = [
-  { label: 'GMT-12:00 (Baker Island, Howland Island)', value: 'Etc/GMT+12' },
-  { label: 'GMT-11:00 (Niue, Pago Pago)', value: 'Etc/GMT+11' },
-  { label: 'GMT-10:00 (Hawaii)', value: 'Etc/GMT+10' },
-  { label: 'GMT-09:00 (Alaska)', value: 'Etc/GMT+9' },
-  { label: 'GMT-08:00 (Pacific Time, Los Angeles)', value: 'Etc/GMT+8' },
-  { label: 'GMT-07:00 (Mountain Time, Denver)', value: 'Etc/GMT+7' },
-  { label: 'GMT-06:00 (Central Time, Chicago)', value: 'Etc/GMT+6' },
-  { label: 'GMT-05:00 (Eastern Time, New York)', value: 'Etc/GMT+5' },
-  { label: 'GMT-04:00 (Atlantic Time, Chile)', value: 'Etc/GMT+4' },
-  { label: 'GMT-03:00 (Argentina, Buenos Aires)', value: 'Etc/GMT+3' },
-  { label: 'GMT-02:00 (South Georgia/Sandwich Is.)', value: 'Etc/GMT+2' },
-  { label: 'GMT-01:00 (Azores, Cape Verde)', value: 'Etc/GMT+1' },
-  { label: 'GMT+00:00 (UTC, London)', value: 'Etc/GMT' },
-  { label: 'GMT+01:00 (Central European Time, Berlin)', value: 'Etc/GMT-1' },
-  { label: 'GMT+02:00 (Eastern European Time, Cairo)', value: 'Etc/GMT-2' },
-  { label: 'GMT+03:00 (Moscow, Nairobi)', value: 'Etc/GMT-3' },
-  { label: 'GMT+04:00 (Dubai, Samara)', value: 'Etc/GMT-4' },
-  { label: 'GMT+05:00 (Pakistan, Karachi)', value: 'Etc/GMT-5' },
-  { label: 'GMT+06:00 (Bangladesh, Dhaka)', value: 'Etc/GMT-6' },
-  { label: 'GMT+07:00 (Thailand, Bangkok)', value: 'Etc/GMT-7' },
-  { label: 'GMT+08:00 (China, Beijing)', value: 'Etc/GMT-8' },
-  { label: 'GMT+09:00 (Japan, Tokyo)', value: 'Etc/GMT-9' },
-  { label: 'GMT+10:00 (Australia, Sydney)', value: 'Etc/GMT-10' },
-  { label: 'GMT+11:00 (Solomon Islands, New Caledonia)', value: 'Etc/GMT-11' },
-  { label: 'GMT+12:00 (Fiji, New Zealand)', value: 'Etc/GMT-12' },
-  { label: 'GMT+13:00 (Tonga, Apia)', value: 'Etc/GMT-13' },
-  { label: 'GMT+14:00 (Line Islands, Kiritimati)', value: 'Etc/GMT-14' }
-]

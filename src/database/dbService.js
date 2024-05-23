@@ -45,3 +45,16 @@ export const addCustomMVP = async (
     )
   }
 }
+
+export const addTimeZone = async (timeZone) => {
+  try {
+    await db.config.add({ timeZone })
+    console.log(`config server time zone added: ${timeZone}`)
+  } catch (error) {
+    console.error(error, `failed to add config: ${timeZone}`)
+  }
+}
+
+export const editTimeZone = async (value) => {
+  await db.config.update(1, { timeZone: value })
+}

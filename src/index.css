@@ -427,6 +427,12 @@ body {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.clockContainer:hover {
+  outline: 1px solid #eeeeee40;
 }
 
 .clockTitle {
