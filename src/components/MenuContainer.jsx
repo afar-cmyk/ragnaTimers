@@ -4,9 +4,27 @@ import Drawer from '@mui/joy/Drawer'
 import Sheet from '@mui/joy/Sheet'
 import DialogTitle from '@mui/joy/DialogTitle'
 import ModalClose from '@mui/joy/ModalClose'
+import FavoritesBar from './favorites/FavoritesBar.jsx'
+import ClockContainer from './clock/ClockContainer.jsx'
+import Select from '@mui/joy/Select'
+import Option from '@mui/joy/Option'
+import { useAtom } from 'jotai'
+import { timeZoneAtom } from '../hooks/stateManager.jsx'
+import ShortUniqueId from 'short-unique-id'
+import { editTimeZone } from '../database/dbService.js'
+import { useLiveQuery } from 'dexie-react-hooks'
+import { db } from '../database/db.js'
+import gmtData from '../database/gmtData.js'
 
 const MenuContainer = () => {
   const [open, setOpen] = useState(false)
+  const [timeZone] = useAtom(timeZoneAtom)
+
+  const uid = new ShortUniqueId({ length: 5 })
+
+  const dbTimeZone = useLiveQuery(async () => {
+    return await db.config.get(1)
+  })
 
   const toggleDrawer = (inOpen) => (event) => {
     if (
@@ -22,6 +40,8 @@ const MenuContainer = () => {
   return (
     <>
       <MainButton toggleDrawer={toggleDrawer(true)} />
+      <FavoritesBar />
+      <ClockContainer />
       <Drawer open={open} onClose={toggleDrawer(false)} size='lg'>
         <Sheet
           sx={{
@@ -38,6 +58,31 @@ const MenuContainer = () => {
         >
           <ModalClose />
           <DialogTitle>Opciones</DialogTitle>
+          <div>
+            <span className='optionsLabel'>Zona horaria del servidor:</span>
+            <Select
+              variant='plain'
+              placeholder='Seleccionar Zona Horaria'
+              sx={[selectStyles, Boolean(timeZone) ? selectedStyles : {}]}
+              onChange={(event, value) => {
+                editTimeZone(value)
+              }}
+              value={dbTimeZone?.timeZone || timeZone}
+              required
+            >
+              {gmtData.map((offset) => {
+                return (
+                  <Option
+                    key={uid.rnd()}
+                    value={offset.value}
+                    sx={optionsStyles}
+                  >
+                    {offset.label}
+                  </Option>
+                )
+              })}
+            </Select>
+          </div>
         </Sheet>
       </Drawer>
     </>
@@ -45,3 +90,52 @@ const MenuContainer = () => {
 }
 
 export default MenuContainer
+
+const selectStyles = {
+  width: '100%',
+  borderRadius: 3,
+  maxHeight: 30,
+  minHeight: 30,
+  color: '#666666',
+  backgroundColor: '#EEEEEE14',
+  fontFamily: 'Roboto Flex',
+  fontSize: 16,
+  fontStyle: 'normal',
+  fontWeight: '700 !important',
+  lineHeight: 'normal',
+  boxSizing: 'border-box',
+  transition: 'border 0.3s',
+  border: '1px solid #1d1d1d',
+  outline: 'none',
+  marginTop: '4px',
+  ':hover': {
+    backgroundColor: '#EEEEEE14',
+    border: '1px solid #ededed26',
+    color: '#ABABAB'
+  },
+  ':focus-visible': {
+    outline: 'none',
+    border: '1px solid #ABABAB !important',
+    color: '#ABABAB'
+  }
+}
+
+const selectedStyles = {
+  backgroundColor: '#EEEEEE14',
+  border: '1px solid #ededed26',
+  color: '#ABABAB'
+}
+
+const optionsStyles = {
+  border: '1px solid #1E1E1E',
+  backgroundColor: '#1E1E1E !important',
+  fontFamily: 'Roboto Flex',
+  fontWeight: 400,
+  color: '#ABABAB',
+  fontSize: 14,
+  ':hover': {
+    border: '1px solid #ededed26',
+    color: '#ABABAB !important',
+    fontWeight: 500
+  }
+}

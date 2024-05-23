@@ -31,7 +31,7 @@ if (!gotTheLock) {
     mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
 
     // Open the DevTools.
-    //mainWindow.webContents.openDevTools({ mode: 'detach' })
+    // mainWindow.webContents.openDevTools({ mode: 'detach' })
   }
 
   // This method will be called when Electron has finished

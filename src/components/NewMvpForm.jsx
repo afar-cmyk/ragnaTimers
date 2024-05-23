@@ -8,14 +8,15 @@ import ThumbnailsContainer from './thumbnails/ThumbnailsContainer.jsx'
 import { dynamicData } from '../database/DataSource.js'
 import { addData } from '../database/dbService.js'
 import SwitchButton from './menu/SwitchButton.jsx'
-import { useGlobalState } from '../hooks/globalState.jsx'
+import { switchStateAtom } from '../hooks/stateManager.jsx'
+import { useAtom } from 'jotai'
 
 const NewMvpForm = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => {
     return { resetForm: resetForm }
   })
 
-  let switchState = useGlobalState((state) => state.globalSwitchState)
+  const [switchState] = useAtom(switchStateAtom)
   let currentData = dynamicData(switchState)
 
   const [filteredDataSource, setFilteredDataSource] = useState(

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useGlobalState } from '../../hooks/globalState.jsx'
+import { switchStateAtom } from '../../hooks/stateManager.jsx'
+import { useAtom } from 'jotai'
 
 const SwitchButton = ({ onStateChange }) => {
   const [state, setState] = useState({
@@ -7,12 +8,14 @@ const SwitchButton = ({ onStateChange }) => {
     miniActive: false
   })
 
+  const [switchState, setSwitchState] = useAtom(switchStateAtom)
+
   const toggleMvp = () => {
     setState({
       mvpActive: true,
       miniActive: false
     })
-    useGlobalState.getState().setMvpState()
+    setSwitchState('mvp')
   }
 
   const toggleMini = () => {
@@ -20,7 +23,7 @@ const SwitchButton = ({ onStateChange }) => {
       mvpActive: false,
       miniActive: true
     })
-    useGlobalState.getState().setMiniState()
+    setSwitchState('mini')
   }
 
   useEffect(() => {
