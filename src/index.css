@@ -55,12 +55,12 @@ body {
   height: 56px;
   align-items: center;
   gap: 3px;
-  background: #eeeeee29;
+  background: #eeeeee1a;
   border-radius: 6px;
 }
 
 .menu-button:hover {
-  background-color: #eeeeee38;
+  background-color: #eeeeee23;
   cursor: pointer;
 }
 

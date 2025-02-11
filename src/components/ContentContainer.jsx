@@ -50,3 +50,5 @@ const buttonsContainer = {
   height: '163px',
   width: 'fit-content'
 }
+
+//TODO Mejorar el nombre del componente para que sea mas facil de identificar

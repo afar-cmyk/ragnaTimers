@@ -100,21 +100,19 @@ const NewMvpForm = forwardRef((props, ref) => {
     setTemporal(true)
   }
 
-  // const formatData = () => {
-  //   const formValues = {
-  //     mvpName: mvp,
-  //     mapName: map,
-  //     selectedDate: selectedDate
-  //   }
-  //   return formValues
-  // }
-
   function formatDate(hours, minutes, period, temporal) {
-    hours = toInteger(hours) + (period === 'PM' && hours < 12 ? 12 : 0)
+    hours = toInteger(hours)
+
+    if (period === 'AM' && hours === 12) {
+      hours = 0
+    } else if (period === 'PM' && hours !== 12) {
+      hours += 12
+    }
+
     const today = new Date()
     const yesterday = subDays(today, 1)
     const date = temporal ? today : yesterday
-    date.setHours(toInteger(hours))
+    date.setHours(hours)
     date.setMinutes(toInteger(minutes))
     date.setSeconds(0)
     return date
@@ -339,8 +337,8 @@ const snackbarOptions = {
     success: 4000
   },
   text: {
-    error: 'La hora elegida no puede ser posterior a la fecha y hora actuales.',
-    success: 'MVP creado con exito.'
+    error: '¡Oops! La hora de muerte no puede ser en el futuro.',
+    success: '¡Listo! El MVP ha sido registrado correctamente.'
   },
   color: {
     error: 'danger',
