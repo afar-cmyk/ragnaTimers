@@ -46,5 +46,5 @@ root.render(
 
 // Pipeline de desarrollo
 // ./src/main.js -> activar DevTools (descomentar linea 38)
-// ./packet.json -> ajustar versionamiento (linea 4)
+// ./package.json -> ajustar versionamiento (linea 4)
 // ./index.html -> ajustar versionamiento (linea 5)
