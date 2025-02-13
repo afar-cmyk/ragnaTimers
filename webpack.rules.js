@@ -27,7 +27,7 @@ module.exports = [
     }
   },
   {
-    test: /\.(png|jpe?g|gif)$/i,
+    test: /\.(png|jpe?g|gif|mp3)$/i,
     type: 'asset/resource'
   }
   // Put your webpack loader rules in this array.  This is where you would put

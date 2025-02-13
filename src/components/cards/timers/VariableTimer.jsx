@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { TimerRenderer, useTimer } from 'react-use-precision-timer'
 import { removeTiming } from '../../../database/dbService.js'
 import { getTime, formatTime } from '../../cards/RemainingTime.jsx'
+import soundFile from '../../../sounds/variable_2.mp3'
 
 const VariableTimer = ({ variableTime, id, setCardState }) => {
   const [currentColor, setCurrentColor] = useState('#c56d82')
-  const callback = React.useCallback(() => {}, [])
+  const alarmSound = new Audio(soundFile)
+
+  const callback = React.useCallback(() => {
+    alarmSound.play()
+  }, [timer])
+
   const timer = useTimer({ delay: 10, runOnce: true }, callback)
 
   useEffect(() => {

@@ -15,7 +15,7 @@ if (!gotTheLock) {
   const createWindow = () => {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
-      width: 800,
+      width: 998 + 16,
       height: 600,
       minWidth: 998 + 16,
       maxWidth: 998 + 16,

@@ -44,7 +44,8 @@ root.render(
 //TODO Usar MobX para los datos de la web(subscribirse)
 //TODO Si MobX es muy dificil reemplazarlo por react-query
 
-// Pipeline de desarrollo
+// Pipeline de desarrollo (production ready)
 // ./src/main.js -> activar DevTools (descomentar linea 38)
 // ./package.json -> ajustar versionamiento (linea 4)
 // ./index.html -> ajustar versionamiento (linea 5)
+// ./src/components/NewMvpForm.jsx -> agregar 'debug' y 'default' a los filtros del selector (lineas 23 y 144)
