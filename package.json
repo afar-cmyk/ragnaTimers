@@ -1,7 +1,7 @@
 {
   "name": "ragnatimers",
   "productName": "ragnatimers",
-  "version": "0.2.8-alpha",
+  "version": "0.3.1-alpha",
   "description": "MVP Timer for Ragnarok Online built with Electron using ReactJS",
   "main": ".webpack/main",
   "scripts": {

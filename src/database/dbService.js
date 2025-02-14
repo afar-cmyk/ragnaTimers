@@ -58,3 +58,19 @@ export const addTimeZone = async (timeZone) => {
 export const editTimeZone = async (value) => {
   await db.config.update(1, { timeZone: value })
 }
+
+export const addRespawnSound = async (respawnSound) => {
+  try {
+    await db.config.add({ respawnSound })
+    console.log(`config respawn audio added: ${respawnSound}`)
+  } catch (error) {
+    console.error(error, `failed to add respawn audio data: ${respawnSound}`)
+  }
+}
+
+export const editRespawnSound = async (selectedFile, selectedVolume) => {
+  await db.config.update(2, {
+    respawnSound: selectedFile,
+    volume: selectedVolume
+  })
+}

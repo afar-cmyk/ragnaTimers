@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MainButton from './menu/MainButton.jsx'
 import Drawer from '@mui/joy/Drawer'
 import Sheet from '@mui/joy/Sheet'
@@ -9,22 +9,28 @@ import ClockContainer from './clock/ClockContainer.jsx'
 import Select from '@mui/joy/Select'
 import Option from '@mui/joy/Option'
 import { useAtom } from 'jotai'
-import { timeZoneAtom } from '../hooks/stateManager.jsx'
+import { timeZoneAtom, respawnSoundAtom } from '../hooks/stateManager.jsx'
 import ShortUniqueId from 'short-unique-id'
-import { editTimeZone } from '../database/dbService.js'
+import { editTimeZone, editRespawnSound } from '../database/dbService.js'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../database/db.js'
 import gmtData from '../database/gmtData.js'
+import soundData from '../database/soundData.js'
 
 const MenuContainer = () => {
   const [open, setOpen] = useState(false)
   const [timeZone] = useAtom(timeZoneAtom)
+  const [respawnSound, setRespawnSound] = useAtom(respawnSoundAtom)
+  const defaultRespawnSound = { respawnSound: 'respawn_1', volume: 1 }
 
   const uid = new ShortUniqueId({ length: 5 })
 
-  const dbTimeZone = useLiveQuery(async () => {
-    return await db.config.get(1)
-  })
+  const dbConfig = useLiveQuery(async () => {
+    return await db.config.toArray()
+  }, [])
+
+  const dbTimeZone = dbConfig?.find((item) => item.id === 1)
+  const dbRespawnSound = dbConfig?.find((item) => item.id === 2)
 
   const toggleDrawer = (inOpen) => (event) => {
     if (
@@ -35,6 +41,28 @@ const MenuContainer = () => {
     }
 
     setOpen(inOpen)
+  }
+
+  useEffect(() => {
+    const initializeRespawnSound = async () => {
+      if (!respawnSound) {
+        setRespawnSound(defaultRespawnSound)
+      }
+
+      if (dbConfig?.length === 1) {
+        await db.config.add(defaultRespawnSound)
+      }
+    }
+
+    initializeRespawnSound()
+  }, [dbConfig])
+
+  async function handleAudio() {
+    const audioContext = require.context('../sounds/', true, /\.mp3$/)
+    let audioPath = await audioContext(`./${dbRespawnSound?.respawnSound}.mp3`)
+    let audio = new Audio(audioPath)
+
+    audio.play()
   }
 
   return (
@@ -68,7 +96,6 @@ const MenuContainer = () => {
                 editTimeZone(value)
               }}
               value={dbTimeZone?.timeZone || timeZone}
-              required
             >
               {gmtData.map((offset) => {
                 return (
@@ -82,6 +109,65 @@ const MenuContainer = () => {
                 )
               })}
             </Select>
+          </div>
+
+          <div>
+            <span className='optionsLabel'>Audio de respawn:</span>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'baseline',
+                gap: 16
+              }}
+            >
+              <Select
+                variant='plain'
+                placeholder='Seleccionar audio de respawn'
+                sx={[
+                  { width: '50% !important' },
+                  selectStyles,
+                  Boolean(respawnSound) ? selectedStyles : {}
+                ]}
+                onChange={(event, value) => {
+                  editRespawnSound(value, 1)
+                  setRespawnSound({ respawnSound: value, volume: 1 })
+                }}
+                value={
+                  dbRespawnSound?.respawnSound ||
+                  respawnSound?.respawnSound ||
+                  defaultRespawnSound.respawnSound
+                }
+              >
+                {soundData['respawn'].map((offset) => {
+                  return (
+                    <Option
+                      key={uid.rnd()}
+                      value={offset.value}
+                      sx={optionsStyles}
+                    >
+                      {offset.label}
+                    </Option>
+                  )
+                })}
+              </Select>
+
+              <button
+                className='formButtons cancelButton'
+                style={{
+                  width: '15%',
+                  maxHeight: 31,
+                  minHeight: 31,
+                  fontSize: 17
+                }}
+                type='button'
+                onClick={() => {
+                  handleAudio()
+                }}
+              >
+                Probar
+              </button>
+            </div>
           </div>
         </Sheet>
       </Drawer>
