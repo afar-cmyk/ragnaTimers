@@ -61,16 +61,32 @@ export const editTimeZone = async (value) => {
 
 export const addRespawnSound = async (respawnSound) => {
   try {
-    await db.config.add({ respawnSound })
-    console.log(`config respawn audio added: ${respawnSound}`)
+    await db.config.add(respawnSound)
+    console.log(`DB: default Respawn audio data added.`)
   } catch (error) {
-    console.error(error, `failed to add respawn audio data: ${respawnSound}`)
+    console.error(error, `DB: failed to add default Respawn audio data.`)
   }
 }
 
 export const editRespawnSound = async (selectedFile, selectedVolume) => {
   await db.config.update(2, {
-    respawnSound: selectedFile,
+    respawnFile: selectedFile,
+    volume: selectedVolume
+  })
+}
+
+export const addVariableSound = async (variableSound) => {
+  try {
+    await db.config.add(variableSound)
+    console.log(`DB: default Variable audio data added.`)
+  } catch (error) {
+    console.error(error, `DB: failed to add default Variable audio data.`)
+  }
+}
+
+export const editVariableSound = async (selectedFile, selectedVolume) => {
+  await db.config.update(3, {
+    variableFile: selectedFile,
     volume: selectedVolume
   })
 }
