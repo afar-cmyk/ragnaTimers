@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { TimerRenderer, useTimer } from 'react-use-precision-timer'
 import { removeTiming } from '../../../database/dbService.js'
 import { getTime, formatTime } from '../../cards/RemainingTime.jsx'
-import soundFile from '../../../sounds/variable_2.mp3'
+import { useAudio } from '../../../hooks/useAudio.jsx'
+
+//TODO verificar porque aveces no se reproduce el sonido cuando el contador llega a 0
 
 const VariableTimer = ({ variableTime, id, setCardState }) => {
   const [currentColor, setCurrentColor] = useState('#c56d82')
-  const alarmSound = new Audio(soundFile)
+  const { playAudio } = useAudio()
 
   const callback = React.useCallback(() => {
-    alarmSound.play()
+    playAudio('variable')
   }, [timer])
 
   const timer = useTimer({ delay: 10, runOnce: true }, callback)

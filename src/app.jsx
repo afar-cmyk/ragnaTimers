@@ -3,31 +3,30 @@ import { createRoot } from 'react-dom/client'
 import ContentContainer from './components/ContentContainer.jsx'
 import CardsContainer from './components/CardsContainer.jsx'
 import MenuContainer from './components/MenuContainer.jsx'
+import { useDefaultSettings } from './hooks/useDefaultSettings.jsx'
+
+const App = () => {
+  const { setDefaultSettings } = useDefaultSettings()
+  React.useEffect(() => {
+    setDefaultSettings()
+  }, [])
+
+  return (
+    <>
+      <header>
+        <MenuContainer />
+      </header>
+      <main>
+        <ContentContainer />
+        <CardsContainer />
+      </main>
+    </>
+  )
+}
 
 const container = document.getElementById('root')
 const root = createRoot(container)
-
-root.render(
-  <>
-    <header
-      style={{
-        marginTop: '32px',
-        marginBottom: '32px',
-        height: '56px',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        columnGap: '14px'
-      }}
-    >
-      <MenuContainer />
-    </header>
-    <main>
-      <ContentContainer />
-      <CardsContainer />
-    </main>
-  </>
-)
+root.render(<App />)
 
 //TODO Investigar como mantener el release actualizado
 

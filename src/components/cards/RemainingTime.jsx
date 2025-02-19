@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import RespawnTimer from './timers/RespawnTimer.jsx'
 import VariableTimer from './timers/VariableTimer.jsx'
-import soundFile from '../../sounds/respawn_2.mp3'
 
 export const formatTime = (time) => {
   const seconds = Math.floor((time / 1000) % 60)
@@ -24,10 +23,8 @@ export const getTime = (date) => {
 const RemainingTime = ({ respawnTime, variableTime, id, setCardState }) => {
   const [mountRespawnTimer, setMountRespawnTimer] = useState(true)
   const [mountVariableTimer, setMountVariableTimer] = useState(false)
-  const alarmSound = new Audio(soundFile)
 
   const renderTimers = () => {
-    alarmSound.play()
     setMountRespawnTimer(false)
     setMountVariableTimer(true)
     setCardState('variable')

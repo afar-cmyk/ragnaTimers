@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import MainButton from './menu/MainButton.jsx'
 import Drawer from '@mui/joy/Drawer'
 import Sheet from '@mui/joy/Sheet'
@@ -9,31 +9,17 @@ import ClockContainer from './clock/ClockContainer.jsx'
 import Select from '@mui/joy/Select'
 import Option from '@mui/joy/Option'
 import { useAtom } from 'jotai'
-import {
-  timeZoneAtom,
-  respawnSoundAtom,
-  variableSoundAtom
-} from '../hooks/stateManager.jsx'
+import { timeZoneAtom } from '../hooks/stateManager.jsx'
 import ShortUniqueId from 'short-unique-id'
-import {
-  addRespawnSound,
-  addVariableSound,
-  editTimeZone,
-  editRespawnSound,
-  editVariableSound
-} from '../database/dbService.js'
+import { editTimeZone } from '../database/dbService.js'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../database/db.js'
 import gmtData from '../database/gmtData.js'
-import soundData from '../database/soundData.js'
+import AudioSettings from './menu/AudioSettings.jsx'
 
 const MenuContainer = () => {
   const [open, setOpen] = useState(false)
   const [timeZone] = useAtom(timeZoneAtom)
-  const [respawnSound, setRespawnSound] = useAtom(respawnSoundAtom)
-  const [variableSound, setVariableSound] = useAtom(variableSoundAtom)
-  const defaultRespawnSound = { respawnFile: 'respawn_1', volume: 1 }
-  const defaultVariableSound = { variableFile: 'variable_1', volume: 1 }
 
   const uid = new ShortUniqueId({ length: 5 })
 
@@ -42,8 +28,6 @@ const MenuContainer = () => {
   }, [])
 
   const dbTimeZone = dbConfig?.find((item) => item.id === 1)
-  const dbRespawnSound = dbConfig?.find((item) => item.id === 2)
-  const dbVariableSound = dbConfig?.find((item) => item.id === 3)
 
   const toggleDrawer = (inOpen) => (event) => {
     if (
@@ -54,37 +38,6 @@ const MenuContainer = () => {
     }
 
     setOpen(inOpen)
-  }
-
-  useEffect(() => {
-    const initializeRespawnSound = async () => {
-      if (!respawnSound) {
-        setRespawnSound(defaultRespawnSound)
-        setVariableSound(defaultVariableSound)
-      }
-
-      if (dbConfig?.length === 1) {
-        await addRespawnSound(defaultRespawnSound)
-      }
-
-      if (dbConfig?.length === 2) {
-        await addVariableSound(defaultVariableSound)
-      }
-    }
-
-    initializeRespawnSound()
-  }, [dbConfig])
-
-  async function handleAudio(audioClass) {
-    const audioContext = require.context('../sounds/', true, /\.mp3$/)
-    let audioPath =
-      audioClass === 'respawn'
-        ? await audioContext(`./${dbRespawnSound?.respawnFile}.mp3`)
-        : await audioContext(`./${dbVariableSound?.variableFile}.mp3`)
-
-    let audio = new Audio(audioPath)
-
-    audio.play()
   }
 
   return (
@@ -108,6 +61,7 @@ const MenuContainer = () => {
         >
           <ModalClose />
           <DialogTitle>Opciones</DialogTitle>
+
           <div>
             <span className='optionsLabel'>Zona horaria del servidor:</span>
             <Select
@@ -133,123 +87,17 @@ const MenuContainer = () => {
             </Select>
           </div>
 
-          <div>
-            <span className='optionsLabel'>Audio de respawn:</span>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'baseline',
-                gap: 16
-              }}
-            >
-              <Select
-                variant='plain'
-                placeholder='Seleccionar audio de respawn'
-                sx={[
-                  { width: '50% !important' },
-                  selectStyles,
-                  Boolean(respawnSound) ? selectedStyles : {}
-                ]}
-                onChange={(event, value) => {
-                  editRespawnSound(value, 1)
-                  setRespawnSound({ respawnFile: value, volume: 1 })
-                }}
-                value={
-                  dbRespawnSound?.respawnFile ||
-                  respawnSound?.respawnFile ||
-                  defaultRespawnSound.respawnFile
-                }
-              >
-                {soundData['respawn'].map((offset) => {
-                  return (
-                    <Option
-                      key={uid.rnd()}
-                      value={offset.value}
-                      sx={optionsStyles}
-                    >
-                      {offset.label}
-                    </Option>
-                  )
-                })}
-              </Select>
+          <AudioSettings
+            formLabel='Audio de respawn:'
+            placeholderText='Seleccionar audio de respawn'
+            audioType='respawn'
+          />
 
-              <button
-                className='formButtons cancelButton'
-                style={{
-                  width: '15%',
-                  maxHeight: 31,
-                  minHeight: 31,
-                  fontSize: 17
-                }}
-                type='button'
-                onClick={() => {
-                  handleAudio('respawn')
-                }}
-              >
-                Probar
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <span className='optionsLabel'>Audio de respawn variable:</span>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'baseline',
-                gap: 16
-              }}
-            >
-              <Select
-                variant='plain'
-                placeholder='Seleccionar audio de respawn variable'
-                sx={[
-                  { width: '50% !important' },
-                  selectStyles,
-                  Boolean(variableSound) ? selectedStyles : {}
-                ]}
-                onChange={(event, value) => {
-                  editVariableSound(value, 1)
-                  setVariableSound({ variableFile: value, volume: 1 })
-                }}
-                value={
-                  dbVariableSound?.variableFile ||
-                  variableSound?.variableFile ||
-                  defaultVariableSound.variableFile
-                }
-              >
-                {soundData['variable'].map((offset) => {
-                  return (
-                    <Option
-                      key={uid.rnd()}
-                      value={offset.value}
-                      sx={optionsStyles}
-                    >
-                      {offset.label}
-                    </Option>
-                  )
-                })}
-              </Select>
-
-              <button
-                className='formButtons cancelButton'
-                style={{
-                  width: '15%',
-                  maxHeight: 31,
-                  minHeight: 31,
-                  fontSize: 17
-                }}
-                type='button'
-                onClick={() => {
-                  handleAudio('variable')
-                }}
-              >
-                Probar
-              </button>
-            </div>
-          </div>
+          <AudioSettings
+            formLabel='Audio de respawn variable:'
+            placeholderText='Seleccionar audio de respawn variable'
+            audioType='variable'
+          />
         </Sheet>
       </Drawer>
     </>
@@ -306,3 +154,5 @@ const optionsStyles = {
     fontWeight: 500
   }
 }
+
+// TODO Agregar dos slider para controlar los volumenes

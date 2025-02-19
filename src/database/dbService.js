@@ -1,4 +1,4 @@
-import { db } from './db'
+import { db, configDb } from './db'
 
 export const addData = async (mvpName, mapName, selectedDate, timing) => {
   try {
@@ -89,4 +89,21 @@ export const editVariableSound = async (selectedFile, selectedVolume) => {
     variableFile: selectedFile,
     volume: selectedVolume
   })
+}
+
+///////////////    Config DB   ////////////////
+
+export const getSettings = async () => {
+  return (await configDb.settings.toArray()).reduce((obj, { key, value }) => {
+    obj[key] = value
+    return obj
+  }, {})
+}
+
+export const updateSettings = async (updates) => {
+  const entries = Object.entries(updates).map(([key, value]) => ({
+    key,
+    value
+  }))
+  await configDb.settings.bulkPut(entries)
 }

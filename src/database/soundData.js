@@ -12,14 +12,3 @@ const soundData = {
 }
 
 export default soundData
-
-// console.log(soundData['respawn'][0].label)
-// console.log(soundData['respawn'][0].value)
-
-// const mvpContext = require.context('../sounds/', true, /\.mp3$/)
-// let mvpImage = mvpContext(`../sounds/${soundData['respawn'][0].value}.mp3`)
-// let prueba = new Audio(`../sounds/${soundData['respawn'][0].value}.mp3`)
-// prueba.play()
-
-// const mvpContext = require.context('../../images/mvps/', true, /\.png$/)
-// let mvpImage = mvpContext(`./${mvpName}.png`)

@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { TimerRenderer, useTimer } from 'react-use-precision-timer'
 import { getTime, formatTime } from '../../cards/RemainingTime.jsx'
+import { useAudio } from '../../../hooks/useAudio.jsx'
 
 const RespawnTimer = ({ respawnTime, renderCallback }) => {
   const callback = React.useCallback(() => renderCallback(), [])
   const timer = useTimer({ delay: 10, runOnce: true }, callback)
+  const { playAudio } = useAudio()
 
   useEffect(() => {
     timer.start(getTime(respawnTime))
@@ -12,7 +14,8 @@ const RespawnTimer = ({ respawnTime, renderCallback }) => {
 
   useEffect(() => {
     const check = () => {
-      if (timer.getRemainingTime() == 0) {
+      if (timer.getRemainingTime() <= 0) {
+        playAudio('respawn')
         renderCallback()
       }
     }
