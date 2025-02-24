@@ -4,30 +4,33 @@ import { removeTiming } from '../../../database/dbService.js'
 import { getTime, formatTime } from '../../cards/RemainingTime.jsx'
 import { useAudio } from '../../../hooks/useAudio.jsx'
 
-//TODO verificar porque aveces no se reproduce el sonido cuando el contador llega a 0
-
 const VariableTimer = ({ variableTime, id, setCardState }) => {
   const [currentColor, setCurrentColor] = useState('#c56d82')
+  const [isDone, setIsDone] = useState(false)
+  const timer = useTimer({ delay: 10, runOnce: true }, callback)
+
   const { playAudio } = useAudio()
 
   const callback = React.useCallback(() => {
-    playAudio('variable')
+    setIsDone(true)
   }, [timer])
-
-  const timer = useTimer({ delay: 10, runOnce: true }, callback)
 
   useEffect(() => {
     timer.start(getTime(variableTime))
   }, [])
 
   useEffect(() => {
+    if (isDone) {
+      playAudio('variable')
+      setTimeout(() => {
+        removeTiming(id)
+      }, 5000)
+    }
     const check = () => {
       if (timer.getRemainingTime() == 0) {
+        setIsDone(true)
         setCurrentColor('#666666')
         setCardState('disabled')
-        setTimeout(() => {
-          removeTiming(id)
-        }, 5000)
       }
     }
 
