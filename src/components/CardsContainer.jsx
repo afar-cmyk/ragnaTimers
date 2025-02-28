@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from './cards/Card.jsx'
 import { db } from '../database/db.js'
 import { useLiveQuery } from 'dexie-react-hooks'
-import ShortUniqueId from 'short-unique-id'
+// import ShortUniqueId from 'short-unique-id'
 // import { addCustomMVP } from '../database/dbService.js'
 
 const CardsContainer = () => {
@@ -10,7 +10,7 @@ const CardsContainer = () => {
     return await db.userSelection.where('timing').equals('true').toArray()
   })
 
-  const uid = new ShortUniqueId({ length: 5 })
+  // const uid = new ShortUniqueId({ length: 5 })
 
   /* Custom MVP debug*/
   /*   const newCustomMVP = {
@@ -47,7 +47,7 @@ const CardsContainer = () => {
         {timedMvps
           ? timedMvps.map((data) => (
               <Card
-                key={uid.rnd()}
+                key={data.id}
                 dataId={data.id}
                 mvpName={data.mvpName}
                 mapName={data.mapName}
