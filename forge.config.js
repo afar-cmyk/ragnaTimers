@@ -1,14 +1,16 @@
+const path = require('path')
+
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: './public/favicon.ico',
-    iconSize: 256
+    icon: path.join(__dirname, 'public/favicon'),
+    extraResource: ['./public']
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {}
+      config: { setupIcon: path.join(__dirname, 'public/favicon.ico') }
     },
     {
       name: '@electron-forge/maker-zip',
@@ -16,11 +18,19 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-deb',
-      config: {}
+      config: {
+        options: {
+          icon: path.join(__dirname, 'public/icon.png')
+        }
+      }
     },
     {
       name: '@electron-forge/maker-rpm',
-      config: {}
+      config: {
+        options: {
+          icon: path.join(__dirname, 'public/icon.png')
+        }
+      }
     }
   ],
   plugins: [

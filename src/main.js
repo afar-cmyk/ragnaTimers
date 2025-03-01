@@ -22,6 +22,7 @@ if (!gotTheLock) {
       backgroundColor: '#121212',
       darkTheme: true,
       autoHideMenuBar: true,
+      icon: path.join(__dirname, 'public', 'icon.png'),
       webPreferences: {
         preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
       }
