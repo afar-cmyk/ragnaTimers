@@ -22,8 +22,8 @@ export const Card = (props) => {
   let respawnTime = addMinutes(formattedDate, respawn)
   let variableTime = addMinutes(formattedDate, variable)
 
-  let respawnTimeLeft = differenceInSeconds(respawnTime, Date.now())
-  let variableTimeLeft = differenceInSeconds(variableTime, respawnTime)
+  // let respawnTimeLeft = differenceInSeconds(respawnTime, Date.now())
+  // let variableTimeLeft = differenceInSeconds(variableTime, respawnTime)
 
   return (
     <div
@@ -58,8 +58,8 @@ export const Card = (props) => {
         />
 
         <ProgressBar
-          remainingSeconds={respawnTimeLeft}
           selectedRespawn={respawnTime}
+          selectedVariable={variableTime}
           mvpRespawn={respawn}
           cardState={cardState}
         />

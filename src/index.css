@@ -237,12 +237,6 @@ header {
   border: 1px solid #ff0000cc;
 }
 
-/* Progress Bar Animaton */
-@keyframes fillAnimation {
-  to {
-    width: 0%;
-  }
-}
 .overlayButtons {
   display: flex;
   justify-content: center;
