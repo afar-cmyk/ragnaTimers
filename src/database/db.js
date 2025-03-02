@@ -8,4 +8,4 @@ db.version(6).stores({
 })
 
 export const configDb = new Dexie('configDB')
-configDb.version(1).stores({ settings: 'key,value' })
+configDb.version(2).stores({ settings: 'key,value' })

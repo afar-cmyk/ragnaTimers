@@ -7,7 +7,7 @@ import ModalClose from '@mui/joy/ModalClose'
 import FavoritesBar from './favorites/FavoritesBar.jsx'
 import ClockContainer from './clock/ClockContainer.jsx'
 import AudioSettings from './menu/AudioSettings.jsx'
-import TimezoneSettings from './menu/TimezoneSettings.jsx'
+import ServerTimezoneSettings from './menu/ServerTimezoneSettings.jsx'
 
 const MenuContainer = () => {
   const [open, setOpen] = useState(false)
@@ -33,7 +33,7 @@ const MenuContainer = () => {
           <ModalClose />
           <DialogTitle>Opciones</DialogTitle>
 
-          <TimezoneSettings
+          <ServerTimezoneSettings
             styles={{ selectedStyles, selectStyles, optionsStyles }}
           />
 

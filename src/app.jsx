@@ -7,6 +7,7 @@ import { useDefaultSettings } from './hooks/useDefaultSettings.jsx'
 
 const App = () => {
   const { setDefaultSettings } = useDefaultSettings()
+
   React.useEffect(() => {
     setDefaultSettings()
   }, [])
@@ -32,7 +33,6 @@ root.render(<App />)
 
 //TODO Agregar un sistema para que los usuarios puedan ajustar el tiempo de respawn de cualquier mvp
 //TODO Agregar un apartado para que los usuarios puedan poner mvp especiales como el Nidhoggr's, ellos deben de poner el tiempo de respawn
-//TODO Actualizar la version de package.json y index.html adecuadamente major.minor.patch 0.0.11
 
 //TODO Agregar los esqueletos de las barras
 //TODO Agrear un historial y un contador para definir los mvp 'favoritos'
