@@ -105,7 +105,11 @@ const VolumeSlider = ({ audioType }) => {
           borderRadius: '4px',
           background: '#444444',
           overflow: 'hidden',
-          width: '200px'
+          width: '200px',
+          border:
+            config[audioType + 'Volume'] <= 0
+              ? '1px solid #333333'
+              : '1px solid #ededed26'
         }}
       >
         {Array.from({ length: steps }).map((_, index) => {
@@ -123,9 +127,18 @@ const VolumeSlider = ({ audioType }) => {
               style={{
                 flex: 1,
                 height: '100%',
-                backgroundColor: isActive ? getStepColor(index) : '#313131',
+                backgroundColor: isActive
+                  ? getStepColor(index)
+                  : config[audioType + 'Volume'] <= 0
+                  ? '#1a1a1acc'
+                  : '#2e2e2e',
                 cursor: 'pointer',
-                borderRight: index < steps - 1 ? '1px solid #555555' : 'none',
+                borderRight:
+                  index === steps - 1
+                    ? 'none'
+                    : config[audioType + 'Volume'] <= 0
+                    ? '1px solid #555555'
+                    : '1px solid rgba(85, 85, 85, 0.5)',
                 boxSizing: 'border-box'
               }}
             />

@@ -6,28 +6,11 @@ import DialogTitle from '@mui/joy/DialogTitle'
 import ModalClose from '@mui/joy/ModalClose'
 import FavoritesBar from './favorites/FavoritesBar.jsx'
 import ClockContainer from './clock/ClockContainer.jsx'
-import Select from '@mui/joy/Select'
-import Option from '@mui/joy/Option'
-import { useAtom } from 'jotai'
-import { timeZoneAtom } from '../hooks/stateManager.jsx'
-import ShortUniqueId from 'short-unique-id'
-import { editTimeZone } from '../database/dbService.js'
-import { useLiveQuery } from 'dexie-react-hooks'
-import { db } from '../database/db.js'
-import gmtData from '../database/gmtData.js'
 import AudioSettings from './menu/AudioSettings.jsx'
+import TimezoneSettings from './menu/TimezoneSettings.jsx'
 
 const MenuContainer = () => {
   const [open, setOpen] = useState(false)
-  const [timeZone] = useAtom(timeZoneAtom)
-
-  const uid = new ShortUniqueId({ length: 5 })
-
-  const dbConfig = useLiveQuery(async () => {
-    return await db.config.toArray()
-  }, [])
-
-  const dbTimeZone = dbConfig?.find((item) => item.id === 1)
 
   const toggleDrawer = (inOpen) => (event) => {
     if (
@@ -46,54 +29,13 @@ const MenuContainer = () => {
       <FavoritesBar />
       <ClockContainer />
       <Drawer open={open} onClose={toggleDrawer(false)} size='lg'>
-        <Sheet
-          sx={{
-            borderRadius: 'md',
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            height: '100%',
-            overflow: 'auto',
-            backgroundColor: '#1a1a1a',
-            color: '#ABABAB',
-            userSelect: 'none'
-          }}
-        >
+        <Sheet sx={sheetStyles}>
           <ModalClose />
           <DialogTitle>Opciones</DialogTitle>
 
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 8,
-              marginBottom: 16
-            }}
-          >
-            <span className='optionsLabel'>Zona horaria del servidor:</span>
-            <Select
-              variant='plain'
-              placeholder='Seleccionar Zona Horaria'
-              sx={[selectStyles, Boolean(timeZone) ? selectedStyles : {}]}
-              onChange={(event, value) => {
-                editTimeZone(value)
-              }}
-              value={dbTimeZone?.timeZone || timeZone}
-            >
-              {gmtData.map((offset) => {
-                return (
-                  <Option
-                    key={uid.rnd()}
-                    value={offset.value}
-                    sx={optionsStyles}
-                  >
-                    {offset.label}
-                  </Option>
-                )
-              })}
-            </Select>
-          </div>
+          <TimezoneSettings
+            styles={{ selectedStyles, selectStyles, optionsStyles }}
+          />
 
           <AudioSettings
             formLabel='Audio de respawn:'
@@ -113,6 +55,19 @@ const MenuContainer = () => {
 }
 
 export default MenuContainer
+
+const sheetStyles = {
+  borderRadius: 'md',
+  p: 2,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 2,
+  height: '100%',
+  overflow: 'auto',
+  backgroundColor: '#1a1a1a',
+  color: '#ABABAB',
+  userSelect: 'none'
+}
 
 const selectStyles = {
   width: '100%',
