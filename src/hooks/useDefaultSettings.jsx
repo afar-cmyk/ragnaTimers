@@ -17,6 +17,7 @@ export const useDefaultSettings = () => {
     const dbSettings = await configDb.settings.toArray()
     if (dbSettings.length === 0) {
       await updateSettings(defaultSettings)
+      localStorage.clear()
       console.log('DB: Default settings added')
     }
     if (localStorage.length === 0) {

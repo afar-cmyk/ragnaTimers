@@ -5,6 +5,7 @@ import ShortUniqueId from 'short-unique-id'
 import soundData from '../../database/soundData.js'
 import { useConfig } from '../../hooks/stateManager.jsx'
 import { useAudio } from '../../hooks/useAudio.jsx'
+import VolumeSlider from './VolumeSlider.jsx'
 
 const AudioSettings = ({ formLabel, placeholderText, audioType }) => {
   const uid = new ShortUniqueId({ length: 5 })
@@ -14,13 +15,13 @@ const AudioSettings = ({ formLabel, placeholderText, audioType }) => {
   return loading ? (
     <div>Loading...</div>
   ) : (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <span className='optionsLabel'>{formLabel ? formLabel : 'Audio'}</span>
       <div
         style={{
           display: 'flex',
           flexDirection: 'row',
-          alignItems: 'baseline',
+          alignItems: 'center',
           gap: 16
         }}
       >
@@ -48,12 +49,14 @@ const AudioSettings = ({ formLabel, placeholderText, audioType }) => {
           })}
         </Select>
 
+        <VolumeSlider audioType={audioType} />
+
         <button
           className='formButtons cancelButton'
           style={{
             width: '15%',
-            maxHeight: 31,
-            minHeight: 31,
+            maxHeight: 30,
+            minHeight: 30,
             fontSize: 17
           }}
           type='button'
@@ -86,7 +89,6 @@ const selectStyles = {
   transition: 'border 0.3s',
   border: '1px solid #1d1d1d',
   outline: 'none',
-  marginTop: '4px',
   ':hover': {
     backgroundColor: '#EEEEEE14',
     border: '1px solid #ededed26',

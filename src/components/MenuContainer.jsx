@@ -56,13 +56,21 @@ const MenuContainer = () => {
             height: '100%',
             overflow: 'auto',
             backgroundColor: '#1a1a1a',
-            color: '#ABABAB'
+            color: '#ABABAB',
+            userSelect: 'none'
           }}
         >
           <ModalClose />
           <DialogTitle>Opciones</DialogTitle>
 
-          <div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 8,
+              marginBottom: 16
+            }}
+          >
             <span className='optionsLabel'>Zona horaria del servidor:</span>
             <Select
               variant='plain'
@@ -122,7 +130,6 @@ const selectStyles = {
   transition: 'border 0.3s',
   border: '1px solid #1d1d1d',
   outline: 'none',
-  marginTop: '4px',
   ':hover': {
     backgroundColor: '#EEEEEE14',
     border: '1px solid #ededed26',
@@ -154,5 +161,3 @@ const optionsStyles = {
     fontWeight: 500
   }
 }
-
-// TODO Agregar dos slider para controlar los volumenes
