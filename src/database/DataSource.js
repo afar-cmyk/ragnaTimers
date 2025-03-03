@@ -15,7 +15,7 @@ let DataSource = {
       }
     },
     maps: {
-      debug: { respawn: [1, 2] }
+      debug: { respawn: [1, 1.5] }
     }
   },
   default: {

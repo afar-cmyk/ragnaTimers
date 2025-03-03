@@ -46,6 +46,16 @@ body {
   scrollbar-color: #333 #12121288;
 }
 
+header {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  height: 56px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  column-gap: 14px;
+}
+
 /* Menu */
 .menu-button {
   display: flex;
@@ -80,6 +90,70 @@ body {
   width: 14px;
   height: 2px;
   background: #ababab;
+}
+
+.mute-button_default {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #eeeeee29;
+  color: #ababab;
+  transition: 0.2s ease-in-out;
+}
+
+.mute-button_default:hover {
+  background-color: #eeeeee30;
+  color: #cccccc;
+}
+
+.mute-button_default:hover .mute-icon_default {
+  color: #d1d1d1;
+}
+
+.mute-button_enabled {
+  width: 30px;
+  height: 30px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(171, 43, 73, 0.61);
+  background: #ab2b493b;
+  border-radius: 3px;
+  cursor: pointer;
+  color: rgb(171, 171, 171);
+  transition: 0.2s ease-in-out;
+}
+
+.mute-button_enabled:hover {
+  background-color: rgba(113, 72, 81, 0.4);
+  border: 1px solid #bd6f81;
+}
+
+.mute-button_enabled:hover .mute-icon_enabled {
+  color: #bd6f81;
+}
+
+.mute-icon_default {
+  color: rgb(171, 171, 171);
+  position: relative;
+  top: 1px;
+  font-size: 18px;
+  transition: 0.2s ease-in-out;
+}
+
+.mute-icon_enabled {
+  color: rgba(171, 43, 73, 0.61);
+  position: relative;
+  top: 1px;
+  font-size: 18px;
+  transition: 0.2s ease-in-out;
 }
 
 .newMvp_container {
@@ -133,7 +207,6 @@ body {
 }
 
 .current_date_btn {
-  background: url('./images/location.svg') no-repeat center center;
   background-color: #266a79;
   background-size: 65%;
   margin-right: 16px;
@@ -153,6 +226,18 @@ body {
   background-color: #1e5561;
 }
 
+.current_date_icon {
+  font-size: 23px;
+  color: #092b32;
+  position: absolute;
+  margin-top: 1.5px;
+  margin-left: 0.5px;
+}
+
+.current_date_btn:hover .current_date_icon {
+  color: #4792a3;
+}
+
 .current_date_btn:active {
   background-color: #2d7e90;
 }
@@ -161,7 +246,6 @@ body {
   outline: none;
   border: 1px solid #abababcc;
   color: #eeeeee;
-  background: url('./images/location.svg') no-repeat center center;
   background-color: #266a79;
   background-size: 70%;
 }
@@ -227,12 +311,6 @@ body {
   border: 1px solid #ff0000cc;
 }
 
-/* Progress Bar Animaton */
-@keyframes fillAnimation {
-  to {
-    width: 0%;
-  }
-}
 .overlayButtons {
   display: flex;
   justify-content: center;

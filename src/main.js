@@ -15,13 +15,14 @@ if (!gotTheLock) {
   const createWindow = () => {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
-      width: 800,
+      width: 998 + 16,
       height: 600,
       minWidth: 998 + 16,
       maxWidth: 998 + 16,
       backgroundColor: '#121212',
       darkTheme: true,
       autoHideMenuBar: true,
+      icon: path.join(__dirname, 'public', 'icon.png'),
       webPreferences: {
         preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
       }

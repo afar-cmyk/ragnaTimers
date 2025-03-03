@@ -10,6 +10,7 @@ import { addData } from '../database/dbService.js'
 import SwitchButton from './menu/SwitchButton.jsx'
 import { switchStateAtom } from '../hooks/stateManager.jsx'
 import { useAtom } from 'jotai'
+import { AiOutlineClockCircle } from 'react-icons/ai'
 
 const NewMvpForm = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => {
@@ -20,7 +21,8 @@ const NewMvpForm = forwardRef((props, ref) => {
   let currentData = dynamicData(switchState)
 
   const [filteredDataSource, setFilteredDataSource] = useState(
-    lodash.omit(currentData, 'default', 'debug')
+    // lodash.omit(currentData, 'default', 'debug')
+    lodash.omit(currentData, 'default')
   )
   const [mvp, setMvp] = useState('')
   const [map, setMap] = useState('')
@@ -140,7 +142,7 @@ const NewMvpForm = forwardRef((props, ref) => {
     setHours('')
     setMinutes('')
     setTimePeriod('')
-    setFilteredDataSource(lodash.omit(currentData, 'default', 'debug'))
+    setFilteredDataSource(lodash.omit(currentData, 'default'))
   }
 
   return (
@@ -219,7 +221,9 @@ const NewMvpForm = forwardRef((props, ref) => {
               type='button'
               className='current_date_btn'
               onClick={setCurrentTime}
-            />
+            >
+              <AiOutlineClockCircle className='current_date_icon' />
+            </button>
 
             <Select
               name='temporal'

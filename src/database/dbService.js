@@ -1,4 +1,4 @@
-import { db } from './db'
+import { db, configDb } from './db'
 
 export const addData = async (mvpName, mapName, selectedDate, timing) => {
   try {
@@ -57,4 +57,53 @@ export const addTimeZone = async (timeZone) => {
 
 export const editTimeZone = async (value) => {
   await db.config.update(1, { timeZone: value })
+}
+
+export const addRespawnSound = async (respawnSound) => {
+  try {
+    await db.config.add(respawnSound)
+    console.log(`DB: default Respawn audio data added.`)
+  } catch (error) {
+    console.error(error, `DB: failed to add default Respawn audio data.`)
+  }
+}
+
+export const editRespawnSound = async (selectedFile, selectedVolume) => {
+  await db.config.update(2, {
+    respawnFile: selectedFile,
+    volume: selectedVolume
+  })
+}
+
+export const addVariableSound = async (variableSound) => {
+  try {
+    await db.config.add(variableSound)
+    console.log(`DB: default Variable audio data added.`)
+  } catch (error) {
+    console.error(error, `DB: failed to add default Variable audio data.`)
+  }
+}
+
+export const editVariableSound = async (selectedFile, selectedVolume) => {
+  await db.config.update(3, {
+    variableFile: selectedFile,
+    volume: selectedVolume
+  })
+}
+
+///////////////    Config DB   ////////////////
+
+export const getSettings = async () => {
+  return (await configDb.settings.toArray()).reduce((obj, { key, value }) => {
+    obj[key] = value
+    return obj
+  }, {})
+}
+
+export const updateSettings = async (updates) => {
+  const entries = Object.entries(updates).map(([key, value]) => ({
+    key,
+    value
+  }))
+  await configDb.settings.bulkPut(entries)
 }
