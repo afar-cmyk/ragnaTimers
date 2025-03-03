@@ -7,17 +7,10 @@ const VolumeSlider = ({ audioType }) => {
   const { config, setConfigValue } = useConfig()
   const [volume, setVolume] = useState(1)
   const [isMuted, setIsMuted] = useState(false)
-  const [previousVolume, setPreviousVolume] = useState(1) // Estado local ya no es necesario para persistencia
+  const [previousVolume, setPreviousVolume] = useState(1)
   const steps = 10
   const startColor = { r: 233, g: 84, b: 118, a: 0.5 }
   const endColor = { r: 43, g: 182, b: 82, a: 0.7 }
-  const mutedRed = '#ab2b499c'
-  const mutedRedBackground = '#71485166'
-  const normalButtonBackground = '#eeeeee29'
-  const normalButtonHoverBackground = '#eeeeee30'
-  const normalButtonActiveBackground = '#eeeeee1a'
-  const normalButtonTextColor = '#ababab'
-  const normalButtonHoverTextColor = '#cccccc'
 
   const generateColorGradient = React.useMemo(() => {
     const gradientColors = []
@@ -47,7 +40,7 @@ const VolumeSlider = ({ audioType }) => {
 
   const handleStepClick = React.useCallback((stepValue) => {
     setVolume(stepValue)
-    setIsMuted(false) // Unmute when volume is adjusted
+    setIsMuted(false)
   }, [])
 
   const getActiveSteps = React.useCallback(
@@ -62,31 +55,26 @@ const VolumeSlider = ({ audioType }) => {
       setVolume(config[audioType + 'Volume'])
       setIsMuted(config[audioType + 'Volume'] === 0)
 
-      // Cargar previousVolume desde la configuración al inicio
       const storedPreviousVolume = config[audioType + 'PreviousVolume']
       if (storedPreviousVolume !== undefined) {
         setPreviousVolume(storedPreviousVolume)
       } else if (config[audioType + 'Volume'] > 0) {
-        // Si no hay previousVolume y el volumen inicial es > 0, usar el volumen inicial como previousVolume inicial
         setPreviousVolume(config[audioType + 'Volume'])
       } else {
-        setPreviousVolume(1) // Valor por defecto si no hay nada en la configuración y volumen inicial es 0
+        setPreviousVolume(1)
       }
     }
   }, [config, audioType])
 
   const handleMuteClick = () => {
     if (isMuted) {
-      // Desilenciar: Restaurar previousVolume desde la configuración
       setIsMuted(false)
       setConfigValue(`${audioType}Volume`, previousVolume).then(() => {
         setVolume(previousVolume)
       })
     } else {
-      // Silenciar: Guardar volumen actual como previousVolume en la configuración y establecer volumen a 0
       setConfigValue(`${audioType}PreviousVolume`, volume).then(() => {
-        // Guardar previousVolume en config
-        setPreviousVolume(volume) // Actualizar estado local para consistencia inmediata
+        setPreviousVolume(volume)
         setIsMuted(true)
         setConfigValue(`${audioType}Volume`, 0).then(() => {
           setVolume(0)
@@ -169,5 +157,3 @@ const VolumeSlider = ({ audioType }) => {
 }
 
 export default VolumeSlider
-
-// hacer algo al respecto de boton para silenciar en su estado mute para reflejar el hover
