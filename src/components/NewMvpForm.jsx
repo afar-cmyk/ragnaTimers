@@ -10,6 +10,7 @@ import { addData } from '../database/dbService.js'
 import SwitchButton from './menu/SwitchButton.jsx'
 import { switchStateAtom } from '../hooks/stateManager.jsx'
 import { useAtom } from 'jotai'
+import { AiOutlineClockCircle } from 'react-icons/ai'
 
 const NewMvpForm = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => {
@@ -220,7 +221,9 @@ const NewMvpForm = forwardRef((props, ref) => {
               type='button'
               className='current_date_btn'
               onClick={setCurrentTime}
-            />
+            >
+              <AiOutlineClockCircle className='current_date_icon' />
+            </button>
 
             <Select
               name='temporal'
