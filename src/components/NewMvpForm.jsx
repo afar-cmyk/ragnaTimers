@@ -21,8 +21,7 @@ const NewMvpForm = forwardRef((props, ref) => {
   let currentData = dynamicData(switchState)
 
   const [filteredDataSource, setFilteredDataSource] = useState(
-    // lodash.omit(currentData, 'default', 'debug')
-    lodash.omit(currentData, 'default')
+    lodash.omit(currentData, 'default', 'debug')
   )
   const [mvp, setMvp] = useState('')
   const [map, setMap] = useState('')
@@ -142,7 +141,7 @@ const NewMvpForm = forwardRef((props, ref) => {
     setHours('')
     setMinutes('')
     setTimePeriod('')
-    setFilteredDataSource(lodash.omit(currentData, 'default'))
+    setFilteredDataSource(lodash.omit(currentData, 'default', 'debug'))
   }
 
   return (
