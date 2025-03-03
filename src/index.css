@@ -207,7 +207,6 @@ header {
 }
 
 .current_date_btn {
-  /* background: url('./images/location.svg') no-repeat center center; */
   background-color: #266a79;
   background-size: 65%;
   margin-right: 16px;
@@ -228,7 +227,7 @@ header {
 }
 
 .current_date_icon {
-  font-size: 24px;
+  font-size: 23px;
   color: #092b32;
   position: absolute;
   margin-top: 1.5px;
@@ -247,7 +246,6 @@ header {
   outline: none;
   border: 1px solid #abababcc;
   color: #eeeeee;
-  background: url('./images/location.svg') no-repeat center center;
   background-color: #266a79;
   background-size: 70%;
 }
