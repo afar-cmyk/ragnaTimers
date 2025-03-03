@@ -7,7 +7,8 @@ import { useConfig } from '../../hooks/stateManager.jsx'
 import { useAudio } from '../../hooks/useAudio.jsx'
 import VolumeSlider from './VolumeSlider.jsx'
 
-const AudioSettings = ({ formLabel, placeholderText, audioType }) => {
+const AudioSettings = ({ formLabel, placeholderText, audioType, styles }) => {
+  const { selectedStyles, selectStyles, optionsStyles } = styles
   const uid = new ShortUniqueId({ length: 5 })
   const { loading, config, setConfigValue } = useConfig()
   const { playAudio } = useAudio()
@@ -72,51 +73,3 @@ const AudioSettings = ({ formLabel, placeholderText, audioType }) => {
 }
 
 export default AudioSettings
-
-const selectStyles = {
-  width: '100%',
-  borderRadius: 3,
-  maxHeight: 30,
-  minHeight: 30,
-  color: '#666666',
-  backgroundColor: '#EEEEEE14',
-  fontFamily: 'Roboto Flex',
-  fontSize: 16,
-  fontStyle: 'normal',
-  fontWeight: '700 !important',
-  lineHeight: 'normal',
-  boxSizing: 'border-box',
-  transition: 'border 0.3s',
-  border: '1px solid #1d1d1d',
-  outline: 'none',
-  ':hover': {
-    backgroundColor: '#EEEEEE14',
-    border: '1px solid #ededed26',
-    color: '#ABABAB'
-  },
-  ':focus-visible': {
-    outline: 'none',
-    border: '1px solid #ABABAB !important',
-    color: '#ABABAB'
-  }
-}
-
-const selectedStyles = {
-  backgroundColor: '#EEEEEE14',
-  border: '1px solid #ededed26',
-  color: '#ABABAB'
-}
-
-const optionsStyles = {
-  border: '1px solid #1E1E1E',
-  backgroundColor: '#1E1E1E !important',
-  fontFamily: 'Roboto Flex',
-  fontWeight: 400,
-  color: '#ABABAB',
-  fontSize: 14,
-  ':hover': {
-    border: '1px solid #ededed26',
-    color: '#ABABAB !important',
-    fontWeight: 500
-  }
-}

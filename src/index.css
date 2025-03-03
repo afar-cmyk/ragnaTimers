@@ -92,6 +92,70 @@ header {
   background: #ababab;
 }
 
+.mute-button_default {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #eeeeee29;
+  color: #ababab;
+  transition: 0.2s ease-in-out;
+}
+
+.mute-button_default:hover {
+  background-color: #eeeeee30;
+  color: #cccccc;
+}
+
+.mute-button_default:hover .mute-icon_default {
+  color: #d1d1d1;
+}
+
+.mute-button_enabled {
+  width: 30px;
+  height: 30px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(171, 43, 73, 0.61);
+  background: #ab2b493b;
+  border-radius: 3px;
+  cursor: pointer;
+  color: rgb(171, 171, 171);
+  transition: 0.2s ease-in-out;
+}
+
+.mute-button_enabled:hover {
+  background-color: rgba(113, 72, 81, 0.4);
+  border: 1px solid #bd6f81;
+}
+
+.mute-button_enabled:hover .mute-icon_enabled {
+  color: #bd6f81;
+}
+
+.mute-icon_default {
+  color: rgb(171, 171, 171);
+  position: relative;
+  top: 1px;
+  font-size: 18px;
+  transition: 0.2s ease-in-out;
+}
+
+.mute-icon_enabled {
+  color: rgba(171, 43, 73, 0.61);
+  position: relative;
+  top: 1px;
+  font-size: 18px;
+  transition: 0.2s ease-in-out;
+}
+
 .newMvp_container {
   display: inline-flex;
   background: #eeeeee0a;

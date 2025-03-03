@@ -30,7 +30,18 @@ const MenuContainer = () => {
       <ClockContainer />
       <Drawer open={open} onClose={toggleDrawer(false)} size='lg'>
         <Sheet sx={sheetStyles}>
-          <ModalClose />
+          <ModalClose
+            sx={{
+              backgroundColor: '#1a1a1a',
+              '& .MuiSvgIcon-root': {
+                color: '#afafaf'
+              },
+              ':hover': {
+                backgroundColor: '#2f2f2f',
+                color: '#cccccc'
+              }
+            }}
+          />
           <DialogTitle>Opciones</DialogTitle>
 
           <ServerTimezoneSettings
@@ -41,12 +52,14 @@ const MenuContainer = () => {
             formLabel='Audio de respawn:'
             placeholderText='Seleccionar audio de respawn'
             audioType='respawn'
+            styles={{ selectedStyles, selectStyles, optionsStyles }}
           />
 
           <AudioSettings
             formLabel='Audio de respawn variable:'
             placeholderText='Seleccionar audio de respawn variable'
             audioType='variable'
+            styles={{ selectedStyles, selectStyles, optionsStyles }}
           />
         </Sheet>
       </Drawer>
@@ -99,7 +112,6 @@ const selectStyles = {
 
 const selectedStyles = {
   backgroundColor: '#EEEEEE14',
-  border: '1px solid #ededed26',
   color: '#ABABAB'
 }
 

@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { TbMusicOff } from 'react-icons/tb'
 import { useConfig } from '../../hooks/stateManager.jsx'
+import { Box } from '@mui/joy'
 
 const VolumeSlider = ({ audioType }) => {
   const { config, setConfigValue } = useConfig()
   const [volume, setVolume] = useState(1)
+  const [isMuted, setIsMuted] = useState(false)
+  const [previousVolume, setPreviousVolume] = useState(1) // Estado local ya no es necesario para persistencia
   const steps = 10
   const startColor = { r: 233, g: 84, b: 118, a: 0.5 }
   const endColor = { r: 43, g: 182, b: 82, a: 0.7 }
+  const mutedRed = '#ab2b499c'
+  const mutedRedBackground = '#71485166'
+  const normalButtonBackground = '#eeeeee29'
+  const normalButtonHoverBackground = '#eeeeee30'
+  const normalButtonActiveBackground = '#eeeeee1a'
+  const normalButtonTextColor = '#ababab'
+  const normalButtonHoverTextColor = '#cccccc'
 
   const generateColorGradient = React.useMemo(() => {
     const gradientColors = []
@@ -37,6 +47,7 @@ const VolumeSlider = ({ audioType }) => {
 
   const handleStepClick = React.useCallback((stepValue) => {
     setVolume(stepValue)
+    setIsMuted(false) // Unmute when volume is adjusted
   }, [])
 
   const getActiveSteps = React.useCallback(
@@ -49,67 +60,72 @@ const VolumeSlider = ({ audioType }) => {
   useEffect(() => {
     if (config && config[audioType + 'Volume'] !== undefined) {
       setVolume(config[audioType + 'Volume'])
+      setIsMuted(config[audioType + 'Volume'] === 0)
+
+      // Cargar previousVolume desde la configuración al inicio
+      const storedPreviousVolume = config[audioType + 'PreviousVolume']
+      if (storedPreviousVolume !== undefined) {
+        setPreviousVolume(storedPreviousVolume)
+      } else if (config[audioType + 'Volume'] > 0) {
+        // Si no hay previousVolume y el volumen inicial es > 0, usar el volumen inicial como previousVolume inicial
+        setPreviousVolume(config[audioType + 'Volume'])
+      } else {
+        setPreviousVolume(1) // Valor por defecto si no hay nada en la configuración y volumen inicial es 0
+      }
     }
   }, [config, audioType])
 
+  const handleMuteClick = () => {
+    if (isMuted) {
+      // Desilenciar: Restaurar previousVolume desde la configuración
+      setIsMuted(false)
+      setConfigValue(`${audioType}Volume`, previousVolume).then(() => {
+        setVolume(previousVolume)
+      })
+    } else {
+      // Silenciar: Guardar volumen actual como previousVolume en la configuración y establecer volumen a 0
+      setConfigValue(`${audioType}PreviousVolume`, volume).then(() => {
+        // Guardar previousVolume en config
+        setPreviousVolume(volume) // Actualizar estado local para consistencia inmediata
+        setIsMuted(true)
+        setConfigValue(`${audioType}Volume`, 0).then(() => {
+          setVolume(0)
+        })
+      })
+    }
+  }
+
   return (
-    <div
-      style={{
+    <Box
+      component={'div'}
+      sx={{
         display: 'flex',
         alignItems: 'center',
         gap: '10px'
       }}
     >
       <button
-        className='formButtons cancelButton'
-        style={{
-          width: '30px',
-          height: '30px',
-          fontSize: 17,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          border:
-            config[audioType + 'Volume'] <= 0 || volume <= 0
-              ? '1px solid #ab2b499c'
-              : 'none',
-          background:
-            config[audioType + 'Volume'] <= 0 || volume <= 0
-              ? '#71485166'
-              : '#eeeeee29',
-          borderRadius: '3px',
-          cursor: 'pointer'
-        }}
+        className={`mute-button_${isMuted ? 'enabled' : 'default'}`}
         type='button'
-        onClick={() => {
-          setConfigValue(`${audioType}Volume`, 0).then(() => setVolume(0))
-        }}
+        onClick={handleMuteClick}
       >
         <TbMusicOff
-          style={{
-            position: 'relative',
-            top: '1px',
-            fontSize: '18px',
-            color:
-              config[audioType + 'Volume'] <= 0 || volume <= 0
-                ? '#ab2b499c'
-                : '#ababab'
-          }}
+          className={`mute-icon_${isMuted ? 'enabled' : 'default'}`}
         />
       </button>
 
-      <div
-        style={{
+      <Box
+        sx={{
           display: 'flex',
           height: '20px',
           borderRadius: '4px',
           background: '#444444',
           overflow: 'hidden',
           width: '200px',
-          border:
-            config[audioType + 'Volume'] <= 0
-              ? '1px solid #333333'
-              : '1px solid #ededed26'
+          border: '1px solid #333333',
+          ':hover': {
+            border: '1px solid #ededed26'
+          }
         }}
       >
         {Array.from({ length: steps }).map((_, index) => {
@@ -117,14 +133,14 @@ const VolumeSlider = ({ audioType }) => {
           const isActive = index < activeStepsCount && volume > 0
 
           return (
-            <div
+            <Box
               key={index}
               onClick={() =>
                 setConfigValue(`${audioType}Volume`, stepValue).then(() =>
                   handleStepClick(stepValue)
                 )
               }
-              style={{
+              sx={{
                 flex: 1,
                 height: '100%',
                 backgroundColor: isActive
@@ -139,14 +155,19 @@ const VolumeSlider = ({ audioType }) => {
                     : config[audioType + 'Volume'] <= 0
                     ? '1px solid #555555'
                     : '1px solid rgba(85, 85, 85, 0.5)',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                ':hover': {
+                  filter: 'brightness(1.6)'
+                }
               }}
             />
           )
         })}
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 
 export default VolumeSlider
+
+// hacer algo al respecto de boton para silenciar en su estado mute para reflejar el hover
